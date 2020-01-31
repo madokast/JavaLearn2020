@@ -62,11 +62,17 @@ public class RestfulLearnController {
 
     @DeleteMapping("/emp/{id}")
     public String delEmp(@PathVariable("id") Integer id) throws JsonProcessingException{
+        if(id==-1){
+            //假设抛出一个未知异常
+            throw new IndexOutOfBoundsException("未知异常");
+        }
+
         Logger.getLogger().info("/emp/{id} 删除员工" + id);
         Employee employee = map.getOrDefault(id, null);
         if(employee==null){
             Logger.getLogger().info("要删除的员工不存在");
-            return mapper.writeValueAsString(new Employee(404, "要删除的员工不存在"));
+            throw new EmployeeNotExistException();
+//            return mapper.writeValueAsString(new Employee(404, "要删除的员工不存在"));
         }else {
             Logger.getLogger().info("员工" + employee + "删除成功");
             map.remove(id);
@@ -83,6 +89,43 @@ public class RestfulLearnController {
             map.put(101 + i,
                     new Employee(101 + i, String.valueOf((char) ('a' + i)).repeat(3))
             );
+        }
+    }
+
+    //异常处理器 -> AOP
+    @ControllerAdvice
+    private static class EmployeeNotExistExceptionHandle{
+
+        //异常处理。注解包含异常的类
+        @ExceptionHandler(EmployeeNotExistException.class)
+        @ResponseBody//handleException就是一个controller-method，这个注解表示返回值RESTFUL风格
+        public String handleEmployeeNotExistException(EmployeeNotExistException e)
+                throws JsonProcessingException{
+            Logger.getLogger().info("正在处理JsonProcessingException异常");
+            return mapper.writeValueAsString(new Employee(404,"用户不存在 form ExceptionHandler"));
+        }
+
+        //未知异常处理
+        @ExceptionHandler(Exception.class)
+        @ResponseBody
+        public String handleUnknownException(Exception e) throws JsonProcessingException{
+            Logger.getLogger().warn("出现未知异常，异常信息打印如下");
+            Logger.getLogger().info(e.toString());
+            Arrays.stream(e.getStackTrace()).forEach(
+                    stackTraceElement -> Logger.getLogger().info(stackTraceElement.toString()));
+
+            return mapper.writeValueAsString(new Employee(404,"出现未知异常" + e.getCause()));
+        }
+
+
+        private final ObjectMapper mapper = new ObjectMapper();
+    }
+
+    //异常类
+    private static class EmployeeNotExistException extends RuntimeException{
+        public EmployeeNotExistException(){
+            super("用户不存在");
+            Logger.getLogger().info("EmployeeNotExistException 异常被创建");
         }
     }
 
