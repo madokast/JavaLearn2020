@@ -1,5 +1,7 @@
 package com.madokast.privacy.controller.test;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -9,17 +11,19 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 
 /**
  * Description
  * 测试返回Json格式数据
+ * 前缀 /test/json
+ * 1. get 时间 /time
+ * 2. get 重复信息 /repeat/{info}
+ * 3. get 随机 /random
+ * 4. get 图片 /picture/width/{width}/height/{height}/color/{r}/{g}/{b}/info/{info}
+ * 5. post /post/person 请求方法：name age
  * <p>
  * Data
  * 0:08
@@ -29,7 +33,7 @@ import java.util.Random;
  */
 
 
-@CrossOrigin//允许跨域
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")//允许跨域
 @RestController
 @RequestMapping(path = "/test/json")
 public class JsonController {
@@ -87,8 +91,8 @@ public class JsonController {
         graphics.fillRect(0, 0, width, height);
 
         graphics.setColor(Color.black);
-        graphics.setFont(new Font(Font.SERIF, Font.ITALIC, height / 10));
-        graphics.drawString(info, RANDOM.nextInt(width / 2), RANDOM.nextInt(height / 2));
+        graphics.setFont(new Font(Font.SERIF, Font.BOLD, height / 10));
+        graphics.drawString(info, RANDOM.nextInt(width / 2) + width/10, RANDOM.nextInt(height / 2) + height/10);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "jpeg", byteArrayOutputStream);
@@ -99,12 +103,38 @@ public class JsonController {
     }
 
     @PostMapping("/post/person")
-    public Object receivePerson(@RequestBody PersonInTestController person){
-        LOGGER.info("post mapping /test/json/post/person = {}",person);
+    public Object receivePerson(@RequestBody PersonInTestController person) {
+        LOGGER.info("post mapping /test/json/post/person = {}", person);
 
         return new JsonInTestController(person);
     }
 
+    @GetMapping("/books")
+    public Object getBooks() {
+        final List<BookInTestController> list = BookInTestController.getList();
+        LOGGER.info("get mapping /books size = {}", list.size());
+        return list;
+    }
+
+    @GetMapping("/books/last")
+    public Object getLastBook(){
+        LOGGER.info("get mapping /books/last");
+        final List<BookInTestController> list = BookInTestController.getList();
+        final int size = list.size();
+        return list.get(size-1);
+    }
+
+    @PostMapping("/books")
+    public Object submitBook(@RequestBody BookInTestController bookInTestController) {
+        LOGGER.info("post mapping /books bookInTestController={}", bookInTestController);
+
+        bookInTestController.setData(RANDOM.nextLong());
+        bookInTestController.setId(RANDOM.nextInt(100));
+
+        BookInTestController.getList().add(bookInTestController);
+
+        return new JsonInTestController(200);
+    }
 
     private static class JsonInTestController {
         Object data;
@@ -140,7 +170,7 @@ public class JsonController {
         }
     }
 
-    private static class PersonInTestController{
+    private static class PersonInTestController {
         private String name;
         private int age;
 
@@ -166,6 +196,69 @@ public class JsonController {
                     "name='" + name + '\'' +
                     ", age=" + age +
                     '}';
+        }
+    }
+
+    private static class BookInTestController {
+        private Integer id;
+        private String name;
+        @JsonSerialize(using = ToStringSerializer.class)
+        private Long data;
+
+        private static List<BookInTestController> list = new ArrayList<>();
+
+        static {
+            list.add(new BookInTestController(4, "红楼梦", 252560997500L));
+            list.add(new BookInTestController(5, "三国演义", 252560997600L));
+            list.add(new BookInTestController(6, "水浒传", 252560997700L));
+            list.add(new BookInTestController(7, "西游记", 252560997800L));
+        }
+
+        public static List<BookInTestController> getList() {
+            return list;
+        }
+
+        @Override
+        public String toString() {
+            return "BookInTestController{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", data=" + data +
+                    '}';
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Long getData() {
+            return data;
+        }
+
+        public void setData(Long data) {
+            this.data = data;
+        }
+
+        public static void setList(List<BookInTestController> list) {
+            BookInTestController.list = list;
+        }
+
+        public BookInTestController(Integer id, String name, Long data) {
+            this.id = id;
+            this.name = name;
+            this.data = data;
         }
     }
 }
