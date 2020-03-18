@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接受SSE数据</title>
+    <style>
+        .url-input {
+            width: 400px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul {
+            margin: 0 0 0 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2>{{title}}</h2>
+    <div class="input">
+        <label>url: </label>
+        <input class="url-input" type="url" v-model="url" @keyup.enter='request'>
+        <button @click="sseStream=[]">清空</button>
+        <button @click="seeClosed=true">关闭</button>
+    </div>
+    <hr>
+    <div class="print">
+        <ul v-for="info in sseStream">
+            <li>{{info}}</li>
+        </ul>
+    </div>
+</div>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                title: '接受SSE数据',
+                url: 'http://192.168.2.13:2234/hello/event/stream/repeat/10',
+                maxEventNumber: 1000,
+                eventNumber: 0,
+                sseStream: ['info....'],
+                seeClosed: false
+            };
+        },
+        methods: {
+            request() {
+                const sse = new EventSource(this.url);
+
+                // 太恶心了
+                const that = this;
+
+                sse.onmessage = function (e) {
+                    if (e.data === '__END__' || ++that.eventNumber >= that.maxEventNumber || that.seeClosed) {
+                        that.seeClosed = false;
+                        that.eventNumber = 0;
+                        sse.close();
+                    }
+                    that.sseStream.push("[" + that.currentTime() + "]" + e.data);
+                }
+            },
+            currentTime() {
+                let s = new Date().toJSON().replace(/[-T]|[-Z]/g, '-');
+                s = s.substring(0, s.length - 1);
+                return s;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,11 +1,7 @@
-package com.example.demo.utils;
+package com.zrx.demo.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.validation.constraints.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Description

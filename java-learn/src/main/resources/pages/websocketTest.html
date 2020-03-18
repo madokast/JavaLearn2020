@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>websocket通讯</title>
+</head>
+<script>
+    // 创建 socket 实例
+    const socket = new WebSocket("ws://192.168.2.13:2234/zrx");
+
+    // 打开
+    socket.onopen = function (event) {
+        console.log("打开socket");
+        socket.send("连接socket成功");
+    };
+
+    // 监听
+    socket.onmessage = function (event) {
+        console.log("收到消息" + event.data);
+    };
+
+    // 监听关闭信息
+    socket.onclose = function (event) {
+        console.log("socket服务器关闭" + event);
+    };
+
+    // 主动关闭socket
+    // socket.close()
+</script>
+
+</body>
+
+</html>
