@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>websocket通讯</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #dddddd;
+        }
+
+        li {
+            display: block;
+            list-style-type: none;
+            clear: both;
+        }
+
+        .info .left {
+            float: right;
+        }
+
+        #app {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .nav {
+            padding: 0 10px 0 10px;
+            overflow: auto;
+        }
+
+        .nav .tab {
+            float: left;
+            margin: 5px 5px 0 5px;
+            box-sizing: content-box;
+            border-radius: 2px;
+        }
+
+        .nav .tab:hover {
+            cursor: pointer;
+        }
+
+        .nav .interact {
+            float: right;
+            margin: 5px 5px 0 5px;
+        }
+
+        .window .info {
+            margin: 5px 0 0 0;
+            font-size: 10px;
+        }
+
+        .nodispaly {
+            display: none;
+        }
+
+        .activetab {
+            background-color: #b4b3b7;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="nav">
+        <div class="tab" :class="{activetab:currentDisplay===user.id}" v-for="user in users" @click="display(user)">
+            {{user.name}}
+        </div>
+        <div class="interact">
+            <label>
+                <input type="text" v-model="sendMsg" @keyup.enter="send(sendMsg)">
+            </label>
+        </div>
+    </div>
+    <div class="window" :class="{nodispaly:currentDisplay!=user.id}" v-for="user in users">
+        <div class="info">
+            <ul>
+                <li v-for="msg in user.info" :class="{left:msg.left}">{{msgForm(user.name,msg)}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                currentDisplay: 1,
+                sendMsg: '要发送的消息',
+                users: [
+                    {
+                        id: 1,
+                        name: '张三',
+                        socket: null,
+                        info: []
+                    }
+                ]
+            };
+        },
+        methods: {
+            msgForm(name, msg) {
+                if (msg.left) {
+                    return name + ':' + msg.data;
+                } else
+                    return msg.data;
+            },
+            display(user) {
+                this.currentDisplay = user.id;
+            },
+            send(sendMsg) {
+                this.users.filter(user=>user.id===this.currentDisplay).forEach(user=>{
+                    user.info.push({
+                        left: true,
+                        data: sendMsg
+                    });
+                    if(user.socket==null)
+                        this.reOpen(user);
+
+
+                    user.socket.send(sendMsg);
+                })
+
+            },
+            reOpen(user){
+                user.socket=new WebSocket('ws://192.168.2.13:2234/' + user.name);
+
+                user.socket.onopen = function (event) {
+                    console.log("re open",event);
+                    user.info.push({
+                        left: true,
+                        data: '连接socket..'
+                    });
+                    socket.send("重新连接socket成功");
+                };
+            }
+        },
+        created() {
+            this.users.forEach(user => {
+                user.socket = new WebSocket('ws://192.168.2.13:2234/' + user.name);
+
+                const socket = user.socket;
+
+                // 打开
+                socket.onopen = function (event) {
+                    console.log("on open",event);
+                    user.info.push({
+                        left: true,
+                        data: '连接socket..'
+                    });
+                    socket.send("连接socket成功");
+                };
+
+                // 监听
+                socket.onmessage = function (event) {
+                    console.log("on message",event);
+                    user.info.push({
+                        left: false,
+                        data: "收到消息" + event.data
+                    });
+
+                };
+
+                // 监听关闭信息
+                socket.onclose = function (event) {
+                    console.log("on close",event);
+                    user.info.push({
+                        left: false,
+                        data: "socket服务器关闭" + event
+                    });
+
+                    user.socket = null;
+                };
+            });
+        }
+    });
+</script>
+
+</body>
+
+</html>

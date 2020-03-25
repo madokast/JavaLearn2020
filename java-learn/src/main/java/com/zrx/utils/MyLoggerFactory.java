@@ -1,9 +1,11 @@
-package com.zrx.demo.utils;
+package com.zrx.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.*;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 /**
@@ -26,11 +28,34 @@ public class MyLoggerFactory {
 
     private final static int PLACE_HOLDER_LENGTH = PLACE_HOLDER.length();
 
+    private final static Map<String, MyLogListener> LOG_LISTENER_MAP = new ConcurrentHashMap<>();
+
+    public static org.slf4j.Logger getLogger(Class<?> clazz) {
+        Logger logger = LoggerFactory.getLogger(clazz);
+        return box(logger, info ->
+                LOG_LISTENER_MAP.values().forEach(listener -> listener.listen(info))
+        );
+    }
+
+    public static void addListener(String name, MyLogListener listener) {
+        LOGGER.info("add logger listener {}", name);
+        LOG_LISTENER_MAP.put(name, listener);
+    }
+
+    public static void removeListener(String name) {
+        LOGGER.info("remove logger listener {}", name);
+        LOG_LISTENER_MAP.remove(name);
+    }
+
+    public static interface MyLogListener {
+        void listen(String info);
+    }
+
+    @Deprecated
     public static void addListenerOnBean(Object bean, Consumer<String> listener) {
         Class<?> beanClass = bean.getClass();
         Field loggerField;
         Logger logger;
-        Field modifiers;
 
         try {
             // 拿到 LOGGER
@@ -98,6 +123,7 @@ public class MyLoggerFactory {
 
         LOGGER.info("成功监听bean[{}]的LOGGER", bean);
     }
+
 
     private static Logger box(Logger log, Consumer<String> listener) {
         return (Logger) Proxy.newProxyInstance(

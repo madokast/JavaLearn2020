@@ -1,4 +1,4 @@
-package com.zrx.demo;
+package com.zrx;
 
 import org.springframework.util.Assert;
 

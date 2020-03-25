@@ -1,6 +1,5 @@
-package com.zrx.demo.utils;
+package com.zrx.utils;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,10 +15,10 @@ public class TimerTest {
 
     @Test
     public void newStateTest(){
-        com.zrx.demo.utils.Timer timer1 = com.zrx.demo.utils.Timer.create("timer1");
-        com.zrx.demo.utils.Timer timer2 = com.zrx.demo.utils.Timer.create("timer2");
-        com.zrx.demo.utils.Timer timer3 = com.zrx.demo.utils.Timer.create("timer3");
-        com.zrx.demo.utils.Timer timer4 = com.zrx.demo.utils.Timer.create("timer4");
+        Timer timer1 = Timer.create("timer1");
+        Timer timer2 = Timer.create("timer2");
+        Timer timer3 = Timer.create("timer3");
+        Timer timer4 = Timer.create("timer4");
 
         timer1.start();
         timer2.stop();
@@ -30,10 +29,10 @@ public class TimerTest {
 
     @Test
     public void stopTest(){
-        com.zrx.demo.utils.Timer timer1 = com.zrx.demo.utils.Timer.create("timer1");
-        com.zrx.demo.utils.Timer timer2 = com.zrx.demo.utils.Timer.create("timer2");
-        com.zrx.demo.utils.Timer timer3 = com.zrx.demo.utils.Timer.create("timer3");
-        com.zrx.demo.utils.Timer timer4 = com.zrx.demo.utils.Timer.create("timer4");
+        Timer timer1 = Timer.create("timer1");
+        Timer timer2 = Timer.create("timer2");
+        Timer timer3 = Timer.create("timer3");
+        Timer timer4 = Timer.create("timer4");
 
 
         timer1.start();
@@ -55,10 +54,10 @@ public class TimerTest {
 
     @Test
     public void firstStartTest(){
-        com.zrx.demo.utils.Timer timer1 = com.zrx.demo.utils.Timer.create("timer1");
-        com.zrx.demo.utils.Timer timer2 = com.zrx.demo.utils.Timer.create("timer2");
-        com.zrx.demo.utils.Timer timer3 = com.zrx.demo.utils.Timer.create("timer3");
-        com.zrx.demo.utils.Timer timer4 = com.zrx.demo.utils.Timer.create("timer4");
+        Timer timer1 = Timer.create("timer1");
+        Timer timer2 = Timer.create("timer2");
+        Timer timer3 = Timer.create("timer3");
+        Timer timer4 = Timer.create("timer4");
 
         timer1.start();
         timer2.start();

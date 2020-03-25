@@ -1,4 +1,4 @@
-package com.zrx.demo.utils.deprecated;
+package com.zrx.utils.deprecated;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

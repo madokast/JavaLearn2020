@@ -1,0 +1,113 @@
+package com.zrx.io;
+
+import com.zrx.utils.Container;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.validation.constraints.Null;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Description
+ * 包装数据
+ * 用于 JSON 相应
+ * <p>
+ * Data
+ * 2020/3/24-12:36
+ *
+ * @author zrx
+ * @version 1.0
+ */
+
+public class DataWrapper<DATA> {
+    private final static Logger LOGGER = LoggerFactory.getLogger(DataWrapper.class);
+
+    private static final int SUCCESS = 200;
+
+    private static final int NOT_FOUND = 404;
+
+    private static final int BAD_REQUEST = 400;
+
+    private DATA data;
+
+    private int status;
+
+    private String massage;
+
+    public static DataWrapper<Null> ok(String massage){
+        return new DataWrapper<>(null,SUCCESS,massage);
+    }
+
+    public static <DATA> DataWrapper<DATA> create(String massage, DATA data) {
+        return new DataWrapper<>(data, SUCCESS, massage);
+    }
+
+    public static DataWrapper<Map<String,String>> createMap(String massage, Container.BiContainer<String,String>...biContainers){
+        Map<String, String> ret = Arrays.stream(biContainers)
+                .collect(
+                        HashMap::new,
+                        (map, bi) -> map.put(bi.getE1(), bi.getE2()),
+                        Map::putAll
+                );
+
+        return new DataWrapper<>(ret,SUCCESS,massage);
+    }
+
+    public static DataWrapper<Exception> notFound(String massage, Exception e) {
+        return new DataWrapper<>(e, NOT_FOUND, massage);
+    }
+
+    public static DataWrapper<Exception> badRequest(String massage, Exception e) {
+        return new DataWrapper<>(e, BAD_REQUEST, massage);
+    }
+
+    public DataWrapper() {
+    }
+
+    public DataWrapper(DATA data, int status, String massage) {
+        this.data = data;
+        this.status = status;
+        this.massage = massage;
+    }
+
+    public static Logger getLOGGER() {
+        return LOGGER;
+    }
+
+    public DATA getData() {
+        return data;
+    }
+
+    public void setData(DATA data) {
+        this.data = data;
+    }
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getMassage() {
+        return massage;
+    }
+
+    public void setMassage(String massage) {
+        this.massage = massage;
+    }
+
+
+    @Override
+    public String toString() {
+        return "DataWrapper{" +
+                "data=" + data +
+                ", status=" + status +
+                ", massage='" + massage + '\'' +
+                '}';
+    }
+}

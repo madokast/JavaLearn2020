@@ -1,4 +1,4 @@
-package com.zrx.demo.socket;
+package com.zrx.io.socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,7 @@ public class WebSocketConfig {
 
     @Bean
     public ServerEndpointExporter serverEndpointExporter() {
+        LOGGER.info("ServerEndpointExporter注入");
         return new ServerEndpointExporter();
     }
 }
