@@ -1,25 +1,22 @@
 package com.zrx.ichiwanspringboot.service;
 
-import com.zrx.ichiwanspringboot.bean.Entry;
+import com.zrx.ichiwanspringboot.bean.EntryItem;
 import com.zrx.ichiwanspringboot.bean.EntryPost;
+import com.zrx.ichiwanspringboot.exception.ValidationFailedException;
 import com.zrx.ichiwanspringboot.mapper.EntryMapper;
-import com.zrx.ichiwanspringboot.utils.EntryUtils;
+import com.zrx.ichiwanspringboot.utils.EntryUtil;
+import com.zrx.ichiwanspringboot.validator.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.BiFunction;
 import java.util.function.Predicate;
-import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 
 /**
@@ -43,8 +40,11 @@ public class EntryServiceImpl implements EntryService {
 
     private final EntryMapper entryMapper;
 
-    public EntryServiceImpl(EntryMapper entryMapper) {
+    private final Validator<EntryItem> entryItemValidator;
+
+    public EntryServiceImpl(EntryMapper entryMapper, Validator<EntryItem> entryItemValidator) {
         this.entryMapper = entryMapper;
+        this.entryItemValidator = entryItemValidator;
     }
 
     @Override
@@ -88,9 +88,9 @@ public class EntryServiceImpl implements EntryService {
 
         return entryMapper.findAll()
                 .stream()
-                .filter(Predicate.not(Entry::getDeleteBool))
+                .filter(Predicate.not(EntryItem::getDeleteBool))
                 .map(entry -> {
-                    long currentDays = Math.round(((double) entry.getDateDone().getTime() - firstDate.getTime()) / EntryUtils.DAY) + 1L;
+                    long currentDays = Math.round(((double) entry.getDateDone().getTime() - firstDate.getTime()) / EntryUtil.DAY) + 1L;
                     int currentTotalLength = totalLengthMin.addAndGet(entry.getLengthMinute());
                     double averageLengthMin = (double) currentTotalLength / (double) currentDays;
                     averageLengthMin = ((double) ((int) (averageLengthMin * 1000))) / 1000.0;
@@ -101,15 +101,17 @@ public class EntryServiceImpl implements EntryService {
                             entry.getName(),
                             entry.getDescribing(),
                             entry.getLengthMinute(),
-                            EntryUtils.minuteToHHmm(currentTotalLength),
+                            EntryUtil.minuteToHHmm(currentTotalLength),
                             averageLengthMin
                     );
                 }).collect(Collectors.toList());
     }
 
     @Override
-    public void insert(Entry entry) {
-        entryMapper.insert(entry);
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class})
+    public void insert(EntryItem entryItem) throws ValidationFailedException {
+        entryItemValidator.validate(entryItem);
+        entryMapper.insert(entryItem);
     }
 
     @Override

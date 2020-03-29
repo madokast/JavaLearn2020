@@ -11,7 +11,7 @@ package com.zrx.ichiwanspringboot.utils;
  * @version 1.0
  */
 
-public class EntryUtils {
+public class EntryUtil {
 
     public static final int DAY = 24*60*60*1000;
 

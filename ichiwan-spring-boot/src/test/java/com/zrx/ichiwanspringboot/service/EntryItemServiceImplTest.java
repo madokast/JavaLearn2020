@@ -1,6 +1,6 @@
 package com.zrx.ichiwanspringboot.service;
 
-import com.zrx.ichiwanspringboot.bean.Entry;
+import com.zrx.ichiwanspringboot.bean.EntryItem;
 import com.zrx.ichiwanspringboot.bean.EntryPost;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,8 +27,8 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EntryServiceImplTest {
-    private final Logger LOGGER = LoggerFactory.getLogger(EntryServiceImplTest.class);
+public class EntryItemServiceImplTest {
+    private final Logger LOGGER = LoggerFactory.getLogger(EntryItemServiceImplTest.class);
 
     @Autowired
     private EntryService entryService;
@@ -98,12 +98,12 @@ public class EntryServiceImplTest {
 
     @Test
     public void insertTest(){
-        Entry entry = new Entry();
-        entry.setName("Java");
-        entry.setDateDone(new Date());
-        entry.setDeleteBool(false);
-        entry.setLengthMinute(30);
-        entry.setDescribing("新写ichiwan");
+        EntryItem entryItem = new EntryItem();
+        entryItem.setName("Java");
+        entryItem.setDateDone(new Date());
+        entryItem.setDeleteBool(false);
+        entryItem.setLengthMinute(30);
+        entryItem.setDescribing("新写ichiwan");
 
 //        entryService.insert(entry);
     }

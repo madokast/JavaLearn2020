@@ -30,6 +30,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public DataWrapper<Exception> badRequest(Exception e) {
         LOGGER.error("发生未知异常，请分类。{}",e.toString());
+        e.printStackTrace();
         return DataWrapper.badRequest("未知异常", e);
     }
 

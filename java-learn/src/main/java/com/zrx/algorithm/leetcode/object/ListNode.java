@@ -22,7 +22,7 @@ import java.util.List;
 public class ListNode {
     private final static Logger LOGGER = LoggerFactory.getLogger(ListNode.class);
 
-    int val;
+    public int val;
 
     public ListNode next;
 

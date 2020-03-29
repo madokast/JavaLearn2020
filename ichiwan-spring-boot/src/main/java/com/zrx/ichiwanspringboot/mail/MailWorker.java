@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,13 +26,18 @@ public class MailWorker {
 
     private final JavaMailSenderImpl javaMailSender;
 
+    @Value("${mail.default-receiver}")
+    private String defaultReceiver;
+
     @Value("${spring.mail.username}")
     private String from;
 
     public MailWorker(JavaMailSenderImpl javaMailSender) {
         this.javaMailSender = javaMailSender;
+        LOGGER.info("MailWorker injected");
     }
 
+    @Async
     public void send(String receiver, String subject, String text) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(receiver);
@@ -43,4 +49,11 @@ public class MailWorker {
 
         LOGGER.info("邮件{}已发送至{}", subject, receiver);
     }
+
+
+    public void send(String subject, String text){
+        send(defaultReceiver,subject,text);
+    }
+
+
 }

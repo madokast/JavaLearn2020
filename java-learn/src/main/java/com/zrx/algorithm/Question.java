@@ -43,9 +43,9 @@ public interface Question {
 
         LOGGER.info("开始测试{}", getThisClass().getName());
 
-        for (String s : getInfo()) {
-            LOGGER.info(s);
-        }
+//        for (String s : getInfo()) {
+//            LOGGER.info(s);
+//        }
 
         for (int i = 0; i < inputs.size(); i++) {
             if (inputs.size() > 1)
@@ -65,7 +65,7 @@ public interface Question {
                 throw new RuntimeException(e);
             }
 
-            LOGGER.info("ret = {}", ret);
+            LOGGER.info("ret = {}", ToString.apply(ret));
 
             if (Equality.isEqual(answer.getAns(), ret))
                 LOGGER.info("测试通过");

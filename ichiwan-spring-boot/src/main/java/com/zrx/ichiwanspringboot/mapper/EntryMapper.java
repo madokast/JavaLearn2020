@@ -1,11 +1,10 @@
 package com.zrx.ichiwanspringboot.mapper;
 
-import com.zrx.ichiwanspringboot.bean.Entry;
+import com.zrx.ichiwanspringboot.bean.EntryItem;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -26,14 +25,14 @@ import java.util.List;
 @Repository
 public interface EntryMapper {
     @Select("select id, dateDone, name, lengthMinute, describing, deleteBool from entries")
-    List<Entry> findAll();
+    List<EntryItem> findAll();
 
     @Select("select dateDone from entries\n" +
             "where id=(select min(id) from entries where deleteBool=false)")
     Date firstDate();
 
     @Insert("INSERT INTO entries(dateDone, name, lengthMinute, describing) values(#{dateDone},#{name},#{lengthMinute},#{describing})")
-    void insert(Entry entry);
+    void insert(EntryItem entryItem);
 
     /**
      * 将表中最后一个 deleteBool = FALSE 的项，置为 TRUE

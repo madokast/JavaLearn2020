@@ -22,13 +22,15 @@ import java.util.function.Function;
 public class ToString {
     private final static Logger LOGGER = LoggerFactory.getLogger(ToString.class);
 
-    private final static Map<Class<?>, Function<Object,String>> MAP = new HashMap<>();
+    private final static Map<Class<?>, Function<Object, String>> MAP = new HashMap<>();
 
     static {
-        MAP.put(int[].class,arr-> Arrays.toString((int[])arr));
+        MAP.put(int[].class, arr -> Arrays.toString((int[]) arr));
     }
 
-    public static String apply(Object a){
-        return MAP.getOrDefault(a.getClass(),Object::toString).apply(a);
+    public static String apply(Object a) {
+        if (a == null)
+            return "null";
+        return MAP.getOrDefault(a.getClass(), Object::toString).apply(a);
     }
 }

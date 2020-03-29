@@ -6,16 +6,15 @@ import com.zrx.io.DataWrapper;
 import com.zrx.utils.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Description
@@ -29,12 +28,11 @@ import java.util.Objects;
  * @version 1.0
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
     private final static Logger LOGGER = LoggerFactory.getLogger(QuestionController.class);
-
-    private final static String SESSION_KEY = String.valueOf(Objects.hash(QuestionController.class, new Date()));
 
     private final AlgorithmHelper algorithmHelper;
 
@@ -69,6 +67,15 @@ public class QuestionController {
         return DataWrapper.create("question finding", algorithmHelper.findQuestion(group, number));
     }
 
+
+    private String resultKey;
+    private static Map<String, QuestionWrapper> questionWrapperMap = new ConcurrentHashMap<>();
+
+//    @Scheduled(cron = "0-59 * * * * *")
+//    public void logMapInfo(){
+//        LOGGER.info("questionWrapperMap = {}", questionWrapperMap);
+//    }
+
     /**
      * 运行 分组 下 编号 的方法
      *
@@ -80,20 +87,20 @@ public class QuestionController {
      */
     @SuppressWarnings("all")
     @GetMapping("/group/{group}/number/{number}/run")
-    public DataWrapper<Map<String, String>> runQuestion(@PathVariable String group, @PathVariable int number, HttpSession session)
+    public DataWrapper<Map<String, String>> runQuestion(@PathVariable String group, @PathVariable int number)
             throws QuestionWrapper.QuestionWrapperNotFoundException {
 
         QuestionWrapper questionWrapper = getQuestionWrapper(group, number).getData();
 
-        if (session.getAttribute(SESSION_KEY) != null) {
-            LOGGER.error("当前SESSION中已有一个question在运行？");
-        }
+        // 运行 这里自动加上 log
+        algorithmHelper.run(questionWrapper); //@Async
 
-        session.setAttribute(SESSION_KEY, questionWrapper);
+        resultKey = Integer.toHexString(Math.abs(Objects.hash(group, number, new Date())));
+        LOGGER.info("create RESULT_KEY = {}", resultKey);
 
-        algorithmHelper.run(questionWrapper);
+        questionWrapperMap.put(resultKey,questionWrapper);
 
-        return DataWrapper.createMap("run method", Container.BiContainer.create("SESSION_KEY", SESSION_KEY));
+        return DataWrapper.createMap("run method", Container.BiContainer.create("RESULT_KEY", resultKey));
     }
 
     /**
@@ -109,24 +116,24 @@ public class QuestionController {
      * @throws QuestionWrapper.NoRunningQuestionException 没有方法被执行
      */
     @SuppressWarnings("all")
-    @GetMapping("result/{sessionKey}")
-    public DataWrapper<String> getQuestionResult(HttpSession session, String sessionKey)
+    @GetMapping("/result/{resultKey}")
+    public DataWrapper<String> getQuestionResult(@PathVariable String resultKey)
             throws QuestionWrapper.NoRunningQuestionException {
-        QuestionWrapper questionWrapper = (QuestionWrapper) session.getAttribute(SESSION_KEY);
+        //LOGGER.info("/result/resultKey = {}", resultKey);
+
+        QuestionWrapper questionWrapper = questionWrapperMap.get(resultKey);
+        //LOGGER.info("questionWrapper = {}", questionWrapper);
 
         if (questionWrapper == null)
             throw new QuestionWrapper.NoRunningQuestionException();
         else {
             String poll = questionWrapper.poll();
-            if (poll == null) {
-                // 不应该发生
-                LOGGER.error("poll == null，不应该，我有两个info才会返回这个结果的");
-                throw new NullPointerException("poll == null，不应该，我有两个info才会返回这个结果的");
-            }
-
-            if (poll.equals(QuestionWrapper.END)) {
-                questionWrapper.romeLogQueue();
-                session.removeAttribute(SESSION_KEY);
+            if (poll == null) {// 不应该发生
+                poll = "result 结果没有正确的读取完毕，可能原因是方法运行时间过长？";
+                questionWrapperMap.remove(resultKey);
+            } else if (poll.equals(QuestionWrapper.END)) {
+                questionWrapper.removeLogQueue();
+                questionWrapperMap.remove(resultKey);
             } else {
                 // wait for another
                 questionWrapper.waitUntilHasNext();

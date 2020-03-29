@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.*;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -43,8 +44,14 @@ public class MyLoggerFactory {
     }
 
     public static void removeListener(String name) {
-        LOGGER.info("remove logger listener {}", name);
-        LOG_LISTENER_MAP.remove(name);
+        if (hasListener(name)) {
+            LOGGER.info("remove logger listener {}", name);
+            LOG_LISTENER_MAP.remove(name);
+        }
+    }
+
+    public static boolean hasListener(String name) {
+        return LOG_LISTENER_MAP.get(name) != null;
     }
 
     public static interface MyLogListener {
@@ -143,9 +150,19 @@ public class MyLoggerFactory {
             if (args.length == 1)
                 return string;
             else {
+
+                //LOGGER.info("args[1] = {}--{}", args[1].getClass(), args[1]);
+
                 StringBuilder stringBuilder = new StringBuilder(string);
-                for (int i = 1; i < args.length; i++) {
-                    String item = args[i].toString();
+                Object[] items;
+                if (args[1] instanceof Object[]) {
+                    items = (Object[]) args[1];
+                } else {
+                    items = new Object[]{args[1]};
+                }
+                for (Object o : items) {
+                    String item = o.toString();
+                    //LOGGER.info("item = {}", item);
                     int indexOf = stringBuilder.indexOf(PLACE_HOLDER);
                     stringBuilder.delete(indexOf, indexOf + PLACE_HOLDER_LENGTH);
                     stringBuilder.insert(indexOf, item);

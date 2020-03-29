@@ -17,11 +17,11 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  * @version 1.0
  */
 
-@Configuration
+//@Configuration
 public class WebSocketConfig {
     private final static Logger LOGGER = LoggerFactory.getLogger(WebSocketConfig.class);
 
-    @Bean
+    //@Bean
     public ServerEndpointExporter serverEndpointExporter() {
         LOGGER.info("ServerEndpointExporter注入");
         return new ServerEndpointExporter();

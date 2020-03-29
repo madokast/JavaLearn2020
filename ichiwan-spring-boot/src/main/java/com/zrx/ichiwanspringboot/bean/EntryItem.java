@@ -1,5 +1,6 @@
 package com.zrx.ichiwanspringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,20 +24,27 @@ import java.util.Date;
  * @version 1.0
  */
 
-public class Entry {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Entry.class);
+
+public class EntryItem {
+    private final static Logger LOGGER = LoggerFactory.getLogger(EntryItem.class);
 
     private Integer id;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDone;
+
     private String name;
+
     private Integer lengthMinute;
+
+
     private String describing;
     private Boolean deleteBool;
 
-    public Entry() {
+    public EntryItem() {
     }
 
-    public Entry(Integer id, Date dateDone, String name, Integer lengthMinute, String describing, Boolean deleteBool) {
+    public EntryItem(Integer id, Date dateDone, String name, Integer lengthMinute, String describing, Boolean deleteBool) {
         this.id = id;
         this.dateDone = dateDone;
         this.name = name;
