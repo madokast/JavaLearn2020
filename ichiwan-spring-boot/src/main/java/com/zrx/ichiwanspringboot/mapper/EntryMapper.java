@@ -27,6 +27,9 @@ public interface EntryMapper {
     @Select("select id, dateDone, name, lengthMinute, describing, deleteBool from entries")
     List<EntryItem> findAll();
 
+    @Select("select id, dateDone, name, lengthMinute, describing, deleteBool from entries where dateDone=#{date, jdbcType=DATE}")
+    List<EntryItem> findEntryItemsAt(Date date);
+
     @Select("select dateDone from entries\n" +
             "where id=(select min(id) from entries where deleteBool=false)")
     Date firstDate();
@@ -42,4 +45,6 @@ public interface EntryMapper {
     @Update("UPDATE entries AS e SET e.deleteBool = TRUE WHERE e.id = (\n" +
             "    SELECT maxid FROM (SELECT MAX(ee.id) AS maxid FROM entries ee WHERE ee.deleteBool = FALSE) AS sub)")
     void deleteLastOne();
+
+
 }

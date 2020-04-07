@@ -1,4 +1,4 @@
-package com.zrx.java8;
+package com.zrx.fragment.java8;
 
 import com.zrx.Invoking;
 import org.slf4j.Logger;

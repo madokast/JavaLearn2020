@@ -3,9 +3,14 @@ package com.zrx.algorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Function;
 
 /**
@@ -25,12 +30,34 @@ public class ToString {
     private final static Map<Class<?>, Function<Object, String>> MAP = new HashMap<>();
 
     static {
-        MAP.put(int[].class, arr -> Arrays.toString((int[]) arr));
+
     }
 
     public static String apply(Object a) {
         if (a == null)
             return "null";
-        return MAP.getOrDefault(a.getClass(), Object::toString).apply(a);
+        else if (a.getClass().isArray())
+            return arrayToString(a);
+        else
+            return MAP.getOrDefault(a.getClass(), Object::toString).apply(a);
     }
+
+
+    private static String arrayToString(Object array) {
+        if (!array.getClass().isArray())
+            throw new IllegalArgumentException(array + "is not an array");
+
+        Class<?> componentType = array.getClass().componentType();
+
+        if (componentType.isPrimitive()) {
+            try {
+                Method toString = Arrays.class.getMethod("toString", componentType.arrayType());
+                return (String) toString.invoke(null, array);
+            } catch (Exception ignore) {}
+        }
+
+        return Arrays.deepToString((Object[]) array);
+
+    }
+
 }

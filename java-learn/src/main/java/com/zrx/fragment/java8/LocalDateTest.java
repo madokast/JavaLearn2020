@@ -1,4 +1,4 @@
-package com.zrx.java8;
+package com.zrx.fragment.java8;
 
 import com.zrx.Invoking;
 import org.slf4j.Logger;
@@ -29,6 +29,6 @@ public class LocalDateTest {
         LocalDate yyyyMMdd = LocalDate.parse("20200328", DateTimeFormatter.ofPattern("yyyyMMdd"));
 
         LOGGER.info("yyyyMMdd = {}", yyyyMMdd);
-        //2020-03-28 22:41:45.415  INFO 6824 --- [           main] com.zrx.java8.LocalDateTest              : yyyyMMdd = 2020-03-28
+        //2020-03-28 22:41:45.415  INFO 6824 --- [           main] com.zrx.fragment.java8.LocalDateTest              : yyyyMMdd = 2020-03-28
     }
 }

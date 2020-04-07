@@ -1,4 +1,4 @@
-package com.zrx.jvm;
+package com.zrx.fragment.jvm;
 
 import com.zrx.Invoking;
 import org.slf4j.Logger;
@@ -58,13 +58,13 @@ public class 常量池 {
         LOGGER.info("str2.intern() == str2 = {}", str2.intern() == str2);
 
         //2020-03-26 23:17:56.353  INFO 11336 ---
-        // [           main] com.zrx.jvm.常量池
+        // [           main] com.zrx.fragment.jvm.常量池
         // : str1.intern() == str1 = true
 
         // 因为 str1.intern()
 
         //2020-03-26 23:17:56.353  INFO 11336 ---
-        // [           main] com.zrx.jvm.常量池
+        // [           main] com.zrx.fragment.jvm.常量池
         // : str2.intern() == str2 = false
     }
 

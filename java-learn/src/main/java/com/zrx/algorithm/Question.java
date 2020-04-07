@@ -111,8 +111,19 @@ public interface Question {
                 .toArray(new String[]{});
     }
 
-    default String[] getInfo(){
-        return getLeetCodeMethod().getAnnotation(Code.class).info();
+    private int getInputLength(){
+        return getLeetCodeMethod().getParameterCount();
+    }
+
+    default String[] getInfo() {
+        String[] info = getLeetCodeMethod().getAnnotation(Code.class).info();
+        return Arrays.stream(info)
+                .flatMap(s->{
+                    String[] split = s.split("\n");
+                    return Arrays.stream(split).filter(ss->ss.length()>0);
+                })
+                .collect(Collectors.toList())
+                .toArray(String[]::new);
     }
 
     class Input {
@@ -145,6 +156,28 @@ public interface Question {
         }
     }
 
+    class InputFactory {
+        public static List<Input> create(int length, Object... parameters) {
+            List<Input> inputs = new ArrayList<>(parameters.length / length);
+            for (int i = 0; i < parameters.length; i += length) {
+                inputs.add(Input.create(subArray(parameters, i, i + length)));
+            }
+
+            return inputs;
+
+        }
+
+
+
+        private static Object[] subArray(Object[] objects, int startIncluding, int endExcluding) {
+            Object[] ret = new Object[endExcluding - startIncluding];
+
+            System.arraycopy(objects, startIncluding, ret, 0, endExcluding - startIncluding);
+
+            return ret;
+        }
+    }
+
     class Answer {
         Object ans;
 
@@ -165,6 +198,14 @@ public interface Question {
         @Override
         public String toString() {
             return ToString.apply(ans);
+        }
+    }
+
+    class AnswerFactory {
+        public static List<Answer> create(Object... answers) {
+            return Stream.of(answers)
+                    .map(Answer::create)
+                    .collect(Collectors.toList());
         }
     }
 }

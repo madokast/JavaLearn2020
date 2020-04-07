@@ -1,11 +1,10 @@
 package com.zrx.algorithm;
 
+import com.zrx.algorithm.leetcode.object.RepeatableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiFunction;
 
 /**
@@ -22,14 +21,27 @@ import java.util.function.BiFunction;
 public class Equality {
     private final static Logger LOGGER = LoggerFactory.getLogger(Equality.class);
 
-    private static final Map<Class<?>, BiFunction<Object, Object, Boolean>> map = new HashMap<>();
-
-    static {
-        map.put(int[].class, (a, b) -> Arrays.equals((int[]) a, (int[]) b));
-    }
-
+    /**
+     * 最智能的判断两个元素是否相同的方法
+     *
+     * @param a 元素 1
+     * @param b 元素 2
+     * @return 是否相同
+     */
     public static boolean isEqual(Object a, Object b) {
-        return a.getClass().equals(b.getClass()) &&
-                map.getOrDefault(a.getClass(), Object::equals).apply(a, b);
+        // null ?
+        if (a == null || b == null)
+            return a == b;
+
+        // int[]
+        if (a instanceof int[] && b instanceof int[])
+            return Arrays.equals((int[]) a, (int[]) b);
+
+        // 只要有一个是 RepeatableSet
+        if (a instanceof RepeatableSet || b instanceof RepeatableSet)
+            return Objects.equals(RepeatableSet.tryCreate(a), RepeatableSet.tryCreate(b));
+
+        return Objects.equals(a, b);
     }
+
 }
