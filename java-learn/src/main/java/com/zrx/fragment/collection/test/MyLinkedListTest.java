@@ -1,8 +1,8 @@
 package com.zrx.fragment.collection.test;
 
 import com.zrx.Invoking;
-import com.zrx.fragment.collection.MyLinkedList;
-import com.zrx.fragment.collection.MyList;
+import com.zrx.fragment.collection.list.MyLinkedList;
+import com.zrx.fragment.collection.list.MyList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

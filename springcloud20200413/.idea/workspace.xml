@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0c343dee-fc64-478c-a3be-3f9300eddb89" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0016最接近的三数之和.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0018四数之和.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0019删除链表的倒数第N个节点.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0020有效的括号.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0021合并两个有序链表.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0022括号生成.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyHashSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MySet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/map/MyHashMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/map/MyMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyHashMapTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/concurrent/InterruptTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/OrderMain20080.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/config/RestTemplateConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/Payment28001.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/cloud-provider-payment28001-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/ToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/ToString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0016电话号码的字母组合.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0017电话号码的字母组合.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyArrayListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyLinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyLinkedListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/CleanerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/CleanerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/反射/外部调用父类.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/反射/外部调用父类.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-learn/src/test/java/com/zrx/MethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/test/java/com/zrx/MethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/main/java/com/zrx/springmicroservicesinaction/SpringmicroservicesinactionApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/test/java/com/zrx/springmicroservicesinaction/SpringmicroservicesinactionApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\javalearn\Documents\maven_repo" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="C:\Users\javalearn\Documents\apache-maven-3.5.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1aTs3HpfqNXoIubOqbaZ9HGAGno" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.33678162" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-consumer-order20080\src\main\java\com\atguigu\springcloud" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.OrderMain20080">
+    <configuration name="OrderMain20080" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="cloud-consumer-order20080" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.OrderMain20080" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Payment28001" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="cloud-provider-payment28001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Payment28001" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.OrderMain20080" />
+        <item itemvalue="Spring Boot.Payment28001" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.1991342" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:springcloud20200413@192.168.2.3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:springcloud20200413@192.168.2.3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@6517b5c7" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c343dee-fc64-478c-a3be-3f9300eddb89" name="Default Changelist" comment="" />
+      <created>1586770717103</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586770717103</updated>
+      <workItem from="1586770720475" duration="12443000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="198" key="#Project_Structure" timestamp="1586786466229">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="198" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1586786466229" />
+    <state x="552" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586784642643">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586784642643" />
+    <state x="675" y="342" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586782856377">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="675" y="342" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1586782856375" />
+    <state x="765" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1586787586378">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="765" y="256" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1586787586378" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1586772258601">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1586772258601" />
+    <state width="1479" height="348" key="GridCell.Tab.0.bottom" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state width="1479" height="348" key="GridCell.Tab.0.center" timestamp="1586789376727">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376727" />
+    <state width="1479" height="348" key="GridCell.Tab.0.left" timestamp="1586789376727">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376727" />
+    <state width="1479" height="348" key="GridCell.Tab.0.right" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state width="1479" height="348" key="GridCell.Tab.1.bottom" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state width="1479" height="348" key="GridCell.Tab.1.center" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state width="1479" height="348" key="GridCell.Tab.1.left" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state width="1479" height="348" key="GridCell.Tab.1.right" timestamp="1586789376728">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1479" height="348" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
+    <state x="461" y="182" key="SettingsEditor" timestamp="1586786460181">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1586786460181" />
+    <state x="334" y="234" key="new project wizard" timestamp="1586786374835">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1586786374835" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1586782118105">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1586782118105" />
+  </component>
+</project>

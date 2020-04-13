@@ -1,0 +1,6 @@
+server:
+  port: 20080
+
+spring:
+  application:
+    name: Cloud-order-client

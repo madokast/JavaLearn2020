@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 
-@Component
+//@Component
 @Invoking(createdTime = "2020-04-04 10:56",info = "虚引用cleaner")
 public class CleanerTest {
     private final static Logger LOGGER = MyLoggerFactory.getLogger(CleanerTest.class);

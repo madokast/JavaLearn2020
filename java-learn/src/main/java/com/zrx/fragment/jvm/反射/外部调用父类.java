@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
  * @version 1.0
  */
 
-@Component
+//@Component
 @Invoking(createdTime = "2020-04-07 08:56", info = "外部调用父类")
 public class 外部调用父类 {
     private final static Logger LOGGER = LoggerFactory.getLogger(外部调用父类.class);
