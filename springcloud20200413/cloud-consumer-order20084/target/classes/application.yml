@@ -1,0 +1,9 @@
+server:
+  port: 20084
+
+spring:
+  application:
+    name: cloud-order-client
+  cloud:
+    zookeeper:
+      connect-string: 192.168.2.3:2181

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="debugServer">
+    <serverData>
+      <paths name="debugServer">
+        <serverdata>
+          <mappings>
+            <mapping deploy="ideajWork/springcloud20200413" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/cloud-api-commons" />
+            <mapping local="$PROJECT_DIR$/cloud-consumer-order20080" />
+            <mapping local="$PROJECT_DIR$/cloud-eureka-server27001" />
+            <mapping local="$PROJECT_DIR$/cloud-provider-payment28001" />
+            <mapping local="$PROJECT_DIR$/cloud-eureka-server27002" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

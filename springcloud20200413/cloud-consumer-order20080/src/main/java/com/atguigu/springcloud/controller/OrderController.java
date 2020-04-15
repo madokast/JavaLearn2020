@@ -25,7 +25,11 @@ public class OrderController {
 
     private RestTemplate restTemplate;
 
-    private static final String PAYMENT_URL = "http://192.168.2.13:28001/payment";
+    // 写死
+    //private static final String PAYMENT_URL = "http://192.168.2.13:28001/payment";
+
+    // 服务名称
+    private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE/payment";
 
     public OrderController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -41,6 +45,7 @@ public class OrderController {
     @GetMapping("get/{id}")
     public CommonResult<?> getById(@PathVariable("id") Long id) {
         LOGGER.info("consumer get by id={}", id);
+
         return restTemplate.getForObject(PAYMENT_URL + "/get/" + id, CommonResult.class);
     }
 }

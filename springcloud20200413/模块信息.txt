@@ -1,0 +1,29 @@
+共用代码，每个模块都需要
+    cloud-api-commons
+
+[eureka 服务注册中心]
+    cloud-consumer-order20080
+        [eureka 服务注册中心] 服务消费者
+    cloud-eureka-server27001
+        [eureka 服务注册中心] sever 端 http://192.168.2.13:27001/
+    cloud-eureka-server27002
+        [eureka 服务注册中心] sever 端。需要 dockerfile 构建运行
+            docker run -d -p 27002:27002 b7f2b24fd622
+    cloud-provider-payment28001
+        [eureka 服务注册中心] 服务提供者
+    cloud-provider-payment28002
+        [eureka 服务注册中心] 服务提供者
+
+[zookeeper 服务注册中心]
+    docker run --name docker-zookeeper -p 2181:2181 --restart always -d zookeeper:3.4
+    cloud-consumer-order20084
+        [zookeeper 服务注册中心] 服务消费者
+    cloud-provider-payment28004
+        [zookeeper 服务注册中心] 服务提供者
+
+[consul 服务注册中心]
+    docker run --name consul8500 -d -p 8500:8500 consul:1.6.1 agent -server -bootstrap-expect 2 -ui -bind=0.0.0.0 -client=0.0.0.0
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' consul8500
+    docker run --name consul8501 -d -p 8501:8500 consul:1.6.1 agent -server -ui -bind=0.0.0.0 -client=0.0.0.0 -join 172.17.0.3 //这里join来自上面返回值
+    cloud-provider-payment28006
+        [consul 服务注册中心] 服务提供者

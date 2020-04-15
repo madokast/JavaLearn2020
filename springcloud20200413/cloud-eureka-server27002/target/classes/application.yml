@@ -1,0 +1,11 @@
+server:
+  port: 27002
+
+eureka:
+  instance:
+    hostname: 192.168.2.3
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://192.168.2.13:27001/eureka/

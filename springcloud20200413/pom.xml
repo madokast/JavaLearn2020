@@ -14,6 +14,12 @@
         <module>cloud-consumer-order20080</module>
         <module>cloud-api-commons</module>
         <module>cloud-eureka-server27001</module>
+        <module>cloud-eureka-server27002</module>
+        <module>cloud-provider-payment28002</module>
+        <module>cloud-provider-payment28004</module>
+        <module>cloud-consumer-order20084</module>
+        <module>cloud-provider-payment28006</module>
+        <module>cloud-consumer-order20086</module>
     </modules>
 
     <properties>
