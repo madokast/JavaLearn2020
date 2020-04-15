@@ -12,6 +12,8 @@
     <modules>
         <module>cloud-provider-payment28001</module>
         <module>cloud-consumer-order20080</module>
+        <module>cloud-api-commons</module>
+        <module>cloud-eureka-server27001</module>
     </modules>
 
     <properties>

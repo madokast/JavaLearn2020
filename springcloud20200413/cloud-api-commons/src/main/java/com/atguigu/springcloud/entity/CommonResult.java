@@ -1,8 +1,5 @@
 package com.atguigu.springcloud.entity;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.Serializable;
 
 /**
@@ -18,7 +15,6 @@ import java.io.Serializable;
  */
 
 public class CommonResult<T> implements Serializable {
-    private final static Logger LOGGER = LoggerFactory.getLogger(CommonResult.class);
 
     private static Integer SUCCESS = 200;
     private static Integer NOT_FOUND = 404;
@@ -44,10 +40,6 @@ public class CommonResult<T> implements Serializable {
         this.code = code;
         this.message = message;
         this.data = data;
-    }
-
-    public static Logger getLOGGER() {
-        return LOGGER;
     }
 
     public Integer getCode() {

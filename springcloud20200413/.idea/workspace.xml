@@ -2,60 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c343dee-fc64-478c-a3be-3f9300eddb89" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0016最接近的三数之和.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0018四数之和.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0019删除链表的倒数第N个节点.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0020有效的括号.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0021合并两个有序链表.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0022括号生成.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyHashSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MySet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/map/MyHashMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/map/MyMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyHashMapTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/concurrent/InterruptTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/OrderMain20080.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/Payment28001.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/cloud-provider-payment28001-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28001/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-api-commons/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27001/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27001/src/main/java/com/atguigu/springcloud/EurekaServer27001.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27001/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/ToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/ToString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0016电话号码的字母组合.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0017电话号码的字母组合.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyArrayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/MyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/list/MyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyArrayListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyLinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/collection/test/MyLinkedListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/CleanerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/CleanerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/反射/外部调用父类.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/fragment/jvm/反射/外部调用父类.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-learn/src/test/java/com/zrx/MethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-learn/src/test/java/com/zrx/MethodRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/main/java/com/zrx/springmicroservicesinaction/SpringmicroservicesinactionApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springmicroservicesinaction/src/test/java/com/zrx/springmicroservicesinaction/SpringmicroservicesinactionApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-consumer-order20080/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/OrderMain20080.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/OrderMain20080.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/entity/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-consumer-order20080/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28001/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-provider-payment28001/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/Payment28001.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/Payment28001.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/entity/Payment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-provider-payment28001/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +81,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-eureka-server27001/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33678162" />
@@ -126,6 +89,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-eureka-server27001\src\main\resources" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-api-commons\src\main\java\com\atguigu\springcloud" />
       <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-consumer-order20080\src\main\java\com\atguigu\springcloud" />
     </key>
   </component>
@@ -136,7 +101,20 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OrderMain20080">
+  <component name="RunManager" selected="Spring Boot.EurekaServer27001">
+    <configuration name="EurekaServer27001" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="cloud-eureka-server27001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.EurekaServer27001" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OrderMain20080" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="cloud-consumer-order20080" />
       <extension name="coverage">
@@ -167,6 +145,7 @@
       <list>
         <item itemvalue="Spring Boot.OrderMain20080" />
         <item itemvalue="Spring Boot.Payment28001" />
+        <item itemvalue="Spring Boot.EurekaServer27001" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +191,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586770717103</updated>
-      <workItem from="1586770720475" duration="12443000" />
+      <workItem from="1586770720475" duration="18211000" />
     </task>
     <servers />
   </component>
@@ -243,46 +222,46 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1586772258601" />
-    <state width="1479" height="348" key="GridCell.Tab.0.bottom" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.0.bottom" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state width="1479" height="348" key="GridCell.Tab.0.center" timestamp="1586789376727">
+    <state width="1479" height="345" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.0.center" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376727" />
-    <state width="1479" height="348" key="GridCell.Tab.0.left" timestamp="1586789376727">
+    <state width="1479" height="345" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.0.left" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376727" />
-    <state width="1479" height="348" key="GridCell.Tab.0.right" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.0.right" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state width="1479" height="348" key="GridCell.Tab.1.bottom" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.1.bottom" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state width="1479" height="348" key="GridCell.Tab.1.center" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.1.center" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state width="1479" height="348" key="GridCell.Tab.1.left" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.1.left" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state width="1479" height="348" key="GridCell.Tab.1.right" timestamp="1586789376728">
+    <state width="1479" height="345" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state width="1479" height="345" key="GridCell.Tab.1.right" timestamp="1586876321875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1479" height="348" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586789376728" />
-    <state x="461" y="182" key="SettingsEditor" timestamp="1586786460181">
+    <state width="1479" height="345" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586876321875" />
+    <state x="461" y="182" key="SettingsEditor" timestamp="1586874218389">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1586786460181" />
-    <state x="334" y="234" key="new project wizard" timestamp="1586786374835">
+    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1586874218389" />
+    <state x="334" y="234" key="new project wizard" timestamp="1586873790795">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1586786374835" />
+    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1586873790795" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1586782118105">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
