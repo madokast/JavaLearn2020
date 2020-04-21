@@ -32,7 +32,12 @@
     cloud-consumer-order20088
         [eureka 服务注册中心] 服务消费者
 
-[Hystrix 服务降级、熔断、限流]
+[Hystrix 服务降级]
     cloud-eureka-server27010
     cloud-provider-payment28010
     cloud-consumer-order20090
+
+[Hystrix 服务熔断]
+    cloud-eureka-server27012
+    cloud-provider-payment28012
+    cloud-consumer-order20092

@@ -24,6 +24,9 @@
         <module>cloud-provider-payment28010</module>
         <module>cloud-eureka-server27010</module>
         <module>cloud-consumer-order20090</module>
+        <module>cloud-eureka-server27012</module>
+        <module>cloud-provider-payment28012</module>
+        <module>cloud-consumer-order20092</module>
     </modules>
 
     <properties>

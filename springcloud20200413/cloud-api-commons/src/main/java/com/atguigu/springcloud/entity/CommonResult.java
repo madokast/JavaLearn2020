@@ -19,6 +19,7 @@ public class CommonResult<T> implements Serializable {
     private static Integer SUCCESS = 200;
     private static Integer NOT_FOUND = 404;
     private static Integer REQUEST_TIMEOUT = 408;
+    private static Integer BAD_REQUEST = 400;
 
 
     private Integer code;
@@ -35,6 +36,10 @@ public class CommonResult<T> implements Serializable {
 
     public static <T> CommonResult<T> requestTimeout(String message, T data) {
         return new CommonResult<>(REQUEST_TIMEOUT, message, data);
+    }
+
+    public static <T> CommonResult<T> badRequest(String message, T data) {
+        return new CommonResult<>(BAD_REQUEST, message, data);
     }
 
     public static <T> CommonResult<T> error(String message, T data, Integer code) {

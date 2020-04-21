@@ -1,5 +1,5 @@
 server:
-  port: 27010
+  port: 27012
 
 eureka:
   instance:
@@ -8,6 +8,6 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://192.168.2.13:27010/eureka/
+      defaultZone: http://192.168.2.13:27012/eureka/
   server:
     enable-self-preservation: false
