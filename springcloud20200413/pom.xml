@@ -20,6 +20,10 @@
         <module>cloud-consumer-order20084</module>
         <module>cloud-provider-payment28006</module>
         <module>cloud-consumer-order20086</module>
+        <module>cloud-consumer-order20088</module>
+        <module>cloud-provider-payment28010</module>
+        <module>cloud-eureka-server27010</module>
+        <module>cloud-consumer-order20090</module>
     </modules>
 
     <properties>

@@ -1,0 +1,25 @@
+server:
+  port: 20088
+
+spring:
+  application:
+    name: cloud-order-client
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27001/eureka/,http://192.168.2.3:27002/eureka/
+#      defaultZone: http://192.168.2.13:27001/eureka/
+  instance:
+    instance-id: order20088
+    prefer-ip-address: true
+
+feign:
+  httpclient:
+    connection-timeout: 5000
+
+logging:
+  level:
+    com.atguigu.springcloud.PaymentService: debug

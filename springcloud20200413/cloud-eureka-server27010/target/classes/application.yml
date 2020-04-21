@@ -1,0 +1,13 @@
+server:
+  port: 27010
+
+eureka:
+  instance:
+    hostname: 192.168.2.13
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://192.168.2.3:27010/eureka/
+  server:
+    enable-self-preservation: false

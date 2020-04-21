@@ -27,3 +27,12 @@
     docker run --name consul8501 -d -p 8501:8500 consul:1.6.1 agent -server -ui -bind=0.0.0.0 -client=0.0.0.0 -join 172.17.0.3 //这里join来自上面返回值
     cloud-provider-payment28006
         [consul 服务注册中心] 服务提供者
+
+[openFeign 服务调用]
+    cloud-consumer-order20088
+        [eureka 服务注册中心] 服务消费者
+
+[Hystrix 服务降级、熔断、限流]
+    cloud-eureka-server27010
+    cloud-provider-payment28010
+    cloud-consumer-order20090

@@ -1,10 +1,12 @@
 package com.atguigu.springcloud;
 
+import com.atguigu.myrule.MyRibbonRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 
 /**
@@ -20,6 +22,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
+@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MyRibbonRule.class)
 public class OrderMain20080 {
     private final static Logger LOGGER = LoggerFactory.getLogger(OrderMain20080.class);
 

@@ -2,8 +2,10 @@ package com.atguigu.springcloud.controller;
 
 import com.atguigu.springcloud.entity.CommonResult;
 import com.atguigu.springcloud.entity.Payment;
+import com.netflix.loadbalancer.IRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -47,5 +49,17 @@ public class OrderController {
         LOGGER.info("consumer get by id={}", id);
 
         return restTemplate.getForObject(PAYMENT_URL + "/get/" + id, CommonResult.class);
+    }
+
+    @GetMapping("getForEntity/{id}")
+    public CommonResult<?> getByIdForEntity(@PathVariable("id") Long id){
+        ResponseEntity<CommonResult> forEntity =
+                restTemplate.getForEntity(PAYMENT_URL + "/get/" + id, CommonResult.class);
+
+        if (forEntity.getStatusCode().is2xxSuccessful()) {
+            return forEntity.getBody();
+        }else {
+            return CommonResult.notFound("没有找到",404);
+        }
     }
 }

@@ -18,19 +18,28 @@ public class CommonResult<T> implements Serializable {
 
     private static Integer SUCCESS = 200;
     private static Integer NOT_FOUND = 404;
+    private static Integer REQUEST_TIMEOUT = 408;
+
 
     private Integer code;
     private String message;
     private T data;
 
-    public static <T> CommonResult<T> success(String message,T data){
-        return new CommonResult<>(SUCCESS,message,data);
+    public static <T> CommonResult<T> success(String message, T data) {
+        return new CommonResult<>(SUCCESS, message, data);
     }
 
-    public static <T> CommonResult<T> notFound(String message,T data){
-        return new CommonResult<>(NOT_FOUND,message,data);
+    public static <T> CommonResult<T> notFound(String message, T data) {
+        return new CommonResult<>(NOT_FOUND, message, data);
     }
 
+    public static <T> CommonResult<T> requestTimeout(String message, T data) {
+        return new CommonResult<>(REQUEST_TIMEOUT, message, data);
+    }
+
+    public static <T> CommonResult<T> error(String message, T data, Integer code) {
+        return new CommonResult<>(code, message, data);
+    }
 
 
     public CommonResult() {

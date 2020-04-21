@@ -29,6 +29,12 @@ public class Payment implements Serializable {
     private Long id;
     private String serial;
 
+    private static final Payment NULL_PAYMENT = new Payment();
+
+    public static Payment getNullPayment(){
+        return NULL_PAYMENT;
+    }
+
     // getter setter
 
     public Payment() {
