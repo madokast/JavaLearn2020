@@ -41,3 +41,24 @@
     cloud-eureka-server27012
     cloud-provider-payment28012
     cloud-consumer-order20092
+
+[Hystrix 服务监控]
+    cloud-monitor-hystrix26001
+
+[gateway 网关 静态路由YML配置法]
+    cloud-eureka-server27020
+    cloud-provider-payment28020
+    cloud-provider-payment28021
+    cloud-gateway29527
+
+[gateway 网关 静态路由 硬编码法]
+    cloud-gateway29528
+
+[gateway 网关 配合 eureka 实现动态路由]
+    cloud-eureka-server27020
+    cloud-provider-payment28020
+    cloud-provider-payment28021
+    cloud-gateway29529
+
+[spring cloud config 配置中心]
+    cloud-config-center23344

@@ -2,25 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c343dee-fc64-478c-a3be-3f9300eddb89" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20092/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud/OrderCircuitBreak20092.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-consumer-order20092/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27012/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27012/src/main/java/com/atguigu/springcloud/EurekaServer27012.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27012/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/Payment28012.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0023合并K个排序链表.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0020/Q0024两两交换链表中的节点.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-config-center23344/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-config-center23344/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27020/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27020/src/main/java/com/atguigu/springcloud/EurekaServer27020.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-eureka-server27020/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29527/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29527/src/main/java/com/atguigu/springcloud/Gateway29527.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29527/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29528/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29528/src/main/java/com/atguigu/springcloud/Gateway29528.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29528/src/main/java/com/atguigu/springcloud/config/GatewayConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29528/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29529/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29529/src/main/java/com/atguigu/springcloud/Gateway29529.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-gateway29529/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-monitor-hystrix26001/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-monitor-hystrix26001/src/main/java/com/atguigu/springcloud/Monitor26001.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-monitor-hystrix26001/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/Payment28020.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/java/com/atguigu/springcloud/Payment28021.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-provider-payment28021/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/cloud-eureka-server27020/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-eureka-server27010/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-eureka-server27010/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/Payment28012.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/Payment28012.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloud-provider-payment28006/mapper/PaymentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-provider-payment28020/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/模块信息.txt" beforeDir="false" afterPath="$PROJECT_DIR$/模块信息.txt" afterDir="false" />
     </list>
@@ -89,7 +109,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-gateway29529/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33678162" />
@@ -101,11 +121,11 @@
       <recent name="springcloud" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-consumer-order20092\src\main\java\com\atguigu\springcloud" />
-      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-consumer-order20092\src\main\resources" />
-      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-provider-payment28012\src\main\resources" />
-      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-eureka-server27012\src\main\resources" />
-      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-consumer-order20090\src\main\resources" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-gateway29529\src\main\resources" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-gateway29528\src\main\resources" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-provider-payment28021\src\main\resources" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-provider-payment28020\src\main\java" />
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\springcloud20200413\cloud-provider-payment28020\src\main\resources" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -120,7 +140,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OrderCircuitBreak20092">
+  <component name="RunManager" selected="Spring Boot.Gateway29529">
     <configuration name="EurekaServer27001" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="cloud-eureka-server27001" />
       <extension name="coverage">
@@ -132,6 +152,13 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.EurekaServer27001" />
       <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServer27002 (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cloud-eureka-server27002" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.EurekaServer27002" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,6 +196,81 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.EurekaServer27012" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServer27020" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-eureka-server27020" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.EurekaServer27020" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gateway29527" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-gateway29527" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Gateway29527" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gateway29528" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-gateway29528" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Gateway29528" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gateway29529" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-gateway29529" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Gateway29529" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Monitor26001" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-monitor-hystrix26001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Monitor26001" />
       <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
@@ -334,6 +436,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Payment28020" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-provider-payment28020" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Payment28020" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Payment28021" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-provider-payment28021" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.Payment28021" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Spring Boot.Payment28006" />
       <item itemvalue="Spring Boot.EurekaServer27002" />
@@ -350,6 +482,14 @@
       <item itemvalue="Spring Boot.Payment28010" />
       <item itemvalue="Spring Boot.Payment28012" />
       <item itemvalue="Spring Boot.OrderCircuitBreak20092" />
+      <item itemvalue="Spring Boot.Monitor26001" />
+      <item itemvalue="Spring Boot.EurekaServer27020" />
+      <item itemvalue="Spring Boot.Payment28020" />
+      <item itemvalue="Spring Boot.EurekaServer27002 (1)" />
+      <item itemvalue="Spring Boot.Payment28021" />
+      <item itemvalue="Spring Boot.Gateway29527" />
+      <item itemvalue="Spring Boot.Gateway29528" />
+      <item itemvalue="Spring Boot.Gateway29529" />
     </list>
   </component>
   <component name="ServiceViewManager">
@@ -377,11 +517,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Docker192.168.2.3" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker192.168.2.3" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="Containers" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -400,7 +535,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586770717103</updated>
       <workItem from="1586770720475" duration="40383000" />
-      <workItem from="1586956736816" duration="46402000" />
+      <workItem from="1586956736816" duration="63074000" />
     </task>
     <servers />
   </component>
@@ -431,6 +566,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="590" y="35" key="#EurekaServer27012/0.0.1920.1080@0.0.1920.1080" timestamp="1587482778973" />
+    <state x="653" y="70" key="#EurekaServer27020" timestamp="1587563595579">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="653" y="70" key="#EurekaServer27020/0.0.1920.1080@0.0.1920.1080" timestamp="1587563595579" />
+    <state x="590" y="35" key="#Gateway29527" timestamp="1587569334577">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Gateway29527/0.0.1920.1080@0.0.1920.1080" timestamp="1587569334577" />
+    <state x="590" y="35" key="#Gateway29528" timestamp="1587570596148">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Gateway29528/0.0.1920.1080@0.0.1920.1080" timestamp="1587570596148" />
+    <state x="590" y="35" key="#Gateway29529" timestamp="1588000817710">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Gateway29529/0.0.1920.1080@0.0.1920.1080" timestamp="1588000817710" />
+    <state x="590" y="35" key="#Monitor26001" timestamp="1587556946678">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Monitor26001/0.0.1920.1080@0.0.1920.1080" timestamp="1587556946678" />
     <state x="590" y="35" key="#OrderCircuitBreak20092" timestamp="1587483411981">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -475,6 +630,18 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="590" y="35" key="#Payment28012/0.0.1920.1080@0.0.1920.1080" timestamp="1587483078355" />
+    <state x="590" y="35" key="#Payment28013" timestamp="1587555389671">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Payment28013/0.0.1920.1080@0.0.1920.1080" timestamp="1587555389671" />
+    <state x="590" y="35" key="#Payment28020" timestamp="1587568508608">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Payment28020/0.0.1920.1080@0.0.1920.1080" timestamp="1587568508608" />
+    <state x="590" y="35" key="#Payment28021" timestamp="1587569105193">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="590" y="35" key="#Payment28021/0.0.1920.1080@0.0.1920.1080" timestamp="1587569105193" />
     <state x="552" y="198" key="#Project_Structure" timestamp="1587482826462">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -483,10 +650,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="586" y="108" width="765" height="872" key="#cloud-eureka-server27002/Dockerfile/0.0.1920.1080@0.0.1920.1080" timestamp="1586956774383" />
-    <state x="65" y="286" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587482499899">
+    <state x="65" y="286" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587568216472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="65" y="286" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587482499899" />
+    <state x="65" y="286" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587568216472" />
     <state x="675" y="342" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586782856377">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -499,50 +666,54 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="765" y="256" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1587463092562" />
-    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1586922896905">
+    <state x="413" y="465" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1587568127590">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1586922896905" />
-    <state width="1496" height="537" key="GridCell.Tab.0.bottom" timestamp="1587484455291">
+    <state x="413" y="465" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587568127590" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1587556159198">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.0.center" timestamp="1587484455291">
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587556159198" />
+    <state width="1496" height="583" key="GridCell.Tab.0.bottom" timestamp="1588000841334">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.0.left" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841334" />
+    <state width="1496" height="583" key="GridCell.Tab.0.center" timestamp="1588000841333">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.0.right" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841333" />
+    <state width="1496" height="583" key="GridCell.Tab.0.left" timestamp="1588000841330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.1.bottom" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841330" />
+    <state width="1496" height="583" key="GridCell.Tab.0.right" timestamp="1588000841333">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.1.center" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841333" />
+    <state width="1496" height="583" key="GridCell.Tab.1.bottom" timestamp="1588000841334">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.1.left" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841334" />
+    <state width="1496" height="583" key="GridCell.Tab.1.center" timestamp="1588000841334">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
-    <state width="1496" height="537" key="GridCell.Tab.1.right" timestamp="1587484455291">
+    <state width="1496" height="583" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841334" />
+    <state width="1496" height="583" key="GridCell.Tab.1.left" timestamp="1588000841334">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1496" height="537" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587484455291" />
+    <state width="1496" height="583" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841334" />
+    <state width="1496" height="583" key="GridCell.Tab.1.right" timestamp="1588000841334">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1496" height="583" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588000841334" />
     <state x="540" y="274" width="1178" height="531" key="IDE.errors.dialog" timestamp="1586957699606">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="540" y="274" width="1178" height="531" key="IDE.errors.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586957699606" />
-    <state x="37" y="222" width="1210" height="716" key="SettingsEditor" timestamp="1587483195186">
+    <state x="323" y="202" width="1210" height="716" key="SettingsEditor" timestamp="1588041167984">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="37" y="222" width="1210" height="716" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1587483195186" />
+    <state x="323" y="202" width="1210" height="716" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1588041167984" />
     <state x="710" y="285" key="com.intellij.docker.deployment.ui.DockerPortBindingsField.v173.dialogSize" timestamp="1587369590032">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -551,10 +722,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="710" y="285" width="549" height="517" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.0.1920.1080@0.0.1920.1080" timestamp="1586919874624" />
-    <state x="334" y="234" key="new project wizard" timestamp="1587483180210">
+    <state x="334" y="234" key="new project wizard" timestamp="1588040894524">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1587483180210" />
+    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1588040894524" />
     <state x="616" y="250" width="672" height="677" key="run.anything.popup" timestamp="1586922908223">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

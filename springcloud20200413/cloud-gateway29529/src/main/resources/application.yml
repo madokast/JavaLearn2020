@@ -1,0 +1,30 @@
+server:
+  port: 29529
+
+spring:
+  application:
+    name: cloud-gateway29529
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能
+      routes:
+        - id: cloud-provider-payment28020 #路由id名，需要唯一
+          uri: lb://CLOUD-PAYMENT-SERVICE # lb://服务名字
+          predicates:
+            - Path=/payment/get/** # 此处配置断言
+        - id: cloud-provider-payment28021
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/create
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+  instance:
+    instance-id: cloud-gateway29529
+    prefer-ip-address: true

@@ -1,0 +1,16 @@
+server:
+  port: 29528
+
+spring:
+  application:
+    name: cloud-gateway29528
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+  instance:
+    instance-id: cloud-gateway29528
+    prefer-ip-address: true

@@ -27,6 +27,14 @@
         <module>cloud-eureka-server27012</module>
         <module>cloud-provider-payment28012</module>
         <module>cloud-consumer-order20092</module>
+        <module>cloud-monitor-hystrix26001</module>
+        <module>cloud-gateway29527</module>
+        <module>cloud-eureka-server27020</module>
+        <module>cloud-provider-payment28020</module>
+        <module>cloud-provider-payment28021</module>
+        <module>cloud-gateway29528</module>
+        <module>cloud-gateway29529</module>
+        <module>cloud-config-center23344</module>
     </modules>
 
     <properties>

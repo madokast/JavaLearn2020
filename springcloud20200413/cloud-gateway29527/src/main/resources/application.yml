@@ -1,0 +1,27 @@
+server:
+  port: 29527
+
+spring:
+  application:
+    name: cloud-gateway29527
+  cloud:
+    gateway:
+      routes: # 数组
+        - id: cloud-provider-payment28020 #路由id名，需要唯一
+          uri: http://192.168.2.13:28020 #服务地址
+          predicates:
+            - Path=/payment/get/** # 断言数组
+        - id: cloud-provider-payment28021
+          uri: http://192.168.2.13:28021
+          predicates:
+            - Path=/payment/create
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+  instance:
+    instance-id: cloud-gateway29527
+    prefer-ip-address: true

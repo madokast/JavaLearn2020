@@ -13,15 +13,23 @@
         <module name="cloud-provider-payment28010" />
         <module name="cloud-consumer-order20084" />
         <module name="cloud-eureka-server27010" />
+        <module name="cloud-gateway29527" />
         <module name="cloud-consumer-order20080" />
         <module name="cloud-api-commons" />
+        <module name="cloud-config-center23344" />
+        <module name="cloud-eureka-server27020" />
         <module name="cloud-consumer-order20092" />
+        <module name="cloud-gateway29528" />
         <module name="cloud-consumer-order20090" />
         <module name="cloud-eureka-server27012" />
+        <module name="cloud-provider-payment28020" />
+        <module name="cloud-provider-payment28021" />
         <module name="cloud-provider-payment28006" />
         <module name="cloud-provider-payment28004" />
+        <module name="cloud-monitor-hystrix26001" />
         <module name="cloud-provider-payment28002" />
         <module name="cloud-provider-payment28001" />
+        <module name="cloud-gateway29529" />
         <module name="cloud-eureka-server27002" />
         <module name="cloud-eureka-server27001" />
       </profile>
