@@ -11,9 +11,9 @@ spring:
           enabled: true # 开启从注册中心动态创建路由的功能
       routes:
         - id: cloud-provider-payment28020 #路由id名，需要唯一
-          uri: lb://CLOUD-PAYMENT-SERVICE #服务地址
+          uri: lb://CLOUD-PAYMENT-SERVICE # lb://服务名字
           predicates:
-            - Path=/payment/get/** # 断言数组
+            - Path=/payment/get/** # 此处配置断言
         - id: cloud-provider-payment28021
           uri: lb://CLOUD-PAYMENT-SERVICE
           predicates:
