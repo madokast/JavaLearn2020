@@ -1,0 +1,39 @@
+server:
+  port: 23355
+
+spring:
+  application:
+    name: config-client23355
+  cloud:
+    config:
+      label: master
+      name: config
+      profile: dev
+      uri: http://192.168.2.13:23344
+  rabbitmq:
+    host: 192.168.2.3
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+
+  instance:
+    instance-id: config-client23355
+    prefer-ip-address: true
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.atguigu.springcloud.entity
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

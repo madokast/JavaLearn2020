@@ -60,5 +60,18 @@
     cloud-provider-payment28021
     cloud-gateway29529
 
-[spring cloud config 配置中心]
+[spring cloud config 配置中心 & 服务总线]
+    cloud-eureka-server27020
     cloud-config-center23344
+    cloud-config-client23355
+
+[spring cloud stream]
+    cloud-eureka-server27020
+    cloud-stream-rabbitmq-provider28801
+    cloud-stream-rabbitmq-consumer28802
+    cloud-stream-rabbitmq-consumer28803
+
+[spring cloud sleuth]
+    cloud-eureka-server27020
+    cloud-sleuth-payment29880
+    cloud-sleuth-consumer29080

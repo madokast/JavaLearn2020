@@ -1,0 +1,39 @@
+server:
+  port: 28802
+
+spring:
+  application:
+    name: cloud-stream-rabbitmq-consumer28802
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: default.messages
+          binder: local_rabbit
+          group: atguigu
+        output:
+          destination: default.messages
+          binder: local_rabbit
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 192.168.2.3
+                port: 5672
+                username: guest
+                password: guest
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+
+  instance:
+    instance-id: cloud-stream-rabbitmq-consumer28802
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5

@@ -1,0 +1,21 @@
+server:
+  port: 29080
+
+spring:
+  application:
+    name: cloud-order-client
+  zipkin:
+    base-url: http://192.168.2.3:9411
+  sleuth:
+    sampler:
+      probability: 1
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.13:27020/eureka/
+  instance:
+    instance-id: order29080
+    prefer-ip-address: true

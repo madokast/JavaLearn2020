@@ -35,6 +35,12 @@
         <module>cloud-gateway29528</module>
         <module>cloud-gateway29529</module>
         <module>cloud-config-center23344</module>
+        <module>cloud-config-client23355</module>
+        <module>cloud-stream-rabbitmq-provider28801</module>
+        <module>cloud-stream-rabbitmq-consumer28802</module>
+        <module>cloud-stream-rabbitmq-consumer28803</module>
+        <module>cloud-sleuth-payment29880</module>
+        <module>cloud-sleuth-consumer29080</module>
     </modules>
 
     <properties>
