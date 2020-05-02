@@ -10,6 +10,7 @@
         <module name="cloudalibaba-provider-payment19001" />
         <module name="cloudalibaba-consumer-order9091" />
         <module name="config-nacos-client13377" />
+        <module name="sentinel-service28401" />
       </profile>
     </annotationProcessing>
   </component>

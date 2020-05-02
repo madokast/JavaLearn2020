@@ -2,119 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c99bdeb3-47be-4fdb-bcdd-94688e1c9465" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/java/com/atguigu/springcloud/ConfigClient23355.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/java/com/atguigu/springcloud/Payment29880.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/resources/mapper/PaymentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28802/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28802/src/main/java/com/atguigu/springcloud/StreamConsumer28802.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28802/src/main/java/com/atguigu/springcloud/controller/ReceiveMessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28802/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28803/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28803/src/main/java/com/atguigu/springcloud/StreamConsumer28803.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28803/src/main/java/com/atguigu/springcloud/controller/ReceiveMessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-consumer28803/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/src/main/java/com/atguigu/springcloud/StreamProvider28801.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/src/main/java/com/atguigu/springcloud/controller/SendMessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/src/main/java/com/atguigu/springcloud/service/IMessageProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/src/main/java/com/atguigu/springcloud/service/MessageProviderImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-stream-rabbitmq-provider28801/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-consumer-order9091/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-consumer-order9091/src/main/java/com/atguigu/springcloud/alibaba/NacosConsumer9091.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-consumer-order9091/src/main/java/com/atguigu/springcloud/alibaba/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-consumer-order9091/src/main/java/com/atguigu/springcloud/alibaba/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-consumer-order9091/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19001/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19001/src/main/java/com/atguigu/springcloud/alibaba/Controller/EchoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19001/src/main/java/com/atguigu/springcloud/alibaba/NacosProvider19001.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19001/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19002/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19002/src/main/java/com/atguigu/springcloud/alibaba/Controller/EchoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19002/src/main/java/com/atguigu/springcloud/alibaba/NacosProvider19002.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloudalibaba-provider-payment19002/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-nacos-client13377/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-nacos-client13377/src/main/java/com/atguigu/springcloud/alibaba/NacosConfig13377.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-nacos-client13377/src/main/java/com/atguigu/springcloud/alibaba/controller/ConfigController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-nacos-client13377/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-nacos-client13377/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/apt/format.apt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/apt/index.apt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fml/faq.fml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/apt/format.apt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/apt/index.apt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/fml/faq.fml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/markdown/markdown-velocity.md.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/markdown/markdown.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/fr/xdoc/xdoc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/markdown/markdown-velocity.md.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/markdown/markdown.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/site.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/site_fr.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/xdoc/xdoc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentinel-service28401/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentinel-service28401/src/main/java/com/atguigu/springcloud/alibaba/SentinelService28401.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentinel-service28401/src/main/java/com/atguigu/springcloud/alibaba/controller/FlowLimitController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentinel-service28401/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../ichiwan-vue/ichiwan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/CommonResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-api-commons/src/main/java/com/atguigu/springcloud/entity/Payment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-config-center23344/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-center23344/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-config-center23344/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-center23344/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/config/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20080/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20084/src/main/java/com/atguigu/springcloud/config/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20084/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20086/src/main/java/com/atguigu/springcloud/config/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20086/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20088/src/main/java/com/atguigu/springcloud/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/src/main/java/com/atguigu/springcloud/config/FeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20088/src/main/java/com/atguigu/springcloud/controller/OrderFeignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/src/main/java/com/atguigu/springcloud/controller/OrderFeignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20090/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20090/src/main/java/com/atguigu/springcloud/service/OrderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20090/src/main/java/com/atguigu/springcloud/service/OrderServiceFallbackImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-consumer-order20092/src/main/java/com/atguigu/springcloud/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/src/main/java/com/atguigu/springcloud/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-eureka-server27001/src/main/java/com/atguigu/springcloud/EurekaServer27001.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-consumer29080/src/main/java/com/atguigu/springcloud/SleuthConsumer29080.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-eureka-server27002/src/main/java/com/atguigu/springcloud/EurekaServer27002.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-eureka-server27010/src/main/java/com/atguigu/springcloud/EurekaServer27010.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-eureka-server27012/src/main/java/com/atguigu/springcloud/EurekaServer27012.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-eureka-server27020/src/main/java/com/atguigu/springcloud/EurekaServer27020.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-gateway29527/src/main/java/com/atguigu/springcloud/Gateway29527.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-monitor-hystrix26001/src/main/java/com/atguigu/springcloud/Monitor26001.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28001/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28001/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28002/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28002/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28002/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28004/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28004/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28004/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28006/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28006/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28006/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28010/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28010/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28010/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28012/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-sleuth-payment29880/src/main/java/com/atguigu/springcloud/controller/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/dao/PaymentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/service/Impl/PaymentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/cloud-provider-payment28020/src/main/java/com/atguigu/springcloud/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/cloud-config-client23355/src/main/java/com/atguigu/springcloud/service/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/springcloud-config/config-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/springcloud-config/config-prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/springcloud-config/config-test.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/springcloud-config/保存springcloud-config配置中心要用配置.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springcloud20200413/模块信息.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud20200413/模块信息.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +111,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.NacosConfig13377">
+  <component name="RunManager" selected="Spring Boot.SentinelService28401">
     <configuration name="NacosProvider19001#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/NacosProvider19001.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -285,6 +178,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SentinelService28401" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="sentinel-service28401" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.springcloud.alibaba.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.atguigu.springcloud.alibaba.SentinelService28401" />
+      <option name="VM_PARAMETERS" value="-Xms256M -Xmx256M" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="HTTP Request.NacosProvider19001#2" />
@@ -335,7 +243,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588381625305</updated>
       <workItem from="1588381629046" duration="988000" />
-      <workItem from="1588383155010" duration="8146000" />
+      <workItem from="1588383155010" duration="12317000" />
     </task>
     <servers />
   </component>
@@ -366,45 +274,49 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="590" y="35" key="#NacosProvider19002/0.0.1920.1080@0.0.1920.1080" timestamp="1588403110944" />
-    <state width="1517" height="742" key="GridCell.Tab.0.bottom" timestamp="1588406915957">
+    <state x="590" y="35" key="#SentinelService28401" timestamp="1588431471949">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.0.center" timestamp="1588406915957">
+    <state x="590" y="35" key="#SentinelService28401/0.0.1920.1080@0.0.1920.1080" timestamp="1588431471949" />
+    <state width="746" height="146" key="GridCell.Tab.0.bottom" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.0.left" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.0.center" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.0.right" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.0.left" timestamp="1588431115383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.1.bottom" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115383" />
+    <state width="746" height="146" key="GridCell.Tab.0.right" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.1.center" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.1.bottom" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.1.left" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.1.center" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state width="1517" height="742" key="GridCell.Tab.1.right" timestamp="1588406915957">
+    <state width="746" height="146" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.1.left" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1517" height="742" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588406915957" />
-    <state x="461" y="182" key="SettingsEditor" timestamp="1588383051478">
+    <state width="746" height="146" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state width="746" height="146" key="GridCell.Tab.1.right" timestamp="1588431115384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1588383051478" />
-    <state x="334" y="234" key="new project wizard" timestamp="1588405327649">
+    <state width="746" height="146" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588431115384" />
+    <state x="461" y="182" key="SettingsEditor" timestamp="1588430280489">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1588405327649" />
+    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1588430280489" />
+    <state x="334" y="234" key="new project wizard" timestamp="1588429924544">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="334" y="234" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1588429924544" />
   </component>
 </project>
