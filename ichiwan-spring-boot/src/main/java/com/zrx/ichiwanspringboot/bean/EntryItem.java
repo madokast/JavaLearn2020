@@ -37,7 +37,6 @@ public class EntryItem {
 
     private Integer lengthMinute;
 
-
     private String describing;
     private Boolean deleteBool;
 
@@ -111,5 +110,14 @@ public class EntryItem {
                 ", describing='" + describing + '\'' +
                 ", deleteBool=" + deleteBool +
                 '}';
+    }
+
+    public String toMySqlInsertString() {
+        return String.format("INSERT INTO entries(dateDone, name, lengthMinute, describing) values" +
+                "(\"%s\",\"%s\",%d,\"%s\");", dateString(), name, lengthMinute, describing);
+    }
+
+    private String dateString() {
+        return new java.sql.Date(dateDone.getTime()).toString();
     }
 }

@@ -2,7 +2,7 @@ package com.zrx.algorithm.leetcode.q0010;
 
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.object.RepeatableSet;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,10 +30,10 @@ public class Q0015三数之和 implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 1,
-                (Object) IntArray.create(-1, 0, 1, 2, -1, -4),
-                (Object) IntArray.create(0, 0, 0, 0),
-                (Object) IntArray.create(-2, 0, 1, 1, 2),
-                (Object) IntArray.create(0, -4, -1, -4, -2, -3, 2)
+                (Object) ArrayFactory.create(-1, 0, 1, 2, -1, -4),
+                (Object) ArrayFactory.create(0, 0, 0, 0),
+                (Object) ArrayFactory.create(-2, 0, 1, 1, 2),
+                (Object) ArrayFactory.create(0, -4, -1, -4, -2, -3, 2)
         );
     }
 

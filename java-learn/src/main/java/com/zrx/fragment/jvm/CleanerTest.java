@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  */
 
 //@Component
-@Invoking(createdTime = "2020-04-04 10:56",info = "虚引用cleaner")
+//@Invoking(createdTime = "2020-04-04 10:56",info = "虚引用cleaner")
 public class CleanerTest {
     private final static Logger LOGGER = MyLoggerFactory.getLogger(CleanerTest.class);
 
@@ -43,7 +43,7 @@ public class CleanerTest {
         /**
          * 注意运行Java时虚拟机参数加上 --add-opens java.base/jdk.internal.ref=ALL-UNNAMED
          */
-        jdk.internal.ref.Cleaner.create(obj,()->LOGGER.info("执行clean方法"));
+        //jdk.internal.ref.Cleaner.create(obj,()->LOGGER.info("执行clean方法"));
 
         LOGGER.info("丢弃强引用");
         obj = null;

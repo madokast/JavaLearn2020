@@ -3,10 +3,9 @@ package com.zrx.algorithm.leetcode.q0010;
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.ToString;
 import com.zrx.algorithm.leetcode.object.RepeatableSet;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -31,7 +30,7 @@ public class Q0018四数之和 implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 2,
-                IntArray.create(1, 0, -1, 0, -2, 2), 0
+                ArrayFactory.create(1, 0, -1, 0, -2, 2), 0
         );
     }
 

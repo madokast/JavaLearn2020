@@ -1,5 +1,7 @@
 package com.atguigu.springcloud.alibaba.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +35,25 @@ public class OrderController {
     private String server_url;
 
     @GetMapping("/echo/{string}")
+    @SentinelResource(
+            value = "echo",
+            blockHandler = "echo_blockHandler",
+            fallback = "echo_fallback"
+    )
     public Object echo(@PathVariable String string) {
+        if("a".equals(string))
+            throw new RuntimeException("运行期异常");
+
         String forObject = restTemplate.getForObject(server_url + "/provider/echo/" + string, String.class);
 
         return "来自服务提供者:" + forObject;
+    }
+
+    public Object echo_blockHandler(String s, BlockException e){
+        return s+" "+e + " from echo_blockHandler";
+    }
+
+    public Object echo_fallback(String s,Throwable e){
+        return s+" "+e + " from echo_fallback";
     }
 }

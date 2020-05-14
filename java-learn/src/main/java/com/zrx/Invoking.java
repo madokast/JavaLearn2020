@@ -1,5 +1,6 @@
 package com.zrx;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.lang.annotation.ElementType;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
  * 注解此方法的类，会自动配置好并执行
  */
 
+@Component
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Invoking {

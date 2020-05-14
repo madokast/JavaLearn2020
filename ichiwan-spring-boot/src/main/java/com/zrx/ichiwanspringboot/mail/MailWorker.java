@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 
+@Async
 @Component
 public class MailWorker {
     private final Logger LOGGER = LoggerFactory.getLogger(MailWorker.class);
@@ -37,8 +38,9 @@ public class MailWorker {
         LOGGER.info("MailWorker injected");
     }
 
-    @Async
     public void send(String receiver, String subject, String text) {
+        LOGGER.info("发送邮件{}到{}", subject, receiver);
+
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(receiver);
         simpleMailMessage.setSubject(subject);
@@ -51,8 +53,8 @@ public class MailWorker {
     }
 
 
-    public void send(String subject, String text){
-        send(defaultReceiver,subject,text);
+    public void send(String subject, String text) {
+        send(defaultReceiver, subject, text);
     }
 
 

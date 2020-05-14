@@ -1,7 +1,7 @@
 package com.zrx.ichiwanspringboot.service;
 
 import com.zrx.ichiwanspringboot.bean.EntryItem;
-import com.zrx.ichiwanspringboot.mapper.EntryMapper;
+import com.zrx.ichiwanspringboot.cache.EntryMapperCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,9 @@ import java.util.List;
 public class StatisticsServiceImpl implements StatisticsService {
     private final static Logger LOGGER = LoggerFactory.getLogger(StatisticsServiceImpl.class);
 
-    private final EntryMapper entryMapper;
+    private final EntryMapperCache entryMapper;
 
-    public StatisticsServiceImpl(EntryMapper entryMapper) {
+    public StatisticsServiceImpl(EntryMapperCache entryMapper) {
         this.entryMapper = entryMapper;
     }
 

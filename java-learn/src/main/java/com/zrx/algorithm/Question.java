@@ -31,6 +31,8 @@ public interface Question {
     @Target(ElementType.METHOD)
     @interface Code {
         String[] info() default {};
+
+        int[] printInputParameters() default {};
     }
 
     default void run() {
@@ -49,23 +51,32 @@ public interface Question {
 
         for (int i = 0; i < inputs.size(); i++) {
             if (inputs.size() > 1)
-                LOGGER.info("第{}组测试", i + 1);
+                LOGGER.info("第{}组测试", ToString.apply(i + 1));
 
             Input input = inputs.get(i);
             Answer answer = answers.get(i);
+            String[] inputNames = getInputNames();
+            Object[] parametersArray = input.getParametersArray();
 
-            LOGGER.info("input = {}", input.toString(getInputNames()));
-            LOGGER.info("answer = {}", answer);
+
+            LOGGER.info("input = {}", input.toString(inputNames));
+            LOGGER.info("answer = {}", ToString.apply(answer));
 
             Object ret = null;
             try {
-                ret = leetCodeMethod.invoke(solutionInstance, input.getParametersArray());
+                ret = leetCodeMethod.invoke(solutionInstance, parametersArray);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error("Leetcode 方法运行出现异常");
                 throw new RuntimeException(e);
             }
 
             LOGGER.info("ret = {}", ToString.apply(ret));
+
+            // 再次打印入参
+            for (int index : getParameterIndexNeedPrint()) {
+                LOGGER.info("input[" + ToString.apply(inputNames[index]) + "]=" + ToString.apply(parametersArray[index]));
+            }
+
 
             if (Equality.isEqual(answer.getAns(), ret))
                 LOGGER.info("测试通过");
@@ -111,19 +122,23 @@ public interface Question {
                 .toArray(new String[]{});
     }
 
-    private int getInputLength(){
+    private int getInputLength() {
         return getLeetCodeMethod().getParameterCount();
     }
 
     default String[] getInfo() {
         String[] info = getLeetCodeMethod().getAnnotation(Code.class).info();
         return Arrays.stream(info)
-                .flatMap(s->{
+                .flatMap(s -> {
                     String[] split = s.split("\n");
-                    return Arrays.stream(split).filter(ss->ss.length()>0);
+                    return Arrays.stream(split).map(String::trim).filter(ss -> ss.length() > 0);
                 })
                 .collect(Collectors.toList())
                 .toArray(String[]::new);
+    }
+
+    default int[] getParameterIndexNeedPrint() {
+        return getLeetCodeMethod().getAnnotation(Code.class).printInputParameters();
     }
 
     class Input {
@@ -166,7 +181,6 @@ public interface Question {
             return inputs;
 
         }
-
 
 
         private static Object[] subArray(Object[] objects, int startIncluding, int endExcluding) {

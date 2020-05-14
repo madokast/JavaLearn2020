@@ -63,7 +63,9 @@ public class EntryController {
             JsonProcessingException {
         LOGGER.info("insert entryItem = {}", entryItem);
         entryServiceImpl.insert(entryItem);
+
         mailWorker.send("insert entry", objectMapper.writeValueAsString(entryItem));
+
         return DataWrapper.ok("entry insert");
     }
 

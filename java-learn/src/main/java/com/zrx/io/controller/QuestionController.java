@@ -47,7 +47,7 @@ public class QuestionController {
     public Object getAllQuestion() {
 
         List<QuestionWrapper> allQuestions = algorithmHelper.findAllQuestions();
-        LOGGER.info("allQuestions = {}", allQuestions);
+        //LOGGER.info("allQuestions = {}", allQuestions);
 
         return DataWrapper.create("all questions", algorithmHelper.findAllQuestions());
     }

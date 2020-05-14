@@ -18,8 +18,6 @@ public interface StatisticsService {
      * @param date 日期
      * @return date 日期所在天的总时长
      */
+
     int totalLengthMinAt(Date date);
-
-
-
 }

@@ -3,6 +3,7 @@ package com.zrx.ichiwanspringboot.exception;
 import com.zrx.ichiwanspringboot.bean.DataWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailSendException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -82,6 +83,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestParameterException.class)
     public DataWrapper<Exception> badRequestParameter(BadRequestParameterException e) {
         LOGGER.warn("BadRequestParameterException = {}", e.getMessage());
+        return DataWrapper.badRequest(e.getMessage(), e);
+    }
+
+    @ExceptionHandler(MailSendException.class)
+    public DataWrapper<Exception> mailSendExceptionHandler(MailSendException e) {
+        LOGGER.warn("MailSendException = {}", e.getMessage());
         return DataWrapper.badRequest(e.getMessage(), e);
     }
 

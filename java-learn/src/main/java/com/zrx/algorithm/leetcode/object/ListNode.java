@@ -1,6 +1,6 @@
 package com.zrx.algorithm.leetcode.object;
 
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,7 +69,7 @@ public class ListNode {
             n = n.next;
         }
 
-        return IntArray.create(list);
+        return ArrayFactory.create(list);
     }
 
     @Override

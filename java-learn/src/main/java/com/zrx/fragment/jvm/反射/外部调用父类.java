@@ -1,12 +1,10 @@
 package com.zrx.fragment.jvm.反射;
 
-import com.fasterxml.jackson.databind.node.POJONode;
 import com.zrx.Invoking;
-import com.zrx.utils.Pointer;
-import jdk.internal.misc.Unsafe;
+import com.zrx.utils.deprecated.Pointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -24,7 +22,7 @@ import java.lang.reflect.Method;
  */
 
 //@Component
-@Invoking(createdTime = "2020-04-07 08:56", info = "外部调用父类")
+//@Invoking(createdTime = "2020-04-07 08:56", info = "外部调用父类")
 public class 外部调用父类 {
     private final static Logger LOGGER = LoggerFactory.getLogger(外部调用父类.class);
 
@@ -194,7 +192,7 @@ public class 外部调用父类 {
 
 
         for (int i = 0; i < 5; i++) {
-            long anInt = unsafe.getAddress(max, i * 64);
+            long anInt = unsafe.getAddress(max/*, i * 64*/);
             LOGGER.info("{}", Pointer.toHexadecimalFrom(anInt));
         }
 
@@ -245,7 +243,7 @@ public class 外部调用父类 {
         Method toStringObject = Object.class.getMethod("toString");
 
 
-        long ps = unsafe.getAddress(s, 0);
+//        long ps = unsafe.getAddress(s);
 
         for (int i = 0; i < 5; i++) {
             int unsafeInt = unsafe.getInt(s, i * 32);

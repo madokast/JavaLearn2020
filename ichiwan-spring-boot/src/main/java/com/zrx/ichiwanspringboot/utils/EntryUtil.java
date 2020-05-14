@@ -21,4 +21,5 @@ public class EntryUtil {
         return hours+":"+(lastMinutes<10?"0":"")+lastMinutes;
     }
 
+
 }

@@ -2,8 +2,8 @@ package com.zrx.ichiwanspringboot.service;
 
 import com.zrx.ichiwanspringboot.bean.EntryItem;
 import com.zrx.ichiwanspringboot.bean.EntryPost;
+import com.zrx.ichiwanspringboot.cache.EntryMapperCache;
 import com.zrx.ichiwanspringboot.exception.ValidationFailedException;
-import com.zrx.ichiwanspringboot.mapper.EntryMapper;
 import com.zrx.ichiwanspringboot.utils.EntryUtil;
 import com.zrx.ichiwanspringboot.validator.Validator;
 import org.slf4j.Logger;
@@ -38,11 +38,11 @@ public class EntryServiceImpl implements EntryService {
     private final ThreadLocal<SimpleDateFormat> simpleDateFormatThreadLocal
             = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
 
-    private final EntryMapper entryMapper;
+    private final EntryMapperCache entryMapper;
 
     private final Validator<EntryItem> entryItemValidator;
 
-    public EntryServiceImpl(EntryMapper entryMapper, Validator<EntryItem> entryItemValidator) {
+    public EntryServiceImpl(EntryMapperCache entryMapper, Validator<EntryItem> entryItemValidator) {
         this.entryMapper = entryMapper;
         this.entryItemValidator = entryItemValidator;
     }

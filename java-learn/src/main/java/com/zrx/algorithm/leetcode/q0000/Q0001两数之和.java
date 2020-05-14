@@ -1,10 +1,9 @@
 package com.zrx.algorithm.leetcode.q0000;
 
 import com.zrx.algorithm.Question;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -39,14 +38,14 @@ public class Q0001两数之和 implements Question {
     @Override
     public List<Input> getInputs() {
         return List.of(
-                Input.create(IntArray.create(2, 7, 11, 15),9)
+                Input.create(ArrayFactory.create(2, 7, 11, 15),9)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return List.of(
-                Answer.create(IntArray.create(0,1))
+                Answer.create(ArrayFactory.create(0,1))
         );
     }
 

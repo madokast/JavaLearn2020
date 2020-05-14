@@ -1,7 +1,7 @@
 package com.zrx.algorithm.leetcode.q0010;
 
 import com.zrx.algorithm.Question;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -28,8 +28,8 @@ public class Q0016最接近的三数之和 implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 2,
-                IntArray.create(-1, 2, 1, -4), 1,
-                IntArray.create(-3, -2, -5, 3, -4), -1
+                ArrayFactory.create(-1, 2, 1, -4), 1,
+                ArrayFactory.create(-3, -2, -5, 3, -4), -1
         );
     }
 

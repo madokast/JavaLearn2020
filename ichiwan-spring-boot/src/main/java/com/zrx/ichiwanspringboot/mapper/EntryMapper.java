@@ -45,6 +45,4 @@ public interface EntryMapper {
     @Update("UPDATE entries AS e SET e.deleteBool = TRUE WHERE e.id = (\n" +
             "    SELECT maxid FROM (SELECT MAX(ee.id) AS maxid FROM entries ee WHERE ee.deleteBool = FALSE) AS sub)")
     void deleteLastOne();
-
-
 }

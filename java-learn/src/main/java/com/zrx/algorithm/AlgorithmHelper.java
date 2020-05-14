@@ -1,6 +1,7 @@
 package com.zrx.algorithm;
 
 import com.zrx.utils.MyLoggerFactory;
+import com.zrx.utils.ThreadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
@@ -9,7 +10,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Time;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -68,11 +71,13 @@ public class AlgorithmHelper {
                 .orElseThrow(QuestionWrapper.QuestionWrapperNotFoundException::new);
     }
 
-    @Async
+
     public void run(QuestionWrapper questionWrapper) {
-        questionWrapper.log(QuestionWrapper.START);
-        questionWrapper.getQuestion().run();
-        questionWrapper.log(QuestionWrapper.END);
+        ThreadUtils.timedRun(() -> {
+            questionWrapper.log(QuestionWrapper.START);
+            questionWrapper.getQuestion().run();
+            questionWrapper.log(QuestionWrapper.END);
+        }, 10, TimeUnit.SECONDS);
         //questionWrapper.romeLogQueue(); 不在这里移走
     }
 }

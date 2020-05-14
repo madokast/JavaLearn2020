@@ -8,11 +8,16 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.2.13:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.2.13:28080
+        port: 8719
 management:
   endpoints:
     web:
       exposure:
         include: '*'
 
+# 这样可以再外界修改服务名，而不是写死
 service-url:
   nacos-user-service: http://nacos-provider

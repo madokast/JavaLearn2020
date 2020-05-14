@@ -1,5 +1,6 @@
 package com.zrx.utils;
 
+import com.zrx.algorithm.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,6 +48,8 @@ public class MyLoggerFactory {
         if (hasListener(name)) {
             LOGGER.info("remove logger listener {}", name);
             LOG_LISTENER_MAP.remove(name);
+
+            LOGGER.info("LOG_LISTENER_MAP = {}", LOG_LISTENER_MAP);
         }
     }
 
@@ -161,7 +164,7 @@ public class MyLoggerFactory {
                     items = new Object[]{args[1]};
                 }
                 for (Object o : items) {
-                    String item = o.toString();
+                    String item = ToString.apply(o);
                     //LOGGER.info("item = {}", item);
                     int indexOf = stringBuilder.indexOf(PLACE_HOLDER);
                     stringBuilder.delete(indexOf, indexOf + PLACE_HOLDER_LENGTH);

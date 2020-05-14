@@ -1,11 +1,9 @@
-package com.zrx.utils;
+package com.zrx.utils.deprecated;
 
-import jdk.internal.misc.Unsafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.misc.Unsafe;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**

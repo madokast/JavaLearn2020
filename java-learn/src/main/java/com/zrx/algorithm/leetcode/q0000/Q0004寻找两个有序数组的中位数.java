@@ -1,10 +1,9 @@
 package com.zrx.algorithm.leetcode.q0000;
 
 import com.zrx.algorithm.Question;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -27,15 +26,15 @@ public class Q0004寻找两个有序数组的中位数 implements Question {
     @Override
     public List<Input> getInputs() {
         return List.of(
-                Input.create(IntArray.create(1, 2), IntArray.create(3)),
-                Input.create(IntArray.create(1, 2), IntArray.create(3, 4)),
-                Input.create(IntArray.create(1, 2, 5, 6), IntArray.create(3, 4)),
-                Input.create(IntArray.create(1, 2, 5, 6, 7), IntArray.create(3, 4)),
-                Input.create(IntArray.create(2, 3), IntArray.create(1)),
-                Input.create(IntArray.create(1), IntArray.create(2)),
-                Input.create(IntArray.create(1), IntArray.create(1)),
-                Input.create(IntArray.create(1, 2, 4), IntArray.create(3)),
-                Input.create(IntArray.create(1, 2, 3, 5, 6), IntArray.create(4))
+                Input.create(ArrayFactory.create(1, 2), ArrayFactory.create(3)),
+                Input.create(ArrayFactory.create(1, 2), ArrayFactory.create(3, 4)),
+                Input.create(ArrayFactory.create(1, 2, 5, 6), ArrayFactory.create(3, 4)),
+                Input.create(ArrayFactory.create(1, 2, 5, 6, 7), ArrayFactory.create(3, 4)),
+                Input.create(ArrayFactory.create(2, 3), ArrayFactory.create(1)),
+                Input.create(ArrayFactory.create(1), ArrayFactory.create(2)),
+                Input.create(ArrayFactory.create(1), ArrayFactory.create(1)),
+                Input.create(ArrayFactory.create(1, 2, 4), ArrayFactory.create(3)),
+                Input.create(ArrayFactory.create(1, 2, 3, 5, 6), ArrayFactory.create(4))
         );
     }
 

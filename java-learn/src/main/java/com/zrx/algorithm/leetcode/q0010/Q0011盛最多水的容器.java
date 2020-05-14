@@ -1,7 +1,7 @@
 package com.zrx.algorithm.leetcode.q0010;
 
 import com.zrx.algorithm.Question;
-import com.zrx.utils.IntArray;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class Q0011盛最多水的容器 implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 1,
-                (Object) IntArray.create(1, 8, 6, 2, 5, 4, 8, 3, 7)
+                (Object) ArrayFactory.create(1, 8, 6, 2, 5, 4, 8, 3, 7)
         );
     }
 
