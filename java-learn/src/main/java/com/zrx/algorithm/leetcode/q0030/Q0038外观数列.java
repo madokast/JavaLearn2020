@@ -24,12 +24,18 @@ public class Q0038外观数列 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(1, 1, 2, 3, 4, 5);
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                "1",
+                "11",
+                "21",
+                "1211",
+                "111221"
+        );
     }
 
     @Code(info = """
@@ -66,7 +72,49 @@ public class Q0038外观数列 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String countAndSay(int n) {
-        // todo
-        return null;
+        String ret = "1";
+
+        if (n == 1)
+            return ret;
+
+        while (n-- > 1) {
+
+            ret = next(ret);
+
+        }
+
+
+        return ret;
+    }
+
+    private String next(String s) {
+        StringBuilder sb = new StringBuilder(s.length() * 2);
+
+
+        // 重复字母出现次数
+        int cos = 1;
+
+        // 前一个字母
+        char pre = s.charAt(0);
+
+        for (int i = 1; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (pre == c) {
+                // 重复
+                cos++;
+
+            } else {
+                // 不重复，结算
+                sb.append(cos).append(pre);
+
+                pre = c;
+                cos = 1;
+            }
+        }
+
+        sb.append(cos).append(pre);
+
+        return sb.toString();
     }
 }
