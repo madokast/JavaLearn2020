@@ -41,7 +41,7 @@ public class Equality {
         if (a instanceof RepeatableSet || b instanceof RepeatableSet)
             return Objects.equals(RepeatableSet.tryCreate(a), RepeatableSet.tryCreate(b));
 
-        return Objects.equals(a, b);
+        return Objects.deepEquals(a, b);
     }
 
 }

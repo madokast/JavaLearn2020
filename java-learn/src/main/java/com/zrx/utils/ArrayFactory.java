@@ -25,6 +25,10 @@ public class ArrayFactory {
         return ints;
     }
 
+    public static int[][] create(int[]... intArrArr) {
+        return intArrArr;
+    }
+
     public static String[] create(String... strings) {
         return strings;
     }

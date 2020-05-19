@@ -1,11 +1,12 @@
 package com.zrx.algorithm.leetcode.q0030;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -20,16 +21,57 @@ import java.util.List;
 
 @Component
 public class Q0036有效的数独 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0036有效的数独.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0036有效的数独.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        String[][] board01 = new String[][]{
+                {"5", "3", ".", ".", "7", ".", ".", ".", "."},
+                {"6", ".", ".", "1", "9", "5", ".", ".", "."},
+                {".", "9", "8", ".", ".", ".", ".", "6", "."},
+                {"8", ".", ".", ".", "6", ".", ".", ".", "3"},
+                {"4", ".", ".", "8", ".", "3", ".", ".", "1"},
+                {"7", ".", ".", ".", "2", ".", ".", ".", "6"},
+                {".", "6", ".", ".", ".", ".", "2", "8", "."},
+                {".", ".", ".", "4", "1", "9", ".", ".", "5"},
+                {".", ".", ".", ".", "8", ".", ".", "7", "9"}
+        };
+
+        String[][] board02 = new String[][]{
+                {"8", "3", ".", ".", "7", ".", ".", ".", "."},
+                {"6", ".", ".", "1", "9", "5", ".", ".", "."},
+                {".", "9", "8", ".", ".", ".", ".", "6", "."},
+                {"8", ".", ".", ".", "6", ".", ".", ".", "3"},
+                {"4", ".", ".", "8", ".", "3", ".", ".", "1"},
+                {"7", ".", ".", ".", "2", ".", ".", ".", "6"},
+                {".", "6", ".", ".", ".", ".", "2", "8", "."},
+                {".", ".", ".", "4", "1", "9", ".", ".", "5"},
+                {".", ".", ".", ".", "8", ".", ".", "7", "9"}
+        };
+
+        return InputFactory.create(
+                1,
+                stringArrArrToCharArrArr(board01),
+                stringArrArrToCharArrArr(board02)
+
+        );
+    }
+
+    private char[][] stringArrArrToCharArrArr(String[][] strings) {
+        char[][] chars = new char[strings.length][strings[0].length];
+
+        for (int i = 0; i < strings.length; i++) {
+            for (int j = 0; j < strings[i].length; j++) {
+                chars[i][j] = strings[i][j].charAt(0);
+            }
+        }
+
+        return chars;
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(true, false);
     }
 
     @Code(info = """
@@ -88,7 +130,72 @@ public class Q0036有效的数独 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isValidSudoku(char[][] board) {
-        // todo
-        return false;
+        int[] map = new int[27];
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                int c = board[i][j] - '0';
+
+                if (c == '.' - '0') continue;
+
+                c = (1 << c);
+
+                if ((map[i] & c) > 0) return false;
+                else map[i] += c;
+
+                if ((map[j + 9] & c) > 0) return false;
+                else map[j + 9] += c;
+
+                if ((map[(i / 3) * 3 + j / 3 + 18] & c) > 0) return false;
+                else map[(i / 3) * 3 + j / 3 + 18] += c;
+            }
+        }
+
+        return true;
+    }
+
+//    private static final int[] NUMS;
+//
+//    static {
+//        NUMS = new int[9];
+//        for (int i = 0; i < 9; i++) {
+//            NUMS[i] = (1 << i);
+//        }
+//    }
+
+    // 慢速方法
+    public boolean isValidSudokuSlow(char[][] board) {
+        Map<Integer, Set<Character>> map = new HashMap<>();
+        // 0-8 i
+        // 9-17 j
+        // 18-26 cell
+        for (int i = 0; i < 27; i++) {
+            map.put(i, new HashSet<>());
+        }
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                char c = board[i][j];
+
+                if (c == '.')
+                    continue;
+
+                Set<Character> rowSet = map.get(i);
+                Set<Character> colSet = map.get(j + 9);
+                Set<Character> cellSet = map.get((i / 3) * 3 + j / 3 + 18);
+
+                if (rowSet.contains(c)) return false;
+                else rowSet.add(c);
+
+                if (colSet.contains(c)) return false;
+                else colSet.add(c);
+
+                if (cellSet.contains(c)) return false;
+                else cellSet.add(c);
+            }
+        }
+
+
+        return true;
     }
 }
