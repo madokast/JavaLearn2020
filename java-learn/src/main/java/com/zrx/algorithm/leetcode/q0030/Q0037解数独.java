@@ -1,19 +1,18 @@
 package com.zrx.algorithm.leetcode.q0030;
 
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Description
  * 解数独
+ * 总算把回溯系统学了一下
  * <p>
  * Data
  * 2020/5/13-17:49
@@ -111,19 +110,157 @@ public class Q0037解数独 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """, printInputParameters = {0})
     public char[][] solveSudoku(char[][] board) {
-        Statue init = new Statue(board, new Stack<>(), new Stack<>(), new Stack<>());
-
-        List<char[][]> ans = new ArrayList<>(1);
-
-        solveSudoku(init, ans);
-
-        char[][] chars = ans.get(0);
-
+        // 寻找下一个空位
+        label:
         for (int i = 0; i < 9; i++) {
-            System.arraycopy(chars[i], 0, board[i], 0, 9);
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    solve(board, i, j);
+                    break label;
+                }
+            }
         }
 
         return board;
+    }
+
+    private boolean solve(char[][] board, int nextRow, int nextCol) {
+
+        // 寻找下下个空位
+        int nextNextRow = -1;
+        int nextNextCol = -1;
+        boolean find = false;
+
+        for (int i = nextCol + 1; i < 9; i++) {
+            if (board[nextRow][i] == '.') {
+                nextNextRow = nextRow;
+                nextNextCol = i;
+                find = true;
+                break;
+            }
+        }
+
+        if (!find) {
+            flag:
+            for (int i = nextRow + 1; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (board[i][j] == '.') {
+                        nextNextRow = i;
+                        nextNextCol = j;
+                        find = true;
+                        break flag;
+                    }
+                }
+            }
+        }
+
+        if (find) {
+            // 有下下空位，继续递归
+
+            for (Character validChar : validCharIn(board, nextRow, nextCol)) {
+                board[nextRow][nextCol] = validChar;
+
+                if (!solve(board, nextNextRow, nextNextCol)) {
+                    board[nextRow][nextCol] = '.';
+                } else
+                    return true;
+            }
+
+            return false;
+        } else {
+            // 没有下下空位了
+            // 这回就找出来
+
+            List<Character> list = validCharIn(board, nextRow, nextCol);
+            if (list.isEmpty())
+                return false;
+            else {
+                board[nextRow][nextCol] = list.get(0);
+                return true;
+            }
+        }
+
+    }
+
+    private boolean[] valid = new boolean[128];
+
+    private List<Character> validCharIn(char[][] board, int row, int col) {
+        Arrays.fill(valid, true);
+
+
+        int cellRow = (row / 3) * 3;
+        int cellCol = (col / 3) * 3;
+
+        for (char rows : board[row]) {
+            valid[rows] = false;
+        }
+
+        for (int i = 0; i < 9; i++) {
+            valid[board[i][col]] = false;
+        }
+
+        for (int i = cellRow; i < cellRow + 3; i++) {
+            for (int j = cellCol; j < cellCol + 3; j++) {
+                valid[board[i][j]] = false;
+            }
+        }
+
+        List<Character> list = new ArrayList<>(9);
+
+        for (char c = '1'; c <= '9'; c++) {
+            if (valid[c]) {
+                list.add(c);
+            }
+        }
+
+        return list;
+    }
+
+    static class Step {
+        int row;
+        int col;
+        char c;
+
+        public Step(int row, int col, char c) {
+            this.row = row;
+            this.col = col;
+            this.c = c;
+        }
+
+        @Override
+        public String toString() {
+            return "" + row + col + c;
+        }
+    }
+
+    private boolean isValidAfterPut(Step step, char[][] board) {
+        //LOGGER.info("step = {}", step);
+
+        char c = step.c;
+        int col = step.col;
+        int row = step.row;
+
+        int cellRow = (row / 3) * 3;
+        int cellCol = (col / 3) * 3;
+
+        for (char rows : board[row]) {
+            if (c == rows)
+                return false;
+        }
+
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == c)
+                return false;
+        }
+
+        for (int i = cellRow; i < cellRow + 3; i++) {
+            for (int j = cellCol; j < cellCol + 3; j++) {
+                if (board[i][j] == c)
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     private void solveSudoku(Statue statue, List<char[][]> ans) {

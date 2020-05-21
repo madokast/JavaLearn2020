@@ -48,7 +48,6 @@ public class ToString {
         return collection.stream().map(ToString::apply).collect(Collectors.joining(", ", "{", "}"));
     }
 
-
     private static String mapToString(Object a) {
         if(!(a instanceof Map))
             throw new IllegalArgumentException(a + " is not a map");
@@ -59,7 +58,6 @@ public class ToString {
                 .map(e -> "[" + apply(e.getKey()) + ", " + apply(e.getValue()) + "]")
                 .collect(Collectors.joining(", ", "{", "}"));
     }
-
 
     private static String arrayToString(Object array) {
         if (!array.getClass().isArray())
