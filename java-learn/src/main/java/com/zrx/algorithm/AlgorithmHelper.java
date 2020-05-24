@@ -77,7 +77,7 @@ public class AlgorithmHelper {
             questionWrapper.log(QuestionWrapper.START);
             questionWrapper.getQuestion().run();
             questionWrapper.log(QuestionWrapper.END);
-        }, 10, TimeUnit.SECONDS);
+        }, 300, TimeUnit.MILLISECONDS);
         //questionWrapper.romeLogQueue(); 不在这里移走
     }
 }

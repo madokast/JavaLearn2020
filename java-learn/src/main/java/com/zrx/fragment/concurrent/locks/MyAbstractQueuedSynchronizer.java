@@ -5,7 +5,138 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.LockSupport;
+
+/**
+ * 内部类 Node 学习
+ * <pre>
+ *  构造器
+ *      Node() = {}                        // 空构造器。只用于 head 和 SHARED
+ *      Node(nextWaiter)                   // 由 addWaiter() 调用
+ *          this.nextWaiter 就是传入的东西
+ *          this.thread = 当前线程
+ *          this.next = null
+ *          this.prev = null
+ *          this.waitStatus = 0
+ *      Node(waitStatus)                   // 由 addConditionWaiter() 调用
+ *          this.nextWaiter null
+ *          this.thread = 当前线程
+ *          this.next = null
+ *          this.prev = null
+ *          this.waitStatus = waitStatus
+ *  静态变量
+ *      Node SHARED = new Node()    // 用于标记结点处于分享模式
+ *      Node EXCLUSIVE = null       // 用于标记结点处于独占模式
+ *      CANCELLED = 1               // 线程被取消
+ *      SIGNAL = -1                 // 后继线程需要唤醒
+ *      CONDITION = -2              // 线程等待于条件
+ *      PROPAGATE = -3              // 下次 acquireShared 需要无条件传播
+ *                                  // 非负数表示节点不需要信号
+ *  成员变量 (5个)
+ *      volatile int waitStatus    // 状态
+ *      volatile Node prev         // 前驱
+ *      volatile Node next         // 后继
+ *      volatile Thread thread     // Node 内线程
+ *      Node nextWaiter            // 没有 volatile
+ *  成员方法
+ *      boolean isShared() = nextWaiter == SHARED  // 当前 node 是否处于分享模式
+ *      predecessor() = prev                       // 获得前驱
+ *      compareAndSetWaitStatus(expect, update)
+ *      compareAndSetNext(expect, update)
+ *      setPrevRelaxed(prev)                       // 直接设置 prev
+ * </pre>
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ * <p>
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ * <p>
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ */
+
+/**
+ * AQS 学习
+ * <pre>
+ *  开始
+ * </pre>
+ */
+
+/**
+ * 看不懂的地方
+ * unparkSuccessor(node) 中把 node.ws 设为 0，且允许失败
+ * unparkSuccessor(node) 中当 node.next 是 null 时，进行反向搜索后继
+ */
 
 /**
  * Description
@@ -750,7 +881,7 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
             THREAD.set(this, Thread.currentThread());
 
             // 返回 this
-            // this.nextWaiter 就是传入的东西
+            // this.nextWaiter null
             // this.thread = 当前线程
             // this.next = null
             // this.prev = null
@@ -773,6 +904,7 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
 
         /**
          * 直接设置 prev
+         *
          * @param p node set as prev
          */
         final void setPrevRelaxed(MyAbstractQueuedSynchronizer.Node p) {
@@ -803,24 +935,35 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      * initialization, it is modified only via method setHead.  Note:
      * If head exists, its waitStatus is guaranteed not to be
      * CANCELLED.
-     * TODO
+     * 等待队列的头。volatile
+     * 懒初始化。
+     * 只有 setHead() 方法才能修改这个字段。
+     * 注意：head.waitStatus 永远不会是 CANCELLED (1)
      */
     private transient volatile MyAbstractQueuedSynchronizer.Node head;
 
     /**
      * Tail of the wait queue, lazily initialized.  Modified only via
      * method enq to add new wait node.
+     * 等待队列的尾巴。volatile
+     * 懒初始化。
+     * 只有 enq() 方法才能修改它，这个方法目的是 增加一个等待节点
      */
     private transient volatile MyAbstractQueuedSynchronizer.Node tail;
 
     /**
      * The synchronization state.
+     * 同步器的状态 volatile
+     * 要注意和 node.waitStatus 区分开
      */
     private volatile int state;
 
     /**
      * Returns the current value of synchronization state.
      * This operation has memory semantics of a {@code volatile} read.
+     * state 的 getter （可见）
+     * 这个方法触发 内存语义（memory semantics） volatile 读
+     *
      * @return current state value
      */
     protected final int getState() {
@@ -830,6 +973,9 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
     /**
      * Sets the value of synchronization state.
      * This operation has memory semantics of a {@code volatile} write.
+     * state 的 setter（可见）
+     * 触发 volatile 写
+     *
      * @param newState the new state value
      */
     protected final void setState(int newState) {
@@ -841,17 +987,736 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      * value if the current state value equals the expected value.
      * This operation has memory semantics of a {@code volatile} read
      * and write.
+     * 原子性的设定同步器的状态
+     * 具有 volatile 的读写
      *
      * @param expect the expected value
      * @param update the new value
      * @return {@code true} if successful. False return indicates that the actual
-     *         value was not equal to the expected value.
+     * value was not equal to the expected value.
      */
     protected final boolean compareAndSetState(int expect, int update) {
         return STATE.compareAndSet(this, expect, update);
     }
 
+    // Queuing utilities 队列操作
 
+    /**
+     * The number of nanoseconds for which it is faster to spin
+     * rather than to use timed park. A rough estimate suffices
+     * to improve responsiveness with very short timeouts.
+     * 在 1000 ns 内，使用自旋而不是 park
+     * 粗略估计，虽然 1000 ns 很短，但足以提高响应度
+     *
+     */
+    static final long SPIN_FOR_TIMEOUT_THRESHOLD = 1000L;
+
+    /**
+     * Inserts node into queue, initializing if necessary. See picture above.
+     * 把 node 入队（核心 compareAndSetTail 把 node 设为新队尾）
+     * 如果不并发，就是：
+     *      node.prev = tail;
+     *      tail.next = node;
+     * 因为懒初始化机制，所以要检查是否初始化
+     *
+     * @param node the node to insert
+     * @return node's predecessor 改 node 前驱，也就是 oldTail
+     */
+    private Node enq(Node node) {
+        for (; ; ) { // AQS
+            Node oldTail = tail; // 旧尾巴 volatile 读
+            if (oldTail != null) { // 已经初始化
+                // 直接让 node.prev = oldTail
+                node.setPrevRelaxed(oldTail);
+                // CAS 尾巴
+                if (compareAndSetTail(oldTail, node)) {
+                    // CAS 成功
+                    // 旧尾巴.next = 这个 node
+                    oldTail.next = node;
+                    // 返回旧尾巴
+                    return oldTail;
+                }
+            } else {
+                // 先初始化同步队列
+                initializeSyncQueue();
+            }
+        }
+    }
+
+    /**
+     * Creates and enqueues node for current thread and given mode.
+     * 当前线程入队，并带上模式
+     * 第一步，构造 node：
+     *  node.thread = invoker
+     *  node.nextWaiter = mode // 只有 Node.EXCLUSIVE 和 Node.SHARED 两种
+     * 第二步，CAS 入队，和enq(node)相同
+     * 第三步，返回 新创建的node。注意enq(node)=oldTail
+     *
+     * 一句话 addWaiter(mode) = enq and return newNode
+     *
+     * @param mode Node.EXCLUSIVE for exclusive, Node.SHARED for shared
+     * @return the new node
+     */
+    private Node addWaiter(Node mode) {
+        // *      Node(nextWaiter)                   // 由 addWaiter() 调用
+        // *          this.nextWaiter 就是传入的东西
+        // *          this.thread = 当前线程
+        // *          this.next = null
+        // *          this.prev = null
+        // *          this.waitStatus = 0
+        // mode 是一个 node 只有 Node.EXCLUSIVE 和 Node.SHARED 两种
+
+        Node node = new Node(mode);
+
+        // node.thread = invoker
+        // node.nextWaiter = mode
+
+        // CAS 入队
+        for (; ; ) {
+            Node oldTail = tail;
+            if (oldTail != null) {
+                node.setPrevRelaxed(oldTail);
+                if (compareAndSetTail(oldTail, node)) {
+                    oldTail.next = node;
+                    return node;
+                }
+            } else {
+                // 没有初始化
+                initializeSyncQueue();
+            }
+        }
+    }
+
+    /**
+     * Sets head of queue to be node, thus dequeuing. Called only by
+     * acquire methods.  Also nulls out unused fields for sake of GC
+     * and to suppress unnecessary signals and traversals.
+     * 直接把把 node 设为 头节点。没有 CAS
+     * 就是 出队 操作。（看来是个假头）
+     *
+     * @param node the node
+     */
+    private void setHead(Node node) {
+        // 没有 CAS
+        head = node;
+
+        // 把无用的字段置空。为了 GC 和抑制无必要的唤醒信号和遍历
+
+        // thread置空？
+        node.thread = null;
+
+        // prev 置空，必须的。
+        node.prev = null;
+    }
+
+    /**
+     * Wakes up node's successor, if one exists.
+     * 唤醒 node 的后继，如果存在后继
+     * 看不懂：
+     * 第一个：node.ws 设为 0
+     * 第二个：node.next == null 时，从 tail 反向搜索
+     *
+     * 调用该方法的方法
+     * @see MyAbstractQueuedSynchronizer#doReleaseShared()
+     * @see MyAbstractQueuedSynchronizer#cancelAcquire(Node)
+     *
+     * @param node the node
+     */
+    private void unparkSuccessor(Node node) {
+        /*
+         * If status is negative (i.e., possibly needing signal) try
+         * to clear in anticipation of signalling.  It is OK if this
+         * fails or if status is changed by waiting thread.
+         * ws 是负数，说明需要信号（前文：非负数表示节点不需要信号）
+         * 那就把 node.ws 设为 0 ，表示他不需要信号？？？看不懂啊
+         * 允许这个 CAS 失败？？更看不懂了
+         *
+         * in anticipation of 预期
+         */
+
+        // 到底是谁这么缺德呢？唤醒 node 的后继时，node自己的 ws 还是负数？
+        // 真缺德啊
+        //
+        int ws = node.waitStatus;
+        if (ws < 0)
+            node.compareAndSetWaitStatus(ws, 0);
+
+        /*
+         * Thread to unpark is held in successor, which is normally
+         * just the next node.  But if cancelled or apparently null,
+         * traverse backwards from tail to find the actual
+         * non-cancelled successor.
+         * 需要被唤醒的线程是放在后继中的。
+         * 一般来说就是 node.next.thread
+         * 但是如果 node.next 是null，或者 node.next.ws>0 那就找其他的后继
+         *
+         */
+        Node s = node.next; // s == 后继
+
+        // 这里判断 s.wa>0 可以理解，说明 s 不需要信号
+        // 但是为什么需要判断 node.next == null？如果是 null 方法直接返回不好吗？
+        // 所以没有看懂之后的 for 循环反向搜索的意义
+        if (s == null || s.waitStatus > 0 /*说明这个后继不需要被唤醒*/) {
+
+            s = null;
+            // 从尾巴开始找？亮瞎狗眼
+            // 网友回答：为什么需要反向呢？ 因为 node.next 可能是 null， 自然无法往后搜索，那么保守起见，反向获取比较安全
+            for (Node p = tail; p != node && p != null; p = p.prev)
+                // 确保它需要被唤醒
+                if (p.waitStatus <= 0)
+                    // 找到了，但是不 break？看来可以找到离 node 最近的一个需要被唤醒的后继
+                    s = p;
+        }
+
+        // 总而言之，终于找到一个需要被唤醒的后继了
+        if (s != null) // 找不到就算了
+            LockSupport.unpark(s.thread);
+
+
+        // 网友：node 的后继已经被唤醒，一般来说就表示了 node 对应的线程已经执行完毕，那么它应该立即出队，但是AQS不是这样做的。
+        // 而是呢，而是在后继 node 醒来之后重新去获取资源，获取成功之后才重新设置head，然后将当前 node 出队。具体参见 比如 acquireQueued
+    }
+
+    /**
+     * Release action for shared mode -- signals successor and ensures
+     * propagation. (Note: For exclusive mode, release just amounts
+     * to calling unparkSuccessor of head if it needs signal.)
+     * 共享模式下的释放操作。通知后继，并确保进行广播
+     * 注意：在独占模式下的释放，仅仅是 调用unparkSuccessor(head)
+     */
+    private void doReleaseShared() {
+        /*
+         * Ensure that a release propagates, even if there are other
+         * in-progress acquires/releases.  This proceeds in the usual
+         * way of trying to unparkSuccessor of head if it needs
+         * signal. But if it does not, status is set to PROPAGATE to
+         * ensure that upon release, propagation continues.
+         * Additionally, we must loop in case a new node is added
+         * while we are doing this. Also, unlike other uses of
+         * unparkSuccessor, we need to know if CAS to reset status
+         * fails, if so rechecking.
+         * 确保释放可以传播，即使其他的acquires/releases操作正在同步进行之中
+         * 一般情况下，当 head.ws == SIGNAL 时，表示 head 的后继需要唤醒，那就遂其所愿
+         * 但是，如果 head.ws 不是 SIGNAL，那就设为 PROPAGATE，以确保在释放时，传播继续
+         * 另外，我们必须使用循环，以免同时存在新节点加入。
+         * 最后，不像其他方法中的 unparkSuccessor，我们需要知道 CAS 是否失败，若失败则重新检查
+         */
+
+        for (; ; ) {
+            Node h = head; // 拿到头
+            if (h != null && h != tail) { // 头非空 && 头不是尾巴（当头==尾巴时，表示队列是空的？）
+                int ws = h.waitStatus; // 头的 ws
+                if (ws == Node.SIGNAL) { // h 的后继线程需要唤醒
+                    if (!h.compareAndSetWaitStatus(Node.SIGNAL, 0)) // 把 ws CAS 为 0，若失败，则重试
+                        continue;            // loop to recheck cases
+                    unparkSuccessor(h); // 唤醒 h 的后继（注意不是 h 自己，毕竟 h.thread==null）
+                } else if (ws == 0 && // 看来自己已经把 ws 设为 0 了，或者别人做的
+                        !h.compareAndSetWaitStatus(0, Node.PROPAGATE)) // 只有当 ws = 0 时，才 CAS 到传播
+                    continue;                // loop on failed CAS
+            }
+
+            // 说明我上面没有遇到 continue，而且一通操作后，head也没有变化。这才退出循环
+            if (h == head)                   // loop if head changed
+                break;
+        }
+    }
+
+    /**
+     * Sets head of queue, and checks if successor may be waiting
+     * in shared mode, if so propagating if either propagate > 0 or
+     * PROPAGATE status was set.
+     * 设置头节点，同时检查后继是不是处于共享模式的等待
+     * 如果是的，那么当以下两种情况时，进行传播
+     * 第一，入参 propagate > 0
+     * 第二，已经有人设定了要传播
+     *
+     * 也就是说，这里的 propagate > 0 表示一定传播，但是就算不是的，也有很大机会发出传播
+     *
+     * @param node the node
+     * @param propagate the return value from a tryAcquireShared
+     */
+    private void setHeadAndPropagate(Node node, int propagate) {
+
+        // 保存旧头 h = oldHead
+        Node h = head; // Record old head for check below
+
+        // 设置新头。这是一个极其暴力的方法
+        //        // 没有 CAS
+        //        head = node;
+        //
+        //        // 把无用的字段置空。为了 GC 和抑制无必要的唤醒信号和遍历
+        //
+        //        // thread置空？
+        //        node.thread = null;
+        //
+        //        // prev 置空，必须的。
+        //        node.prev = null;
+        setHead(node);
+
+        /*
+         * Try to signal next queued node if:
+         *   Propagation was indicated by caller,
+         *     or was recorded (as h.waitStatus either before
+         *     or after setHead) by a previous operation
+         *     (note: this uses sign-check of waitStatus because
+         *      PROPAGATE status may transition to SIGNAL.)
+         * and
+         *   The next node is waiting in shared mode,
+         *     or we don't know, because it appears null
+         *
+         * The conservatism in both of these checks may cause
+         * unnecessary wake-ups, but only when there are multiple
+         * racing acquires/releases, so most need signals now or soon
+         * anyway.
+         * 尝试发送信号给 node 的下一个节点，当以下任意一点满足时
+         *  1. 方法调用者决定传播 propagate > 0
+         *  2. 上次操作后，留下的 ws 指明要传播
+         * （即使是 SIGNAL 也传播，不仅仅是 PROPAGATE。因为 PROPAGATE 状态可能转换为 SIGNAL。谁会做这种事情呢？）
+         *
+         * 这些保守的检测可能会导致没有必要的唤醒
+         * 但是仅当多线程竞争 acquires/releases 时才会
+         * 所以大多数情况下，都是需要信号的
+         * （看样子唤醒没啥大不了的？也就是说，唤醒的线程还会再检查以下自己该不该行动？？）
+         */
+        if (propagate > 0 || // Propagation was indicated by caller
+                h == null ||
+                h.waitStatus < 0 || //
+                (h = head) == null
+                || h.waitStatus < 0
+        ) {
+            Node s = node.next;
+            if (s == null || s.isShared())
+                doReleaseShared();
+        }
+    }
+
+    // Utilities for various versions of acquire 多种 acquire 方法
+
+    /**
+     * Cancels an ongoing attempt to acquire.
+     * 取消一个正在 acquire 的尝试
+     *
+     * 这个方法的核心就是 node.waitStatus = Node.CANCELLED;
+     * 把 node 的 ws 无条件设为 取消
+     *
+     * 至于其他的代码，旨在于把 node 移出队列
+     * 方法是：从 node 往前找，找到一个需要信号的节点 pred，然后让 pred.next = node.next
+     *
+     * 最后，如果 node 不是 tail，那么有责任去唤醒自己的后继，至于后继需不需要唤醒，暂且不管
+     * 1. 如果 node 可以往队伍前面找到一个 pred，发现它有责任唤醒后面的人，那就放心大胆的任务交给他
+     * 2. 但是如果 pred 不太对劲，那就自己调用 unparkSuccessor(node) 亲自唤醒
+     *
+     * @param node the node
+     */
+    private void cancelAcquire(Node node) {
+        // Ignore if node doesn't exist
+        // 防止空
+        if (node == null)
+            return;
+
+        // 首先就把 node 中的线程置空
+        node.thread = null;
+
+        // Skip cancelled predecessors
+        // 跳过取消了的前驱
+        // ws 非负数表示节点不需要信号
+
+        Node pred = node.prev;
+        while (pred.waitStatus > 0)
+            node.prev = pred = pred.prev;
+
+        // predNext is the apparent node to unsplice. CASes below will
+        // fail if not, in which case, we lost race vs another cancel
+        // or signal, so no further action is necessary, although with
+        // a possibility that a cancelled node may transiently remain
+        // reachable.
+        // predNext 变量是显而易见需要被取消胶接的，否则下面的CAS方法就会失败，
+        // 如果失败，说明我们在同其他取消、信号操作的竞争中失败了，所以不需要更多的其他操作
+        // 即使一个被取消的 node 还在队伍中（也没关系）
+        // 大概意思就是说 CAS 设置 predNext 失败了，不要急，总有人会删除的
+        // 总之，后面的  node.waitStatus = Node.CANCELLED  一定会执行，所以这个方法的核心：取消 node 已经完成了
+        // 而把自己和自己之前的 ws>0 的节点移除，这个操作失败了也没事
+        // 大不了别人再多走几步
+
+        // 总之先拿到 predNext ，因为一般情况下 predNext 就是 node 自己，是需要取消的，也就是从等待队列中移除
+        // 其他情况下 predNext -> ... -> node自己 这条链上的所有线程，都是不需要信号的，需要移除
+        // 移除之前 pred -> predNext -> ... -> node自己 -> next
+        // 移除之后 pred -> next
+        Node predNext = pred.next;
+
+        // Can use unconditional write instead of CAS here.
+        // After this atomic step, other Nodes can skip past us.
+        // Before, we are free of interference from other threads.
+        // 无条件把自己设为 取消
+        // 这个操作完成之后，其他的节点就会跳过我
+        // 以前，我们不受其他线程的干扰。？？？？为什么是 before，应该也是 after 吧？
+        node.waitStatus = Node.CANCELLED;
+
+        // If we are the tail, remove ourselves.
+        // 如果我是尾巴，那就简单了
+        // 移除之前 pred -> predNext -> ... -> node自己 -> null
+        // 移除之后 pred -> null
+        if (node == tail && compareAndSetTail(node, pred)) {
+            // 这个 CSA 没有自选
+            // 因为前面说了：predNext变量是显而易见需要被取消胶接的，否则下面的CAS方法就会失败
+            // ：
+            pred.compareAndSetNext(predNext, null);
+
+            // 如果 node 是尾巴，方法在这里旧结束了
+
+        } else // 可惜不是尾巴呢，说明我有后继
+        {
+            // If successor needs signal, try to set pred's next-link
+            // so it will get one. Otherwise wake it up to propagate.
+            // 如果后继需要信号，那么把它设置为pred's next-link。
+            // 否则直接唤醒它（唤醒 就是 传播？）
+            int ws;
+
+
+            // 如果 pred 不是 head，且
+            // pred 需要信号 （且 pred.ws 就是 SIGNAL，或者可以设为 SIGNAL）
+            // pred 内部 thread 非空
+            if (pred != head &&
+                    ((ws = pred.waitStatus) == Node.SIGNAL ||
+                            (ws <= 0 && pred.compareAndSetWaitStatus(ws, Node.SIGNAL))) &&
+                    pred.thread != null) {
+                Node next = node.next;
+                if (next != null && next.waitStatus <= 0)
+
+                    // 进入这个 CAS 还需要判断 node.next 必须非空，且需要信号
+                    // 这个操作不需要成功。如果成功，则
+                    // 移除之前 pred -> predNext -> ... -> node自己 -> next
+                    // 移除之后 pred -> next
+                    pred.compareAndSetNext(predNext, next);
+            } else {
+
+                // 进入这里有以下几种条件中任意一个
+                // 1. pred 是 head 头节点（头节点到底是什么？）
+                // 2. pred 不需要信号（pred.ws > 0）
+                // 3  pred 需要信号，但是 ws 不是 SIGNAL，且莫名其妙的通过 CAS 设为 SIGNAL 失败了
+                // 4. pred 内的 thread 莫名其妙是 null
+
+                // 前面的一通操作失败了，那我就把我后面的人叫醒
+                unparkSuccessor(node);
+            }
+
+
+            // 如果不是尾巴，那就 node.next = node;
+
+            // 好吧，怪不得 next 指针不靠谱
+            // 在 unparkSuccessor(Node node) 中，如果 next 为空，或者后继不需要信号
+            // 那就从尾巴往前找一个 需要唤醒的 。这种神奇的操作，根源大概在这个
+            node.next = node; // help GC
+        }
+    }
+
+    /**
+     * Checks and updates status for a node that failed to acquire.
+     * Returns true if thread should block. This is the main signal
+     * control in all acquire loops.  Requires that pred == node.prev.
+     * 是不是需要 park 再一次失败的 acquire 之后
+     * 首先这是一个静态方法
+     *
+     * 我看了看。应该必有 node.thread == Thread.currentThread()
+     *
+     * |||||||| 核心代码 return pred.ws==SIGNAL ||||||||||| 其他都是额外的小事
+     *
+     * 首先 node 尝试 acquire 获取，但是失败了
+     * 照道理来说，自己 node 当然要 park 了，以免浪费资源
+     * 但是 node 需要先判断自己前面的人 pred 是不是 ws == SIGNAL，如果是的，那么说明 pred 有义务唤醒后继，后继是谁？就是 node
+     * 所以此时 node 可以安心的 park，所以返回 true
+     *
+     * 但是，只要不是 pred.ws==SIGNAL，则一定返回 false
+     * 返回 false 之前，node 还要做一点事
+     * 第一件事 如果 pred.ws>0 那你给我滚吧，还呆在队伍里面干嘛？？
+     * 第二件事 如果 pred.ws 是其他的负数，那就尝试一次 CAS 变成 SIGNAL
+     *
+     *
+     * 其实 第二件事 我还没有弄懂，为什么动不动就可以把其他的人的 ws 变成 SIGNAL（前提是 ws是负数）
+     * 那么 其他的负数 ws 没有意义了吗？
+     *
+     *
+     * @param pred node's predecessor holding status
+     * @param node the node
+     * @return {@code true} if thread should block
+     */
+    private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
+        /**
+         * 为什么要传入 pred？
+         * 单独传入 node，然后用 node.pred 去哪前驱不好吗？
+         * 我仔细的看了下，pred 是这么来的
+         * ---- 1. node = addWaiter(Node.SHARED or Node.EXCLUSIVE)
+         * ---- 2. pred = node.pred
+         * ---- 3. 然后 node 尝试 acquire，失败了就会调用这个方法
+         *
+         * 很明显，如果 1/2 步之间又有新的人加入队列的话，那么传入的 pred，肯定不等于 node.pred
+         * 所以有可能是 pred -> 。。 -> node
+         * 但是 pred 肯定排在 node 前面，这点应该不会有问题。
+         *
+         */
+
+
+        int ws = pred.waitStatus;
+
+        // 查看 pred.ws
+        if (ws == Node.SIGNAL)
+            /*
+             * This node has already set status asking a release
+             * to signal it, so it can safely park.
+             * 只有到 pred.ws 是 SIGNAL 时，才能放心的 park
+             */
+            return true;
+
+        // 其他的情况，只是做些额外的事情
+        // 事情做玩，总是返回 false
+        if (ws > 0) {
+            /*
+             * Predecessor was cancelled. Skip over predecessors and
+             * indicate retry.
+             * 前驱已经被取消了
+             * 那给我滚蛋
+             */
+            do {
+                node.prev = pred = pred.prev;
+            } while (pred.waitStatus > 0);
+            pred.next = node;
+        } else {
+            /*
+             * waitStatus must be 0 or PROPAGATE.  Indicate that we
+             * need a signal, but don't park yet.  Caller will need to
+             * retry to make sure it cannot acquire before parking.
+             * ws 是 0 或者是 PROPAGATE
+             * 那就试一试把他改成 SIGNAL
+             */
+            pred.compareAndSetWaitStatus(ws, Node.SIGNAL);
+        }
+
+        // 做了小事后，返回 false
+        // 说明 node 还想做一次 acquire
+        // 失败了的话，再进来溜达溜达
+        return false;
+    }
+
+    /**
+     * Convenience method to interrupt current thread.
+     * 给自己发中断信号
+     */
+    static void selfInterrupt() {
+        Thread.currentThread().interrupt();
+    }
+
+    /**
+     * Convenience method to park and then check if interrupted.
+     * park 自己，醒来后返回自己是不是有中断标记
+     *
+     * @return {@code true} if interrupted
+     */
+    private final boolean parkAndCheckInterrupt() {
+        LockSupport.park(this);
+        return Thread.interrupted();
+    }
+
+
+    /*
+     * Various flavors of acquire, varying in exclusive/shared and
+     * control modes.  Each is mostly the same, but annoyingly
+     * different.  Only a little bit of factoring is possible due to
+     * interactions of exception mechanics (including ensuring that we
+     * cancel if tryAcquire throws exception) and other control, at
+     * least not without hurting performance too much.
+     * TODO
+     */
+
+    /**
+     * Acquires in exclusive uninterruptible mode for thread already in
+     * queue. Used by condition wait methods as well as acquire.
+     *
+     * @param node the node
+     * @param arg the acquire argument
+     * @return {@code true} if interrupted while waiting
+     */
+    final boolean acquireQueued(final AbstractQueuedSynchronizer.Node node, int arg) {
+        boolean interrupted = false;
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head && tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    return interrupted;
+                }
+                if (shouldParkAfterFailedAcquire(p, node))
+                    interrupted |= parkAndCheckInterrupt();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            if (interrupted)
+                selfInterrupt();
+            throw t;
+        }
+    }
+
+    /**
+     * Acquires in exclusive interruptible mode.
+     * @param arg the acquire argument
+     */
+    private void doAcquireInterruptibly(int arg)
+            throws InterruptedException {
+        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.EXCLUSIVE);
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head && tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    return;
+                }
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                        parkAndCheckInterrupt())
+                    throw new InterruptedException();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            throw t;
+        }
+    }
+
+    /**
+     * Acquires in exclusive timed mode.
+     *
+     * @param arg the acquire argument
+     * @param nanosTimeout max wait time
+     * @return {@code true} if acquired
+     */
+    private boolean doAcquireNanos(int arg, long nanosTimeout)
+            throws InterruptedException {
+        if (nanosTimeout <= 0L)
+            return false;
+        final long deadline = System.nanoTime() + nanosTimeout;
+        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.EXCLUSIVE);
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head && tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    return true;
+                }
+                nanosTimeout = deadline - System.nanoTime();
+                if (nanosTimeout <= 0L) {
+                    cancelAcquire(node);
+                    return false;
+                }
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                        nanosTimeout > SPIN_FOR_TIMEOUT_THRESHOLD)
+                    LockSupport.parkNanos(this, nanosTimeout);
+                if (Thread.interrupted())
+                    throw new InterruptedException();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            throw t;
+        }
+    }
+
+    /**
+     * Acquires in shared uninterruptible mode.
+     * @param arg the acquire argument
+     */
+    private void doAcquireShared(int arg) {
+        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        boolean interrupted = false;
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head) {
+                    int r = tryAcquireShared(arg);
+                    if (r >= 0) {
+                        setHeadAndPropagate(node, r);
+                        p.next = null; // help GC
+                        return;
+                    }
+                }
+                if (shouldParkAfterFailedAcquire(p, node))
+                    interrupted |= parkAndCheckInterrupt();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            throw t;
+        } finally {
+            if (interrupted)
+                selfInterrupt();
+        }
+    }
+
+    /**
+     * Acquires in shared interruptible mode.
+     * @param arg the acquire argument
+     */
+    private void doAcquireSharedInterruptibly(int arg)
+            throws InterruptedException {
+        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head) {
+                    int r = tryAcquireShared(arg);
+                    if (r >= 0) {
+                        setHeadAndPropagate(node, r);
+                        p.next = null; // help GC
+                        return;
+                    }
+                }
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                        parkAndCheckInterrupt())
+                    throw new InterruptedException();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            throw t;
+        }
+    }
+
+    /**
+     * Acquires in shared timed mode.
+     *
+     * @param arg the acquire argument
+     * @param nanosTimeout max wait time
+     * @return {@code true} if acquired
+     */
+    private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
+            throws InterruptedException {
+        if (nanosTimeout <= 0L)
+            return false;
+        final long deadline = System.nanoTime() + nanosTimeout;
+        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        try {
+            for (;;) {
+                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                if (p == head) {
+                    int r = tryAcquireShared(arg);
+                    if (r >= 0) {
+                        setHeadAndPropagate(node, r);
+                        p.next = null; // help GC
+                        return true;
+                    }
+                }
+                nanosTimeout = deadline - System.nanoTime();
+                if (nanosTimeout <= 0L) {
+                    cancelAcquire(node);
+                    return false;
+                }
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                        nanosTimeout > SPIN_FOR_TIMEOUT_THRESHOLD)
+                    LockSupport.parkNanos(this, nanosTimeout);
+                if (Thread.interrupted())
+                    throw new InterruptedException();
+            }
+        } catch (Throwable t) {
+            cancelAcquire(node);
+            throw t;
+        }
+    }
 
 
     // VarHandle mechanics
@@ -872,6 +1737,27 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
         // Reduce the risk of rare disastrous classloading in first call to
         // LockSupport.park: https://bugs.openjdk.java.net/browse/JDK-8074773
         Class<?> ensureLoaded = LockSupport.class;
+    }
+
+    /**
+     * Initializes head and tail fields on first contention.
+     * 初始化等待队列
+     * 如果没有并发，那么就等于：
+     * head = new Node();
+     * tail = head;
+     */
+    private final void initializeSyncQueue() {
+        Node h;
+        if (HEAD.compareAndSet(this, null, (h = new Node())))
+            tail = h;
+    }
+
+    /**
+     * CASes tail field.
+     * CAS 设置尾巴
+     */
+    private final boolean compareAndSetTail(Node expect, Node update) {
+        return TAIL.compareAndSet(this, expect, update);
     }
 
 }

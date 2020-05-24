@@ -19,10 +19,12 @@ import java.text.SimpleDateFormat;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Invoking {
+    String EMPTY_INFO = "";
+
     /**
      * @return 简短信息
      */
-    String info();
+    String info() default EMPTY_INFO;
 
     /**
      * @return 详细信息

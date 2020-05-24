@@ -1,6 +1,7 @@
 package com.zrx.algorithm;
 
 import com.zrx.utils.MyLoggerFactory;
+import com.zrx.utils.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -33,6 +34,12 @@ public interface Question {
         String[] info() default {};
 
         int[] printInputParameters() default {};
+
+        // 以下两个注解共同定位一个问题
+
+        String group() default QuestionWrapper.LEETCODE;
+
+        int number() default 1;
     }
 
     default void run() {
@@ -43,7 +50,7 @@ public interface Question {
         Object solutionInstance = getSolutionInstance();
         Method leetCodeMethod = getLeetCodeMethod();
 
-        LOGGER.info("开始测试{}", getThisClass().getName());
+        LOGGER.info("开始测试{}", Strings.classNameCutDown(1, getThisClass().getName()));
 
 //        for (String s : getInfo()) {
 //            LOGGER.info(s);
@@ -67,6 +74,7 @@ public interface Question {
                 ret = leetCodeMethod.invoke(solutionInstance, parametersArray);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error("Leetcode 方法运行出现异常");
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
 
@@ -128,13 +136,28 @@ public interface Question {
 
     default String[] getInfo() {
         String[] info = getLeetCodeMethod().getAnnotation(Code.class).info();
-        return Arrays.stream(info)
-                .flatMap(s -> {
-                    String[] split = s.split("\n");
-                    return Arrays.stream(split).map(String::trim).filter(ss -> ss.length() > 0);
-                })
-                .collect(Collectors.toList())
-                .toArray(String[]::new);
+
+        if (info.length == 0) {
+            return new String[]{Strings.classNameCutDown(1, getThisClass().getName())};
+        } else {
+            return Arrays.stream(info)
+                    .flatMap(s -> {
+                        String[] split = s.split("\n");
+                        return Arrays.stream(split).map(String::trim).filter(ss -> ss.length() > 0);
+                    })
+                    .collect(Collectors.toList())
+                    .toArray(String[]::new);
+        }
+
+
+    }
+
+    default String getGroup() {
+        return getLeetCodeMethod().getAnnotation(Code.class).group();
+    }
+
+    default int getNumber() {
+        return getLeetCodeMethod().getAnnotation(Code.class).number();
     }
 
     default int[] getParameterIndexNeedPrint() {

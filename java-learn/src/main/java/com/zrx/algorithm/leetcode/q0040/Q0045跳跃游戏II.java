@@ -27,13 +27,14 @@ public class Q0045跳跃游戏II implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 1,
-                (Object) ArrayFactory.create(2, 3, 1, 1, 4)
+                (Object) ArrayFactory.create(2, 3, 1, 1, 4),
+                (Object) ArrayFactory.create(0)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create(2);
+        return AnswerFactory.create(2, 0);
     }
 
     @Code(info = """
@@ -54,6 +55,76 @@ public class Q0045跳跃游戏II implements Question {
             假设你总是可以到达数组的最后一个位置。
             """)
     public int jump(int[] nums) {
-        return 0;
+        // 很慢的动态规划方法
+//        return jumpDp(nums);
+
+        // 贪心算法
+        return jumpGreed(nums);
+    }
+
+    // 贪心算法
+    private int jumpGreed(int[] nums) {
+        int stepNumber = 0;
+        int pos = 0;
+
+
+        // 还没到达终点
+        while (pos < nums.length - 1) {
+            // 当前位置可以跳 1-cur
+            int cur = nums[pos];
+
+            // 局部最优
+            int localMax = 0;
+            // 满足局部最优时，下一跳到的位置
+            int nextPosition = 0;
+
+            // 下一跳可以到 i
+            for (int i = pos + 1; i <= pos + cur; i++) {
+
+                // i 到了终点，那就立马返回
+                if (i >= nums.length - 1) {
+                    return ++stepNumber;
+                }
+
+                // 下一条位置的值
+                int next = nums[i];
+
+                if (i + next > localMax) {
+                    localMax = i + next;
+                    nextPosition = i;
+                }
+            }
+
+            stepNumber++;
+            pos = nextPosition;
+        }
+
+        return stepNumber;
+    }
+
+
+    // 很慢的动态规划方法
+    private int jumpDp(int[] nums) {
+        int length = nums.length;
+        int[] times = new int[length];
+
+        // 若处于终点，当然是跳 0 次
+        times[length - 1] = 0;
+
+        for (int i = length - 2; i >= 0; i--) {
+
+            // 当前可以跳的距离
+            int distance = nums[i];
+
+            int min = times[i + 1];
+
+            for (int j = i + 2; j <= i + distance && j < length; j++) {
+                min = Math.min(min, times[j]);
+            }
+
+            times[i] = 1 + min;
+        }
+
+        return times[0];
     }
 }

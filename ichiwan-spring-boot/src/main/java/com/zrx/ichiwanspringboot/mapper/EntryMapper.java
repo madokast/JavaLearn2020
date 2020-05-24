@@ -45,4 +45,12 @@ public interface EntryMapper {
     @Update("UPDATE entries AS e SET e.deleteBool = TRUE WHERE e.id = (\n" +
             "    SELECT maxid FROM (SELECT MAX(ee.id) AS maxid FROM entries ee WHERE ee.deleteBool = FALSE) AS sub)")
     void deleteLastOne();
+
+    /**
+     * 计算第一天到今天的天数
+     *
+     * @return 第一天到今天的天数
+     */
+    @Select("select datediff(now(),dateDone) from entries where id = 1")
+    int totalDate();
 }

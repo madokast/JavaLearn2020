@@ -2,6 +2,7 @@ package com.zrx.io.controller;
 
 import com.zrx.Invoking;
 import com.zrx.utils.Container;
+import com.zrx.utils.Strings;
 import com.zrx.utils.ThreadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Method;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -54,7 +56,7 @@ public class LatestController {
         Thread t = ThreadUtils.newThread(this::latest0, "latest-" + ATOMIC_INTEGER.getAndAdd(1));
         t.start();
 
-        ThreadUtils.sleep(2000);
+        ThreadUtils.sleep(1000);
 
         if (t.isAlive()) {
             LOGGER.error("latest方法运行超时，强制停止");
@@ -98,8 +100,10 @@ public class LatestController {
         methodName = methodName.replace('.', '#');
 
 
-        Invoking classInvoking = bean.getClass().getAnnotation(Invoking.class);
+        Class<?> beanClass = bean.getClass();
+        Invoking classInvoking = beanClass.getAnnotation(Invoking.class);
         String classInfo = classInvoking.info();
+
         String[] classDetails = classInvoking.details();
 
         Invoking methodInvoking = method.getAnnotation(Invoking.class);
@@ -107,7 +111,11 @@ public class LatestController {
         String[] MethodDetails = methodInvoking.details();
         int repeat = methodInvoking.repeat();
 
-        LOGGER.info("[{}-{}] run [{}]", classInfo, methodInfo, methodName);
+        if (Objects.equals(classInfo, Invoking.EMPTY_INFO) && Objects.equals(methodInfo, Invoking.EMPTY_INFO)) {
+            LOGGER.info("[{}] run", methodName);
+        } else {
+            LOGGER.info("[{}-{}] run [{}]", classInfo, methodInfo, Strings.classNameCutDown(1, methodName));
+        }
 
         for (String detail : classDetails) {
             LOGGER.info("[{}]", detail);
@@ -127,7 +135,7 @@ public class LatestController {
             }
 
         } catch (Exception e) {
-            LOGGER.error("{}",e.toString());
+            LOGGER.error("{}", e.toString());
         }
     }
 }

@@ -1,12 +1,14 @@
 package com.zrx.algorithm;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zrx.Invoking;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Description
@@ -36,9 +38,11 @@ public class QuestionWrapper {
 
     private Queue<String> logQueue;
 
-    private static final String LEETCODE = "leetcode";
+    public static final String LEETCODE = "leetcode";
 
-    private static final String OTHERS = "others";
+    public static final String OTHERS = "others";
+
+    private static final AtomicInteger autoNumber = new AtomicInteger(0);
 
     public static QuestionWrapper create(Question q) {
         String className = q.getClass().getName();
@@ -46,7 +50,7 @@ public class QuestionWrapper {
         if (className.contains(LEETCODE)) {
             return leetcodeQuestionWarp(q);
         } else {
-            return new QuestionWrapper(q, OTHERS, -1, className, q.getClass().getAnnotation(Question.Code.class).info());
+            return new QuestionWrapper(q, q.getGroup(), q.getNumber(), q.getInfo()[0], q.getInfo());
         }
     }
 
@@ -65,7 +69,7 @@ public class QuestionWrapper {
     public QuestionWrapper(Question question, String group, int number, String name, String[] info) {
         this.question = question;
         this.group = group;
-        this.number = number;
+        this.number = number == -1 ? autoNumber.getAndIncrement() : number;
         this.name = name;
         this.info = info;
     }
@@ -95,7 +99,7 @@ public class QuestionWrapper {
                     e.printStackTrace();
                 }
 
-                if(MyLoggerFactory.hasListener(group + name)){
+                if (MyLoggerFactory.hasListener(group + name)) {
                     LOGGER.info("时间过长[30秒]，自动移除listener和queue");
                     removeLogQueue();
                 }
