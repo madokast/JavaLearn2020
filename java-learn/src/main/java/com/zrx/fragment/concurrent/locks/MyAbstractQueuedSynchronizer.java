@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -1535,11 +1537,11 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      * @param arg the acquire argument
      * @return {@code true} if interrupted while waiting
      */
-    final boolean acquireQueued(final AbstractQueuedSynchronizer.Node node, int arg) {
+    final boolean acquireQueued(final Node node, int arg) {
         boolean interrupted = false;
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head && tryAcquire(arg)) {
                     setHead(node);
                     p.next = null; // help GC
@@ -1562,10 +1564,10 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      */
     private void doAcquireInterruptibly(int arg)
             throws InterruptedException {
-        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.EXCLUSIVE);
+        final Node node = addWaiter(Node.EXCLUSIVE);
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head && tryAcquire(arg)) {
                     setHead(node);
                     p.next = null; // help GC
@@ -1593,10 +1595,10 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
         if (nanosTimeout <= 0L)
             return false;
         final long deadline = System.nanoTime() + nanosTimeout;
-        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.EXCLUSIVE);
+        final Node node = addWaiter(Node.EXCLUSIVE);
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head && tryAcquire(arg)) {
                     setHead(node);
                     p.next = null; // help GC
@@ -1624,11 +1626,11 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      * @param arg the acquire argument
      */
     private void doAcquireShared(int arg) {
-        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        final Node node = addWaiter(Node.SHARED);
         boolean interrupted = false;
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head) {
                     int r = tryAcquireShared(arg);
                     if (r >= 0) {
@@ -1655,10 +1657,10 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
      */
     private void doAcquireSharedInterruptibly(int arg)
             throws InterruptedException {
-        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        final Node node = addWaiter(Node.SHARED);
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head) {
                     int r = tryAcquireShared(arg);
                     if (r >= 0) {
@@ -1689,10 +1691,10 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
         if (nanosTimeout <= 0L)
             return false;
         final long deadline = System.nanoTime() + nanosTimeout;
-        final AbstractQueuedSynchronizer.Node node = addWaiter(AbstractQueuedSynchronizer.Node.SHARED);
+        final Node node = addWaiter(Node.SHARED);
         try {
             for (;;) {
-                final AbstractQueuedSynchronizer.Node p = node.predecessor();
+                final Node p = node.predecessor();
                 if (p == head) {
                     int r = tryAcquireShared(arg);
                     if (r >= 0) {
@@ -1716,6 +1718,306 @@ public abstract class MyAbstractQueuedSynchronizer extends MyAbstractOwnableSync
             cancelAcquire(node);
             throw t;
         }
+    }
+
+    // Main exported methods
+
+    /**
+     * Attempts to acquire in exclusive mode. This method should query
+     * if the state of the object permits it to be acquired in the
+     * exclusive mode, and if so to acquire it.
+     *
+     * <p>This method is always invoked by the thread performing
+     * acquire.  If this method reports failure, the acquire method
+     * may queue the thread, if it is not already queued, until it is
+     * signalled by a release from some other thread. This can be used
+     * to implement method {@link Lock#tryLock()}.
+     *
+     * <p>The default
+     * implementation throws {@link UnsupportedOperationException}.
+     *
+     * @param arg the acquire argument. This value is always the one
+     *        passed to an acquire method, or is the value saved on entry
+     *        to a condition wait.  The value is otherwise uninterpreted
+     *        and can represent anything you like.
+     * @return {@code true} if successful. Upon success, this object has
+     *         been acquired.
+     * @throws IllegalMonitorStateException if acquiring would place this
+     *         synchronizer in an illegal state. This exception must be
+     *         thrown in a consistent fashion for synchronization to work
+     *         correctly.
+     * @throws UnsupportedOperationException if exclusive mode is not supported
+     */
+    protected boolean tryAcquire(int arg) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Attempts to set the state to reflect a release in exclusive
+     * mode.
+     *
+     * <p>This method is always invoked by the thread performing release.
+     *
+     * <p>The default implementation throws
+     * {@link UnsupportedOperationException}.
+     *
+     * @param arg the release argument. This value is always the one
+     *        passed to a release method, or the current state value upon
+     *        entry to a condition wait.  The value is otherwise
+     *        uninterpreted and can represent anything you like.
+     * @return {@code true} if this object is now in a fully released
+     *         state, so that any waiting threads may attempt to acquire;
+     *         and {@code false} otherwise.
+     * @throws IllegalMonitorStateException if releasing would place this
+     *         synchronizer in an illegal state. This exception must be
+     *         thrown in a consistent fashion for synchronization to work
+     *         correctly.
+     * @throws UnsupportedOperationException if exclusive mode is not supported
+     */
+    protected boolean tryRelease(int arg) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Attempts to acquire in shared mode. This method should query if
+     * the state of the object permits it to be acquired in the shared
+     * mode, and if so to acquire it.
+     *
+     * <p>This method is always invoked by the thread performing
+     * acquire.  If this method reports failure, the acquire method
+     * may queue the thread, if it is not already queued, until it is
+     * signalled by a release from some other thread.
+     *
+     * <p>The default implementation throws {@link
+     * UnsupportedOperationException}.
+     *
+     * @param arg the acquire argument. This value is always the one
+     *        passed to an acquire method, or is the value saved on entry
+     *        to a condition wait.  The value is otherwise uninterpreted
+     *        and can represent anything you like.
+     * @return a negative value on failure; zero if acquisition in shared
+     *         mode succeeded but no subsequent shared-mode acquire can
+     *         succeed; and a positive value if acquisition in shared
+     *         mode succeeded and subsequent shared-mode acquires might
+     *         also succeed, in which case a subsequent waiting thread
+     *         must check availability. (Support for three different
+     *         return values enables this method to be used in contexts
+     *         where acquires only sometimes act exclusively.)  Upon
+     *         success, this object has been acquired.
+     * @throws IllegalMonitorStateException if acquiring would place this
+     *         synchronizer in an illegal state. This exception must be
+     *         thrown in a consistent fashion for synchronization to work
+     *         correctly.
+     * @throws UnsupportedOperationException if shared mode is not supported
+     */
+    protected int tryAcquireShared(int arg) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Attempts to set the state to reflect a release in shared mode.
+     *
+     * <p>This method is always invoked by the thread performing release.
+     *
+     * <p>The default implementation throws
+     * {@link UnsupportedOperationException}.
+     *
+     * @param arg the release argument. This value is always the one
+     *        passed to a release method, or the current state value upon
+     *        entry to a condition wait.  The value is otherwise
+     *        uninterpreted and can represent anything you like.
+     * @return {@code true} if this release of shared mode may permit a
+     *         waiting acquire (shared or exclusive) to succeed; and
+     *         {@code false} otherwise
+     * @throws IllegalMonitorStateException if releasing would place this
+     *         synchronizer in an illegal state. This exception must be
+     *         thrown in a consistent fashion for synchronization to work
+     *         correctly.
+     * @throws UnsupportedOperationException if shared mode is not supported
+     */
+    protected boolean tryReleaseShared(int arg) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Returns {@code true} if synchronization is held exclusively with
+     * respect to the current (calling) thread.  This method is invoked
+     * upon each call to a {@link AbstractQueuedSynchronizer.ConditionObject} method.
+     *
+     * <p>The default implementation throws {@link
+     * UnsupportedOperationException}. This method is invoked
+     * internally only within {@link AbstractQueuedSynchronizer.ConditionObject} methods, so need
+     * not be defined if conditions are not used.
+     *
+     * @return {@code true} if synchronization is held exclusively;
+     *         {@code false} otherwise
+     * @throws UnsupportedOperationException if conditions are not supported
+     */
+    protected boolean isHeldExclusively() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Acquires in exclusive mode, ignoring interrupts.  Implemented
+     * by invoking at least once {@link #tryAcquire},
+     * returning on success.  Otherwise the thread is queued, possibly
+     * repeatedly blocking and unblocking, invoking {@link
+     * #tryAcquire} until success.  This method can be used
+     * to implement method {@link Lock#lock}.
+     *
+     * @param arg the acquire argument.  This value is conveyed to
+     *        {@link #tryAcquire} but is otherwise uninterpreted and
+     *        can represent anything you like.
+     */
+    public final void acquire(int arg) {
+        if (!tryAcquire(arg) &&
+                acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+            selfInterrupt();
+    }
+
+    /**
+     * Acquires in exclusive mode, aborting if interrupted.
+     * Implemented by first checking interrupt status, then invoking
+     * at least once {@link #tryAcquire}, returning on
+     * success.  Otherwise the thread is queued, possibly repeatedly
+     * blocking and unblocking, invoking {@link #tryAcquire}
+     * until success or the thread is interrupted.  This method can be
+     * used to implement method {@link Lock#lockInterruptibly}.
+     *
+     * @param arg the acquire argument.  This value is conveyed to
+     *        {@link #tryAcquire} but is otherwise uninterpreted and
+     *        can represent anything you like.
+     * @throws InterruptedException if the current thread is interrupted
+     */
+    public final void acquireInterruptibly(int arg)
+            throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
+        if (!tryAcquire(arg))
+            doAcquireInterruptibly(arg);
+    }
+
+    /**
+     * Attempts to acquire in exclusive mode, aborting if interrupted,
+     * and failing if the given timeout elapses.  Implemented by first
+     * checking interrupt status, then invoking at least once {@link
+     * #tryAcquire}, returning on success.  Otherwise, the thread is
+     * queued, possibly repeatedly blocking and unblocking, invoking
+     * {@link #tryAcquire} until success or the thread is interrupted
+     * or the timeout elapses.  This method can be used to implement
+     * method {@link Lock#tryLock(long, TimeUnit)}.
+     *
+     * @param arg the acquire argument.  This value is conveyed to
+     *        {@link #tryAcquire} but is otherwise uninterpreted and
+     *        can represent anything you like.
+     * @param nanosTimeout the maximum number of nanoseconds to wait
+     * @return {@code true} if acquired; {@code false} if timed out
+     * @throws InterruptedException if the current thread is interrupted
+     */
+    public final boolean tryAcquireNanos(int arg, long nanosTimeout)
+            throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
+        return tryAcquire(arg) ||
+                doAcquireNanos(arg, nanosTimeout);
+    }
+
+    /**
+     * Releases in exclusive mode.  Implemented by unblocking one or
+     * more threads if {@link #tryRelease} returns true.
+     * This method can be used to implement method {@link Lock#unlock}.
+     *
+     * @param arg the release argument.  This value is conveyed to
+     *        {@link #tryRelease} but is otherwise uninterpreted and
+     *        can represent anything you like.
+     * @return the value returned from {@link #tryRelease}
+     */
+    public final boolean release(int arg) {
+        if (tryRelease(arg)) {
+            Node h = head;
+            if (h != null && h.waitStatus != 0)
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Acquires in shared mode, ignoring interrupts.  Implemented by
+     * first invoking at least once {@link #tryAcquireShared},
+     * returning on success.  Otherwise the thread is queued, possibly
+     * repeatedly blocking and unblocking, invoking {@link
+     * #tryAcquireShared} until success.
+     *
+     * @param arg the acquire argument.  This value is conveyed to
+     *        {@link #tryAcquireShared} but is otherwise uninterpreted
+     *        and can represent anything you like.
+     */
+    public final void acquireShared(int arg) {
+        if (tryAcquireShared(arg) < 0)
+            doAcquireShared(arg);
+    }
+
+    /**
+     * Acquires in shared mode, aborting if interrupted.  Implemented
+     * by first checking interrupt status, then invoking at least once
+     * {@link #tryAcquireShared}, returning on success.  Otherwise the
+     * thread is queued, possibly repeatedly blocking and unblocking,
+     * invoking {@link #tryAcquireShared} until success or the thread
+     * is interrupted.
+     * @param arg the acquire argument.
+     * This value is conveyed to {@link #tryAcquireShared} but is
+     * otherwise uninterpreted and can represent anything
+     * you like.
+     * @throws InterruptedException if the current thread is interrupted
+     */
+    public final void acquireSharedInterruptibly(int arg)
+            throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
+        if (tryAcquireShared(arg) < 0)
+            doAcquireSharedInterruptibly(arg);
+    }
+
+    /**
+     * Attempts to acquire in shared mode, aborting if interrupted, and
+     * failing if the given timeout elapses.  Implemented by first
+     * checking interrupt status, then invoking at least once {@link
+     * #tryAcquireShared}, returning on success.  Otherwise, the
+     * thread is queued, possibly repeatedly blocking and unblocking,
+     * invoking {@link #tryAcquireShared} until success or the thread
+     * is interrupted or the timeout elapses.
+     *
+     * @param arg the acquire argument.  This value is conveyed to
+     *        {@link #tryAcquireShared} but is otherwise uninterpreted
+     *        and can represent anything you like.
+     * @param nanosTimeout the maximum number of nanoseconds to wait
+     * @return {@code true} if acquired; {@code false} if timed out
+     * @throws InterruptedException if the current thread is interrupted
+     */
+    public final boolean tryAcquireSharedNanos(int arg, long nanosTimeout)
+            throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
+        return tryAcquireShared(arg) >= 0 ||
+                doAcquireSharedNanos(arg, nanosTimeout);
+    }
+
+    /**
+     * Releases in shared mode.  Implemented by unblocking one or more
+     * threads if {@link #tryReleaseShared} returns true.
+     *
+     * @param arg the release argument.  This value is conveyed to
+     *        {@link #tryReleaseShared} but is otherwise uninterpreted
+     *        and can represent anything you like.
+     * @return the value returned from {@link #tryReleaseShared}
+     */
+    public final boolean releaseShared(int arg) {
+        if (tryReleaseShared(arg)) {
+            doReleaseShared();
+            return true;
+        }
+        return false;
     }
 
 

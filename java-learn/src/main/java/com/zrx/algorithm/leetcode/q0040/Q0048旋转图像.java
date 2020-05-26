@@ -126,45 +126,108 @@ public class Q0048旋转图像 implements Question {
             来源：力扣（LeetCode）
             链接：https://leetcode-cn.com/problems/rotate-image
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-            """, printInputParameters = 0)
-    public void rotate(int[][] matrix) {
+            """)
+    public int[][] rotate(int[][] matrix) {
         int d = matrix.length;
         int axis = d / 2;
 
 
         for (int j = 0; j <= axis; j++) {
             for (int i = j; i < d - j - 1; i++) {
-                int[] v = {i, j};
-                LOGGER.info("v = {}", v);
-                rotateQuad(matrix, v);
+                int t = matrix[i][j];
+                matrix[i][j] = matrix[d-1-j][i];
+                matrix[d-1-j][i] = matrix[d-1-i][d-1-j];
+                matrix[d-1-i][d-1-j] = matrix[j][d-1-i];
+                matrix[j][d-1-i] = t;
             }
         }
+
+        return matrix;
     }
 
     public void rotateQuad(int[][] m, int[] v) {
         int d = m.length;
 
-        int prev;
-        int cur = get(m, v);
+        int i = v[0];
+        int j = v[1];
 
-        rotateIndex(v, d);
-        prev = get(m, v);
-        set(m, v, cur);// 1
-        cur = prev;
+//        int a1 = m[i][j];
+//        int a2 = m[j][d-1-i];
+//        int a3 = m[d-1-i][d-1-j];
+//        int a4 = m[d-1-j][i];
 
-        rotateIndex(v, d);
-        prev = get(m, v);
-        set(m, v, cur);// 2
-        cur = prev;
+        int t = m[i][j];
+        m[i][j] = m[d-1-j][i];
+        m[d-1-j][i] = m[d-1-i][d-1-j];
+        m[d-1-i][d-1-j] = m[j][d-1-i];
+        m[j][d-1-i] = t;
 
-        rotateIndex(v, d);
-        prev = get(m, v);
-        set(m, v, cur);//3
-        cur = prev;
 
-        rotateIndex(v, d);
-        prev = get(m, v);
-        set(m, v, cur);// 4
+        // 下面作废
+
+//        int prev;
+//        int cur = get(m, v);
+
+        /**
+         * rotateIndex(v, d)
+         * vi vj d
+         *         double[] dv = new double[]{v[0], v[1]};
+         *
+         *         convert(dv, d);
+         * i j d
+         *         -- double x = v[0]; // i
+         *         -- double y = v[1]; // j
+         *         -- double axis = (d - 1) / 2.0; // axis = (d-1)/2
+         *
+         *         -- v[0] = -axis + y; // i2 = -(d-1)/2 + j
+         *         -- v[1] = axis - x; // j2 = (d-1)/2 - i
+         *
+         *
+         *         rotateCenterCoo(dv); // dv = -(d-1)/2 + j , (d-1)/2 - i
+         *         -- double x = v[0]; // x = -(d-1)/2 + j
+         *         -- double y = v[1]; // y = (d-1)/2 - i
+         *
+         *         -- v[0] = y; // v0 = (d-1)/2 - i
+         *         -- v[1] = -x; // v1 = (d-1)/2 - j
+         *
+         *
+         *
+         *         convertBack(dv, d); // dv = (d-1)/2 - i , (d-1)/2 - j
+         *
+         *         -- double x = v[0]; //  x = (d-1)/2 - i
+         *         -- double y = v[1]; // y = (d-1)/2 - j
+         *         -- double axis = (d - 1) / 2.; // axis = (d-1)/2
+         *
+         *         -- v[0] = axis - y; // (d-1)/2 - ((d-1)/2 - j) = j
+         *         -- v[1] = axis + x; // (d-1)/2 + (d-1)/2 - i = d-1-i
+         *
+         *
+         *
+         *         v[0] = (int) Math.round(dv[0]);
+         *         v[1] = (int) Math.round(dv[1]);
+         *
+         *
+         */
+//        rotateIndex(v, d);
+//
+//
+//        prev = get(m, v);
+//        set(m, v, cur);// 1
+//        cur = prev;
+//
+//        rotateIndex(v, d);
+//        prev = get(m, v);
+//        set(m, v, cur);// 2
+//        cur = prev;
+//
+//        rotateIndex(v, d);
+//        prev = get(m, v);
+//        set(m, v, cur);//3
+//        cur = prev;
+//
+//        rotateIndex(v, d);
+//        prev = get(m, v);
+//        set(m, v, cur);// 4
     }
 
     /**
@@ -174,24 +237,30 @@ public class Q0048旋转图像 implements Question {
      * @param d 维度
      */
     private void rotateIndex(int[] v, int d) {
-        //LOGGER.info("v0 = {}", v);
+//        //LOGGER.info("v0 = {}", v);
+//
+//        double[] dv = new double[]{v[0], v[1]};
+//
+//        convert(dv, d);
+//
+//        //LOGGER.info("v-c = {}", dv);
+//
+//        rotateCenterCoo(dv);
+//
+//        //LOGGER.info("v-r = {}", dv);
+//
+//        convertBack(dv, d);
+//
+//        v[0] = (int) Math.round(dv[0]);
+//        v[1] = (int) Math.round(dv[1]);
+//
+//        //LOGGER.info("v-b = {}", v);
 
-        double[] dv = new double[]{v[0], v[1]};
+        int i = v[0];
+        int j = v[1];
 
-        convert(dv, d);
-
-        //LOGGER.info("v-c = {}", dv);
-
-        rotateCenterCoo(dv);
-
-        //LOGGER.info("v-r = {}", dv);
-
-        convertBack(dv, d);
-
-        v[0] = (int) Math.round(dv[0]);
-        v[1] = (int) Math.round(dv[1]);
-
-        //LOGGER.info("v-b = {}", v);
+        v[0] = j;
+        v[1] = d-1-i;
     }
 
     // 直角坐标系旋转

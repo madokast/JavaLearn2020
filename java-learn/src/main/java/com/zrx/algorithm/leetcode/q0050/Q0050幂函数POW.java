@@ -67,6 +67,24 @@ public class Q0050幂函数POW implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public double myPow(double x, int n) {
-        return 0.0;
+        if (n == 0)
+            return 1;
+        if (x == +0 || x == -0)
+            return 0;
+        if (x == 1)
+            return 1;
+        if (n == -1)
+            return 1 / x;
+
+        double v = myPow(x, n / 2);
+
+        if (n % 2 == 0)
+            return v * v;
+        else {
+            if (n > 0)
+                return v * v * x;
+            else
+                return v * v / x;
+        }
     }
 }

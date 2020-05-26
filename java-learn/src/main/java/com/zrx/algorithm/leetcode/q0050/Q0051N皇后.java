@@ -1,10 +1,13 @@
 package com.zrx.algorithm.leetcode.q0050;
 
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -74,6 +77,68 @@ public class Q0051N皇后 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<List<String>> solveNQueens(int n) {
-        return null;
+        linesInit(n);
+        List<List<String>> answer = new ArrayList<>();
+
+        int[] table = new int[n];
+
+        backSearch(0, table, answer);
+
+        return answer;
+    }
+
+    private void backSearch(int lineNumber, int[] table, List<List<String>> answer) {
+        if (lineNumber == table.length)
+            answer.add(convert(table));
+        else {
+            for (Integer valid : validLocal(table, lineNumber)) {
+                table[lineNumber] = valid;
+                backSearch(lineNumber + 1, table, answer);
+            }
+        }
+    }
+
+    private List<Integer> validLocal(int[] table, int lineNumber) {
+        List<Integer> ret = new LinkedList<>();
+        int n = table.length;
+        for (int i = 0; i < n; i++) {
+            ret.add(i);
+        }
+
+        for (int i = 0; i < lineNumber; i++) {
+            int t = table[i];
+            int k = lineNumber - i;
+            ret.remove((Integer) t);
+            if (t + k < n)
+                ret.remove((Integer) (t + k));
+            if (t - k >= 0)
+                ret.remove((Integer) (t - k));
+        }
+
+        LOGGER.info("lineNumber = {}, ret = {}, table = {}",lineNumber, ret, ToString.arrayToFormatString(table));
+
+        return ret;
+    }
+
+    private List<String> convert(int[] table) {
+        List<String> ret = new ArrayList<>(table.length);
+        for (int t : table) {
+            ret.add(lines[t]);
+        }
+
+        return ret;
+    }
+
+    String[] lines = null;
+
+    private void linesInit(int n) {
+        lines = new String[n];
+
+        StringBuilder sb = new StringBuilder(".".repeat(n));
+        for (int i = 0; i < n; i++) {
+            sb.setCharAt(i, 'Q');
+            lines[i] = sb.toString();
+            sb.setCharAt(i, '.');
+        }
     }
 }
