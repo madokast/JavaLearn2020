@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -47,5 +49,31 @@ public class ArrayFactory {
             ret[i] = list.get(i);
         }
         return ret;
+    }
+
+    /**
+     * 创建二维数组 int[][]
+     * 例如 1,2,null,3,4
+     * 返回[1,2],[3,4]
+     *
+     * @param integers 不定参数，null作为分隔符
+     * @return int[][]
+     */
+    public static int[][] createTwoDimensionsIntArray(Integer... integers) {
+        List<List<Integer>> answer = new ArrayList<>();
+        answer.add(new ArrayList<>());
+        for (Integer integer : integers) {
+            if (integer == null) {
+                answer.add(new ArrayList<>());
+            } else {
+                List<Integer> last = answer.get(answer.size() - 1);
+                last.add(integer);
+            }
+        }
+
+        return answer.stream()
+                .map(ArrayFactory::create)
+                .collect(Collectors.toList())
+                .toArray(int[][]::new);
     }
 }

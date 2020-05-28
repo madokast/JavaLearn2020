@@ -24,12 +24,17 @@ public class Q0058最后一个单词的长度 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                "Hello World",
+                "a ",
+                "a  b  "
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(5, 1, 1);
     }
 
     @Code(info = """
@@ -51,6 +56,21 @@ public class Q0058最后一个单词的长度 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int lengthOfLastWord(String s) {
-        return -1;
+        int len = 0;
+        int sLen = s.length();
+
+        int lastLen = len;
+
+        for (int i = 0; i < sLen; i++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                if (len == 0) continue;
+                lastLen = len;
+                len = 0;
+            } else
+                len++;
+        }
+
+        return len == 0 ? lastLen : len;
     }
 }

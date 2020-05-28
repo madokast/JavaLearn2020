@@ -1,11 +1,12 @@
 package com.zrx.algorithm.leetcode.q0050;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -24,12 +25,19 @@ public class Q0056合并区间 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.createTwoDimensionsIntArray(1, 3, null, 2, 6, null, 8, 10, null, 15, 18),
+                ArrayFactory.createTwoDimensionsIntArray(1, 4, null, 4, 5)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ArrayFactory.createTwoDimensionsIntArray(1, 6, null, 8, 10, null, 15, 18),
+                ArrayFactory.createTwoDimensionsIntArray(1, 5)
+        );
     }
 
     @Code(info = """
@@ -51,6 +59,29 @@ public class Q0056合并区间 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int[][] merge(int[][] intervals) {
-        return null;
+        if(intervals.length==0)
+            return intervals;
+
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+        Stack<int[]> answer = new Stack<>();
+
+        answer.push(intervals[0]);
+
+        for (int i = 1; i < intervals.length; i++) {
+            int[] cur = intervals[i];
+
+            int[] peek = answer.peek();
+            if(peek[1]>=cur[0]){
+                if(peek[1]<cur[1]){
+                    answer.pop();
+                    answer.push(new int[]{peek[0],cur[1]});
+                }
+            }else
+                answer.push(cur);
+
+        }
+
+        return answer.toArray(int[][]::new);
     }
 }

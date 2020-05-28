@@ -79,4 +79,9 @@ public class EntryMapperCache implements EntryMapper {
         entryMapper.deleteLastOne();
         LOGGER.info("Entries表删除最后一项，成功");
     }
+
+    @Override
+    public int totalDate() {
+        return entryMapper.totalDate();
+    }
 }

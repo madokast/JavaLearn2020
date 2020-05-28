@@ -1,10 +1,12 @@
 package com.zrx.algorithm.leetcode.q0050;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.util.List;
 
 /**
@@ -24,12 +26,21 @@ public class Q0059螺旋矩阵II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                3,
+                1,
+                2
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                (Object) ArrayFactory.createTwoDimensionsIntArray(1, 2, 3, null, 8, 9, 4, null, 7, 6, 5),
+                ArrayFactory.createTwoDimensionsIntArray(1),
+                ArrayFactory.createTwoDimensionsIntArray(1, 2, null, 4, 3)
+        );
     }
 
     @Code(info = """
@@ -50,6 +61,40 @@ public class Q0059螺旋矩阵II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int[][] generateMatrix(int n) {
-        return null;
+        if (n <= 0)
+            return new int[0][0];
+
+        int[][] ret = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                ret[i][j] = numberAt(n, i, j);
+            }
+        }
+        return ret;
+    }
+
+    public int numberAt(int d, int i, int j) {
+        int layer = Math.min(
+                Math.min(i, j),
+                Math.min(d - 1 - i, d - 1 - j)
+        );
+
+        int offset = layer * (d - layer) << 2;
+
+        d = d - (layer << 1);
+
+        i = i - layer;
+        j = j - layer;
+
+        if (i == 0) {
+            return j + offset + 1;
+        } else if (j == d - 1) {
+            return i + offset + j + 1;
+        } else if (i == d - 1) {
+            return (i << 1) + d - j + offset;
+        } else {
+            return ((d - 1) << 2) - i + offset + 1;
+        }
     }
 }

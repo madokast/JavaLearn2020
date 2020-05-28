@@ -1,6 +1,7 @@
 package com.zrx.algorithm.leetcode.q0050;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,15 @@ public class Q0053最大子序和 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                (Object) ArrayFactory.create(-2,1,-3,4,-1,2,1,-5,4)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(6);
     }
 
     @Code(info = """
@@ -49,6 +53,20 @@ public class Q0053最大子序和 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int maxSubArray(int[] nums) {
-        return 0;
+
+        int globeMax = Integer.MIN_VALUE;
+        int currentMax = 0;
+
+        for (int num : nums) {
+            currentMax+=num;
+
+            if(currentMax<0)
+                currentMax=0;
+            else if(currentMax>globeMax)
+                globeMax = currentMax;
+        }
+
+
+        return globeMax;
     }
 }

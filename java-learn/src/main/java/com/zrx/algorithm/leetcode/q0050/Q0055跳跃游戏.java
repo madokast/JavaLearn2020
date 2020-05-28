@@ -1,6 +1,7 @@
 package com.zrx.algorithm.leetcode.q0050;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,15 +25,19 @@ public class Q0055跳跃游戏 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(2, 3, 1, 1, 4),
+                ArrayFactory.create(3, 2, 1, 0, 4)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(true, false);
     }
 
-    @Code(info= """
+    @Code(info = """
             给定一个非负整数数组，你最初位于数组的第一个位置。
 
             数组中的每个元素代表你在该位置可以跳跃的最大长度。
@@ -55,6 +60,47 @@ public class Q0055跳跃游戏 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean canJump(int[] nums) {
-        return false;
+
+        return canJump贪心算法(nums);
+//        return canJump动态规划法(nums);
+    }
+
+    public boolean canJump贪心算法(int[] nums) {
+
+        int max = 0;
+
+        for (int i = 0; i <= max; i++) {
+            int cur = nums[i];
+
+            max = Math.max(max, i + cur);
+
+            if(max>=nums.length - 1)
+                return true;
+        }
+
+
+        return max >= nums.length - 1;
+    }
+
+    public boolean canJump动态规划法(int[] nums) {
+        int length = nums.length;
+
+        boolean[] canGoToEnd = new boolean[length];
+
+        canGoToEnd[length - 1] = true;
+
+        for (int i = length - 1; i >= 0; i--) {
+            int cur = nums[i];
+            if (cur > 0) {
+                for (int j = i + 1; j <= i + cur && j < length; j++) {
+                    if (canGoToEnd[j]) {
+                        canGoToEnd[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return canGoToEnd[0];
     }
 }
