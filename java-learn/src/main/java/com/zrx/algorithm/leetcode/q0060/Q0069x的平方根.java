@@ -24,12 +24,12 @@ public class Q0069x的平方根 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(1, 4, 8, 2147395599);
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(2, 2, (int) (Math.sqrt(2147395599)));
     }
 
     @Code(info = """
@@ -55,6 +55,25 @@ public class Q0069x的平方根 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int mySqrt(int x) {
-        return 0;
+        if(x==0) return 0;
+
+        int left = 1;
+        int right = x;
+        while (right >= left) {
+            int mid = left + (right - left) / 2;
+            LOGGER.info("mid = {}", mid);
+//            int mid2 = mid * mid;
+            int r = x / mid;
+            LOGGER.info("r = {}", r);
+            if (r < mid) {
+                right = mid - 1;
+            } else if (r > mid) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return Math.min(right, left);
     }
 }

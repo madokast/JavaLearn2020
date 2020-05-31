@@ -5,7 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -24,12 +29,16 @@ public class Q0067二进制求和 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                "11", "1",
+                "1010", "1011"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create("100", "10101");
     }
 
     @Code(info = """
@@ -60,6 +69,69 @@ public class Q0067二进制求和 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String addBinary(String a, String b) {
-        return null;
+        int al = a.length();
+        int bl = b.length();
+
+        Deque<Integer> ret = new LinkedList<>();
+
+        int carry = 0;
+
+        int ai = al - 1;
+        int bi = bl - 1;
+
+        while (ai >= 0 && bi >= 0) {
+            int an = a.charAt(ai) - '0';
+            int bn = b.charAt(bi) - '0';
+
+            int sum = an + bn + carry;
+
+            if (sum >= 2) {
+                ret.addFirst(sum - 2);
+                carry = 1;
+            } else {
+                ret.addFirst(sum);
+                carry=0;
+            }
+
+            ai--;
+            bi--;
+        }
+
+        while (ai >= 0) {
+            int an = a.charAt(ai) - '0';
+
+            int sum = an + carry;
+
+            if (sum >= 2) {
+                ret.addFirst(sum - 2);
+                carry = 1;
+            } else {
+                ret.addFirst(sum);
+                carry=0;
+            }
+
+            ai--;
+        }
+
+        while (bi >= 0) {
+            int bn = b.charAt(bi) - '0';
+
+            int sum = bn + carry;
+
+            if (sum >= 2) {
+                ret.addFirst(sum - 2);
+                carry = 1;
+            } else {
+                ret.addFirst(sum);
+                carry=0;
+            }
+
+            bi--;
+        }
+
+        if (carry == 1)
+            ret.addFirst(1);
+
+        return ret.stream().map(String::valueOf).collect(Collectors.joining());
     }
 }

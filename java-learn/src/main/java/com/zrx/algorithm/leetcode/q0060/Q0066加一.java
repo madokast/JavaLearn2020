@@ -1,8 +1,10 @@
 package com.zrx.algorithm.leetcode.q0060;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,17 +19,29 @@ import java.util.List;
  * @version 1.0
  */
 
+@Component
 public class Q0066加一 implements Question {
     private final static Logger LOGGER = LoggerFactory.getLogger(Q0066加一.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(1, 2, 3),
+                ArrayFactory.create(4, 3, 2, 1),
+                ArrayFactory.create(9),
+                ArrayFactory.create(9, 9)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ArrayFactory.create(1, 2, 4),
+                ArrayFactory.create(4, 3, 2, 2),
+                ArrayFactory.create(1, 0),
+                ArrayFactory.create(1, 0, 0)
+        );
     }
 
     @Code(info = """
@@ -53,6 +67,24 @@ public class Q0066加一 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int[] plusOne(int[] digits) {
-        return null;
+        int carry = 1;
+
+        int length = digits.length;
+
+        for (int i = length - 1; i >= 0; i--) {
+            digits[i] += carry;
+
+            if (digits[i] == 10) {
+                digits[i] = 0;
+                carry = 1;
+            } else {
+                return digits;
+            }
+        }
+
+        int[] ret = new int[length + 1];
+        ret[0] = 1;
+
+        return ret;
     }
 }

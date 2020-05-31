@@ -1,6 +1,9 @@
 package com.zrx.algorithm.leetcode.q0060;
 
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
+import com.zrx.utils.ArrayFactory;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -20,16 +23,19 @@ import java.util.List;
 
 @Component
 public class Q0063不同路径II implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0063不同路径II.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0063不同路径II.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                (Object) ArrayFactory.createTwoDimensionsIntArray(0, 0, 0, null, 0, 1, 0, null, 0, 0, 0)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(2);
     }
 
     @Code(info = """
@@ -65,6 +71,43 @@ public class Q0063不同路径II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        return 0;
+        int m = obstacleGrid.length;
+
+        if (m == 0) return 0;
+
+        int n = obstacleGrid[0].length;
+
+        if (n == 0) return 0;
+
+        if (obstacleGrid[m - 1][n - 1] == 1) return 0;
+
+        int[][] paths = new int[m][n];
+
+        paths[m - 1][n - 1] = 1;
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (obstacleGrid[m - 1][i] == 1)
+                paths[m - 1][i] = 0;
+            else
+                paths[m - 1][i] = paths[m - 1][i + 1];
+        }
+
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (obstacleGrid[i][j] == 1) {
+                    paths[i][j] = 0;
+                    continue;
+                }
+
+                if (i + 1 < m)
+                    paths[i][j] += paths[i + 1][j];
+                if (j + 1 < n)
+                    paths[i][j] += paths[i][j + 1];
+            }
+        }
+
+        LOGGER.info("paths = {}", ToString.arrayToFormatString(paths));
+
+        return paths[0][0];
     }
 }

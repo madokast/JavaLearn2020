@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0060;
 
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.object.ListNode;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,16 +22,23 @@ import java.util.List;
 
 @Component
 public class Q0061旋转链表 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0061旋转链表.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0061旋转链表.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                ListNode.of(1,2,3,4,5),2,
+                ListNode.of(0,1,2),4
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ListNode.of(4,5,1,2,3),
+                ListNode.of(2,0,1)
+        );
     }
 
     /**
@@ -66,6 +74,53 @@ public class Q0061旋转链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode rotateRight(ListNode head, int k) {
-        return null;
+
+        if(head==null)
+            return head;
+
+        if(k==0)
+            return head;
+
+
+        int length = length(head);
+        LOGGER.info("length = {}", length);
+
+        k = length - k % length - 1;
+
+        ListNode node = head;
+
+        while (k > 0) {
+            node = node.next;
+            k--;
+        }
+
+        LOGGER.info("node = {}", node);
+
+        ListNode tail = node;
+        while (tail.next != null)
+            tail = tail.next;
+
+        LOGGER.info("tail = {}", tail);
+
+        tail.next = head;
+
+        ListNode newHead = node.next;
+
+        node.next = null;
+
+        return newHead;
+    }
+
+    private int length(ListNode head) {
+        if(head==null)
+            return 0;
+
+        int len = 1;
+        while (head.next != null) {
+            head = head.next;
+            len++;
+        }
+
+        return len;
     }
 }
