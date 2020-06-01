@@ -1,10 +1,13 @@
 package com.zrx.algorithm.leetcode.q0070;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.support.ManagedArray;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +27,19 @@ public class Q0073矩阵置零 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.createTwoDimensionsIntArray(1, 1, 1, null, 1, 0, 1, null, 1, 1, 1),
+                ArrayFactory.createTwoDimensionsIntArray(0, 1, 2, 0, null, 3, 4, 5, 2, null, 1, 3, 1, 5)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ArrayFactory.createTwoDimensionsIntArray(1, 0, 1, null, 0, 0, 0, null, 1, 0, 1),
+                ArrayFactory.createTwoDimensionsIntArray(0, 0, 0, 0, null, 0, 4, 5, 0, null, 0, 3, 1, 0)
+        );
     }
 
     @Code(info = """
@@ -73,6 +83,110 @@ public class Q0073矩阵置零 implements Question {
             链接：https://leetcode-cn.com/problems/set-matrix-zeroes
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void setZeroes(int[][] matrix) {
+    public int[][] setZeroes(int[][] matrix) {
+
+
+        int r = matrix.length;
+        int c = matrix[0].length;
+
+        boolean row1Zero = false;
+        boolean col1Zero = false;
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (matrix[i][j] == 0) {
+                    if (i == 0) {
+                        row1Zero = true;
+                    } else if (j == 0) {
+                        col1Zero = true;
+                    } else {
+                        matrix[0][j] = matrix[i][0] = 0;
+                    }
+
+
+                }
+            }
+        }
+
+
+
+        for (int i = 1; i < r; i++) {
+            if (matrix[i][0] == 0)
+                setRowZero(matrix, i);
+        }
+
+        for (int i = 1; i < c; i++) {
+            if (matrix[0][i] == 0)
+                setColZero(matrix, i);
+        }
+
+//        if (matrix[0][0] == 0)
+//            setZero(matrix, 0, 0);
+//
+
+        if(col1Zero)
+            setColZero(matrix,0);
+
+        if(row1Zero)
+            setRowZero(matrix,0);
+
+        return matrix;
+
+    }
+
+    public int[][] setZeroes用了额外空间(int[][] matrix) {
+        List<Integer> rs = new ArrayList<>();
+        List<Integer> cs = new ArrayList<>();
+
+        int r = matrix.length;
+        int c = matrix[0].length;
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (matrix[i][j] == 0) {
+                    rs.add(i);
+                    cs.add(j);
+                }
+            }
+        }
+
+        for (int i = 0; i < rs.size(); i++) {
+            setZero(matrix, rs.get(i), cs.get(i));
+        }
+
+        return matrix;
+
+    }
+
+
+    private void setZero(int[][] m, int i, int j) {
+        LOGGER.info("i,j = {},{}", i, j);
+
+        int r = m.length;
+        int c = m[0].length;
+
+        for (int k = 0; k < r; k++) {
+            m[k][j] = 0;
+        }
+
+        for (int k = 0; k < c; k++) {
+            m[i][k] = 0;
+        }
+    }
+
+    private void setRowZero(int[][] m, int row) {
+        int r = m.length;
+        int c = m[0].length;
+
+        for (int i = 0; i < c; i++) {
+            m[row][i] = 0;
+        }
+    }
+
+    private void setColZero(int[][] m, int col) {
+        int r = m.length;
+        for (int i = 0; i < r; i++) {
+            m[i][col] = 0;
+        }
     }
 }

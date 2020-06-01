@@ -24,12 +24,16 @@ public class Q0070爬楼梯 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                2,
+                3, 4, 5, 6
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(2, 3, 5, 8, 13);
     }
 
     @Code(info = """
@@ -60,6 +64,19 @@ public class Q0070爬楼梯 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int climbStairs(int n) {
-        return 0;
+        if (n == 0 || n == 1)
+            return 1;
+
+        int c0 = 1;
+        int c1 = 1;
+
+        for (int i = 1; i < n; i++) {
+            int t = c0 + c1;
+            c0 = c1;
+            c1 = t;
+        }
+
+
+        return c1;
     }
 }
