@@ -1,6 +1,9 @@
 package com.zrx.algorithm.leetcode.q0070;
 
+import com.zrx.Invoking;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,18 +21,28 @@ import java.util.List;
  * @version 1.0
  */
 
+@Invoking(createdTime = "2020-06-02 09:32")
 @Component
 public class Q0075颜色分类 implements Question {
     private final static Logger LOGGER = LoggerFactory.getLogger(Q0075颜色分类.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                (Object) ArrayFactory.create(2, 0, 2, 1, 1, 0),
+                (Object) ArrayFactory.create(2, 0, 1),
+                (Object) ArrayFactory.create(2, 2)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                (Object) ArrayFactory.create(0, 0, 1, 1, 2, 2),
+                (Object) ArrayFactory.create(0, 1, 2),
+                (Object) ArrayFactory.create(2, 2)
+        );
     }
 
     @Code(info = """
@@ -54,7 +67,55 @@ public class Q0075颜色分类 implements Question {
             链接：https://leetcode-cn.com/problems/sort-colors
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void sortColors(int[] nums) {
+    public int[] sortColors(int[] nums) {
+        int length = nums.length;
 
+        int left = 0;
+        int i = 0;
+        int right = length - 1;
+
+        int t;
+
+        while (i <= right) {
+            switch (nums[i]) {
+                case 0:
+                    if (i == left) {
+                        left++;
+                        i++;
+                    } else {
+                        swap(nums, i, left);
+                        left++;
+                    }
+                    break;
+                case 1:
+                    i++;
+                    break;
+                case 2:
+                    swap(nums, i, right);
+                    right--;
+            }
+        }
+
+        return nums;
+
+    }
+
+    public void swap(int[] a, int i, int j) {
+        if (i == j)
+            return;
+        if (a[i] == a[j])
+            return;
+
+        a[i] = a[i] ^ a[j];
+        a[j] = a[i] ^ a[j];
+        a[i] = a[i] ^ a[j];
+    }
+
+    @Invoking(createdTime = "2020-06-02 09:33")
+    public void swapTest() {
+        int[] m = {2, 2};
+        LOGGER.info("m = {}", ToString.apply(m));
+        swap(m, 0, 1);
+        LOGGER.info("m = {}", ToString.apply(m));
     }
 }

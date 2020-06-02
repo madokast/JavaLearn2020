@@ -76,4 +76,28 @@ public class ArrayFactory {
                 .collect(Collectors.toList())
                 .toArray(int[][]::new);
     }
+
+    public static char[][] createTwoDimensionsIntArray(Character... characters) {
+        List<List<Character>> answer = new ArrayList<>();
+        answer.add(new ArrayList<>());
+        for (Character c : characters) {
+            if (c == null) {
+                answer.add(new ArrayList<>());
+            } else {
+                List<Character> last = answer.get(answer.size() - 1);
+                last.add(c);
+            }
+        }
+
+        return answer.stream()
+                .map(charactersList -> {
+                    char[] chars = new char[charactersList.size()];
+                    for (int i = 0; i < charactersList.size(); i++) {
+                        chars[i] = charactersList.get(i);
+                    }
+                    return chars;
+                })
+                .collect(Collectors.toList())
+                .toArray(char[][]::new);
+    }
 }

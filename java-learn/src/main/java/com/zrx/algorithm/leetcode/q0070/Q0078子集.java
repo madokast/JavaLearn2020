@@ -1,10 +1,13 @@
 package com.zrx.algorithm.leetcode.q0070;
 
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.RepeatableSet;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +27,26 @@ public class Q0078子集 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                (Object) ArrayFactory.create(1, 2, 3)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                RepeatableSet.of(
+                        RepeatableSet.of(),
+                        RepeatableSet.of(1),
+                        RepeatableSet.of(2),
+                        RepeatableSet.of(3),
+                        RepeatableSet.of(1, 2),
+                        RepeatableSet.of(1, 3),
+                        RepeatableSet.of(2, 3),
+                        RepeatableSet.of(1, 2, 3)
+                )
+        );
     }
 
     @Code(info = """
@@ -57,6 +74,27 @@ public class Q0078子集 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<List<Integer>> subsets(int[] nums) {
-        return null;
+        int length = nums.length;
+        int num = 1 << length;
+
+        List<List<Integer>> answers = new ArrayList<>(num);
+
+        for (int i = 0; i < num; i++) {
+            int t = i;
+            List<Integer> answer = new ArrayList<>(length);
+
+
+            for (int value : nums) {
+                if ((t & 1) == 1) {
+                    answer.add(value);
+                }
+                t = t >> 1;
+            }
+
+            answers.add(answer);
+
+        }
+
+        return answers;
     }
 }

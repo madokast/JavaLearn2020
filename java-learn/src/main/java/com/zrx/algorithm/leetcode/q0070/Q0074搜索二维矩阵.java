@@ -1,6 +1,7 @@
 package com.zrx.algorithm.leetcode.q0070;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,16 @@ public class Q0074搜索二维矩阵 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                ArrayFactory.createTwoDimensionsIntArray(1,3,5,7,null,10,11,16,20,null,23,30,34,50),3,
+                ArrayFactory.createTwoDimensionsIntArray(1,3,5,7,null,10,11,16,20,null,23,30,34,50),13
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(true,false);
     }
 
     @Code(info = """
@@ -60,6 +65,32 @@ public class Q0074搜索二维矩阵 implements Question {
             输出: false
             """)
     public boolean searchMatrix(int[][] matrix, int target) {
+        int r = matrix.length;
+        if(r==0) return false;
+
+        int c = matrix[0].length;
+
+        int left = 0;
+        int right = r * c - 1;
+
+        while (right >= left) {
+            int mid = (right + left) / 2;
+            int number = number(matrix, c, mid);
+            if (number > target) {
+                right = mid - 1;
+            } else if (number < target) {
+                left = mid + 1;
+            } else
+                return true;
+        }
+
         return false;
+    }
+
+    public int number(int[][] m, int c, int n) {
+        int i = n / c;
+        int j = n % c;
+
+        return m[i][j];
     }
 }
