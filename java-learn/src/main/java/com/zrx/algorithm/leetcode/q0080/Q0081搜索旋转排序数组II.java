@@ -1,6 +1,8 @@
 package com.zrx.algorithm.leetcode.q0080;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
+import org.apache.commons.collections.map.LRUMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,12 +26,16 @@ public class Q0081搜索旋转排序数组II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                ArrayFactory.create(2, 5, 6, 0, 0, 1, 2), 0,
+                ArrayFactory.create(2, 5, 6, 0, 0, 1, 2), 3
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(true, false);
     }
 
     @Code(info = """
@@ -57,6 +63,53 @@ public class Q0081搜索旋转排序数组II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean search(int[] nums, int target) {
+        if (nums.length == 0)
+            return false;
+
+        return searchInRotatedArray(nums, target, 0, nums.length - 1);
+    }
+
+    private boolean searchInRotatedArray(int[] a, int t, int left, int right) {
+        if (left > right)
+            return false;
+
+        int mid = (left + right) / 2;
+        int m = a[mid];
+
+        if (m == t)
+            return true;
+
+        if (m > a[left]) {
+            boolean low = searchInOrderArray(a, t, left, mid - 1);
+            boolean hi = searchInRotatedArray(a, t, mid + 1, right);
+            return low | hi;
+        }
+
+        if (m < a[right]) {
+            boolean hi = searchInOrderArray(a, t, mid + 1, right);
+            boolean lo = searchInRotatedArray(a, t, left, mid - 1);
+            return lo | hi;
+        }
+
+
+        boolean lo = searchInRotatedArray(a, t, left, mid - 1);
+        boolean hi = searchInRotatedArray(a, t, mid + 1, right);
+        return lo | hi;
+
+    }
+
+    private boolean searchInOrderArray(int[] a, int t, int left, int right) {
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            int m = a[mid];
+            if (m > t) {
+                right = mid - 1;
+            } else if (m < t) {
+                left = mid + 1;
+            } else
+                return true;
+        }
+
         return false;
     }
 }

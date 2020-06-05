@@ -1,6 +1,7 @@
 package com.zrx.algorithm.leetcode.q0080;
 
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +26,17 @@ public class Q0080删除排序数组中的重复项II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(1, 1, 1, 2, 2, 3),
+                ArrayFactory.create(0, 0, 1, 1, 1, 1, 2, 3, 3),
+                ArrayFactory.create(0, 0, 0)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(5, 7, 2);
     }
 
     @Code(info = """
@@ -74,6 +80,52 @@ public class Q0080删除排序数组中的重复项II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int removeDuplicates(int[] nums) {
-        return 0;
+        int length = nums.length;
+
+        if (length <= 2)
+            return length;
+
+        int j = -1;
+        int pre = nums[0] - 1;
+        int times = 1;
+        for (int i = 0; i < length; i++) {
+            int cur = nums[i];
+
+            if (cur == pre) {
+                times++;
+
+                if (times == 2) {
+                    j++;
+                    swap(nums, i, j);
+                } else if (times == 3) {
+                    while (++i < length && nums[i] == pre)
+                        ;
+                    if (i < length) {
+                        pre = nums[i];
+                        times = 1;
+                        j++;
+                        swap(nums, i, j);
+                    } else
+                        break;
+                }
+
+            } else {
+                pre = cur;
+                times = 1;
+                j++;
+                swap(nums, i, j);
+            }
+        }
+
+
+        return j + 1;
+    }
+
+    private void swap(int[] a, int i, int j) {
+        if (i != j && a[i] != a[j]) {
+            a[i] = a[i] ^ a[j];
+            a[j] = a[i] ^ a[j];
+            a[i] = a[i] ^ a[j];
+        }
     }
 }
