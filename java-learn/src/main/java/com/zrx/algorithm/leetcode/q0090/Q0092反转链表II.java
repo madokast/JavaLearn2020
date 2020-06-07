@@ -26,12 +26,17 @@ public class Q0092反转链表II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                3,
+                ListNode.of("1->2->3->4->5"), 2, 4
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ListNode.of("1->4->3->2->5")
+        );
     }
 
     @Code(info = """
@@ -50,6 +55,45 @@ public class Q0092反转链表II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        return null;
+
+        ListNode preHead = new ListNode(0);
+        preHead.next = head;
+
+        ListNode startPre = null;
+        ListNode start = null;
+
+        ListNode pre = preHead;
+        ListNode cur = head;
+        ListNode next = null;
+
+        while (true) {
+            next = cur.next;
+
+            if (m == 1) {
+                startPre = pre;
+                start = cur;
+                //LOGGER.info("startPre = {}", startPre);
+                //LOGGER.info("start = {}", start);
+            }
+
+            if (m < 1) {
+                cur.next = pre;
+            }
+
+            if (n == 1) {
+                startPre.next = cur;
+                start.next = next;
+                break;
+            }
+
+            pre = cur;
+            cur = next;
+
+            m--;
+            n--;
+        }
+
+
+        return preHead.next;
     }
 }

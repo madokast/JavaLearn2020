@@ -58,10 +58,17 @@ public class ListNode {
 
         ListNode n = this;
 
+        int i = 0;
+
         while (n.next != null) {
             sb.append(n.val).append("->");
 
             n = n.next;
+
+            if (++i > 20) {
+                sb.append("链表过长，截断");
+                break;
+            }
         }
 
         sb.append(n.val).append("]");

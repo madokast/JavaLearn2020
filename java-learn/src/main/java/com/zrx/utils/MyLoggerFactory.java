@@ -148,6 +148,7 @@ public class MyLoggerFactory {
     }
 
     private static String makeLog(Object... args) {
+        //LOGGER.info("args = {}", args);
         if (args != null && args.length > 0 && args[0].getClass() == String.class) {
             String string = (String) args[0];
             if (args.length == 1)

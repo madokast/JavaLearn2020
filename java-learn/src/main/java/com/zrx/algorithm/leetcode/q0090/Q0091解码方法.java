@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0090;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,16 +22,27 @@ import java.util.List;
 
 @Component
 public class Q0091解码方法 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0091解码方法.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0091解码方法.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                "12",
+                "226",
+                "0",
+                "1010",
+                "01",
+                "00",
+                "001"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                2, 3, 0, 1, 0, 0, 0
+        );
     }
 
     @Code(info = """
@@ -58,6 +70,28 @@ public class Q0091解码方法 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int numDecodings(String s) {
-        return -1;
+        if (s == null) return 0;
+
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        if (length == 0) return 0;
+        if (length == 1) return chars[0] == '0' ? 0 : 1;
+
+        int[] dp = new int[length + 1];
+        dp[0] = 1;
+        dp[1] = chars[0] == '0' ? 0 : 1;
+
+        for (int i = 1; i < length; i++) {
+
+            char c = chars[i];
+
+            if (c != '0') dp[i + 1] += dp[i];
+
+            char pc = chars[i - 1];
+
+            if (pc == '1' || (pc == '2' && c <= '6')) dp[i + 1] += dp[i - 1];
+        }
+
+        return dp[length];
     }
 }
