@@ -3,13 +3,8 @@ package com.zrx.algorithm;
 import com.zrx.utils.MyLoggerFactory;
 import com.zrx.utils.Strings;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -27,20 +22,6 @@ public interface Question {
     List<Input> getInputs();
 
     List<Answer> getAnswers();
-
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.METHOD)
-    @interface Code {
-        String[] info() default {};
-
-        int[] printInputParameters() default {};
-
-        // 以下两个注解共同定位一个问题
-
-        String group() default QuestionWrapper.LEETCODE;
-
-        int number() default 1;
-    }
 
     default void run() {
         List<Input> inputs = getInputs();
@@ -222,7 +203,8 @@ public interface Question {
         }
 
         public static Answer create(Object ans) {
-            Objects.requireNonNull(ans);
+            //bug#20200606 答案可空
+            //Objects.requireNonNull(ans);
             Answer answer = new Answer();
             answer.ans = ans;
             return answer;

@@ -1,10 +1,12 @@
 package com.zrx.algorithm.leetcode.q0080;
 
+import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +26,17 @@ public class Q0089格雷编码 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                2
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                List.of(0, 1, 3, 2) //  or 0231
+        );
     }
 
     @Code(info = """
@@ -71,6 +78,17 @@ public class Q0089格雷编码 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<Integer> grayCode(int n) {
-        return null;
+
+        if (n == 0)
+            return List.of(0);
+
+        List<Integer> list = grayCode(n - 1);
+        List<Integer> ans = new ArrayList<>(list);
+        for (int i = list.size() - 1; i >= 0; i--) {
+            Integer integer = list.get(i);
+            ans.add(integer + (1 << (n - 1)));
+        }
+
+        return ans;
     }
 }

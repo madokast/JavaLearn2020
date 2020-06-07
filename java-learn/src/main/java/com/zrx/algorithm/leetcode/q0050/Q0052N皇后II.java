@@ -1,12 +1,11 @@
 package com.zrx.algorithm.leetcode.q0050;
 
+import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
-import com.zrx.algorithm.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

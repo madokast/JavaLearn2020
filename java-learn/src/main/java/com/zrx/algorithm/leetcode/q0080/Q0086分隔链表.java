@@ -1,9 +1,10 @@
 package com.zrx.algorithm.leetcode.q0080;
 
+import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.object.ListNode;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,16 +22,29 @@ import java.util.List;
 
 @Component
 public class Q0086分隔链表 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0086分隔链表.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0086分隔链表.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                ListNode.of("1->4->3->2->5->2"), 3,
+                ListNode.of(2, 1), 2,
+                ListNode.of(1, 2, 3), 4,
+                ListNode.of(3, 1, 2), 3,
+                ListNode.of(3, 3, 1, 2, 4), 3
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ListNode.of("1->2->2->4->3->5"),
+                ListNode.of(1, 2),
+                ListNode.of(1, 2, 3),
+                ListNode.of(1, 2, 3),
+                ListNode.of(1, 2, 3, 3, 4)
+        );
     }
 
     @Code(info = """
@@ -48,6 +62,34 @@ public class Q0086分隔链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode partition(ListNode head, int x) {
-        return null;
+        if (head == null) return null;
+
+        ListNode p0, p;
+        p = new ListNode(0);
+        p.next = head;
+        p0 = p;
+
+
+        while (head != null && head.val < x) {
+            p = head;
+            head = head.next;
+        }
+        if (head == null) return p0.next;
+
+
+        ListNode pre = p;
+        while (head != null) {
+            if (head.val < x) {
+                pre.next = head.next;
+                head.next = p.next;
+                p.next = head;
+                p = head;
+            }
+
+            pre = head;
+            head = head.next;
+        }
+
+        return p0.next;
     }
 }

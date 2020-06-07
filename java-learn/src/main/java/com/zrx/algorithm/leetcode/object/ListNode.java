@@ -43,6 +43,15 @@ public class ListNode {
         return head;
     }
 
+    public static ListNode of(String s) {
+        return of(
+                Arrays.stream(s.split("->"))
+                        .map(Integer::valueOf)
+                        .mapToInt(Integer::intValue)
+                        .toArray()
+        );
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
@@ -78,7 +87,7 @@ public class ListNode {
         if (o == null || getClass() != o.getClass()) return false;
         ListNode listNode = (ListNode) o;
 
-        return Arrays.equals(this.toArray(),listNode.toArray());
+        return Arrays.equals(this.toArray(), listNode.toArray());
 
     }
 

@@ -1,7 +1,7 @@
 package com.zrx.algorithm.leetcode.q0040;
 
+import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
-import com.zrx.algorithm.ToString;
 import com.zrx.algorithm.leetcode.object.RepeatableSet;
 import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
