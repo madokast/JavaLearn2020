@@ -1,0 +1,81 @@
+package com.zrx.algorithm.leetcode.q0100;
+
+import com.zrx.algorithm.Code;
+import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.TreeNode;
+import com.zrx.utils.ArrayFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * Description
+ * 从中序与后序遍历序列构造二叉树
+ * <p>
+ * Data
+ * 2020/6/8-22:19
+ *
+ * @author zrx
+ * @version 1.0
+ */
+
+@Component
+public class Q0106从中序与后序遍历序列构造二叉树 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q0106从中序与后序遍历序列构造二叉树.class);
+
+    @Override
+    public List<Input> getInputs() {
+        return InputFactory.create(
+                2,
+                ArrayFactory.create(9, 3, 15, 20, 7), ArrayFactory.create(9, 15, 7, 20, 3)
+        );
+    }
+
+    @Override
+    public List<Answer> getAnswers() {
+        return AnswerFactory.create(
+                TreeNode.of(3, 9, 20, null, null, 15, 7)
+        );
+    }
+
+    @Code(info = """
+            根据一棵树的中序遍历与后序遍历构造二叉树。
+
+            注意:
+            你可以假设树中没有重复的元素。
+
+            例如，给出
+
+            中序遍历 inorder = [9,3,15,20,7]
+            后序遍历 postorder = [9,15,7,20,3]
+            返回如下的二叉树：
+
+                3
+               / \\
+              9  20
+                /  \\
+               15   7
+
+            来源：力扣（LeetCode）
+            链接：https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal
+            著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+            """)
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        return buildTree(inorder, 0, inorder.length, postorder, 0, postorder.length);
+    }
+
+    public TreeNode buildTree(int[] inorder, int si, int ei, int[] postorder, int sp, int ep) {
+        if (si >= ei) return null;
+        else {
+            int val = postorder[ep - 1];
+            TreeNode root = new TreeNode(val);
+            int pm = si;
+            for (; pm < ei; pm++) if (inorder[pm] == val) break; // 1
+            root.left = buildTree(inorder, si, pm, postorder, sp, sp + (pm - si));
+            root.right = buildTree(inorder, pm + 1, ei, postorder, sp + (pm - si), ep-1);
+            return root;
+        }
+    }
+}

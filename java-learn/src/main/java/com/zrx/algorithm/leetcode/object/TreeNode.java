@@ -319,7 +319,7 @@ public class TreeNode {
     }
 
     /**
-     * 中序遍历 - 递归法 递归方法
+     * 中序遍历 - 递归法 helper
      * @param node 当前节点
      * @param list 中途数组
      */
@@ -327,5 +327,33 @@ public class TreeNode {
         if (node.left != null) inorderTraversal(node.left, list);
         list.add(node.val);
         if (node.right != null) inorderTraversal(node.right, list);
+    }
+
+    /**
+     * 层序遍历
+     * @param root 根
+     * @return List<List<Integer>> 每层从左往右结果
+     */
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        if(root==null) return Collections.emptyList();
+        List<List<Integer>> ret = new LinkedList<>();
+
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.addLast(root);
+
+        while (!queue.isEmpty()){
+            List<Integer> layer = new LinkedList<>();
+            Deque<TreeNode> nextQueue = new LinkedList<>();
+            while (!queue.isEmpty()){
+                TreeNode first = queue.removeFirst();
+                layer.add(first.val);
+                if(first.left!=null) nextQueue.addLast(first.left);
+                if(first.right!=null) nextQueue.addLast(first.right);
+            }
+            ret.add(layer);
+            queue = nextQueue;
+        }
+
+        return ret;
     }
 }

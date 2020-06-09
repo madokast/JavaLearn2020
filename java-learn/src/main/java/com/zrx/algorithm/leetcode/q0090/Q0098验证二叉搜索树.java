@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,12 +28,19 @@ public class Q0098验证二叉搜索树 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(2, 1, 3),
+                TreeNode.of(5, 1, 4, null, null, 3, 6),
+                TreeNode.of(10, 5, 15, null, null, 6, 20)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                true, false, false
+        );
     }
 
     @Code(info = """
@@ -66,6 +75,39 @@ public class Q0098验证二叉搜索树 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isValidBST(TreeNode root) {
-        return false;
+        Integer temp = null;
+
+        Deque<TreeNode> treeNodeDeque = new LinkedList<>();
+        Deque<Boolean> colorDeque = new LinkedList<>();
+
+        treeNodeDeque.push(root);
+        colorDeque.push(WHITE);
+
+        while (treeNodeDeque.size() != 0) {
+            TreeNode t = treeNodeDeque.pop();
+            Boolean c = colorDeque.pop();
+
+            if (t == null) continue;
+
+            if (c == WHITE) {
+                treeNodeDeque.push(t.right);
+                treeNodeDeque.push(t);
+                treeNodeDeque.push(t.left);
+
+                colorDeque.push(WHITE);
+                colorDeque.push(GREY);
+                colorDeque.push(WHITE);
+            } else {
+                int val = t.val;
+                if (temp != null && val <= temp) return false;
+
+                temp = val;
+            }
+        }
+
+        return true;
     }
+
+    private static final boolean WHITE = true;
+    private static final boolean GREY = false;
 }
