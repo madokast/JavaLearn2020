@@ -3,6 +3,7 @@ package com.zrx.algorithm.leetcode.q0110;
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.object.TreeNode;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,16 +23,21 @@ import java.util.List;
 
 @Component
 public class Q0112路径总和 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0112路径总和.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0112路径总和.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                TreeNode.of(5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1), 22,
+                TreeNode.of(1, 2), 1,
+                TreeNode.of(1, -2, -3, 1, 3, -2, null, -1), -1
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(true, false, true);
     }
 
     @Code(info = """
@@ -54,6 +60,12 @@ public class Q0112路径总和 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean hasPathSum(TreeNode root, int sum) {
-        return false;
+        //LOGGER.info("root.toTreeString(4,4) = {}", root.toTreeString(4, 4));
+
+        if (root == null) return false;
+        sum -= root.val;
+        if (sum == 0 && (root.right == null && root.left == null)) return true;
+
+        return hasPathSum(root.right, sum) || hasPathSum(root.left, sum);
     }
 }

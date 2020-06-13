@@ -2,6 +2,8 @@ package com.zrx.algorithm.leetcode.q0110;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.ListNode;
+import com.zrx.algorithm.leetcode.object.Node;
 import com.zrx.algorithm.leetcode.object.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +28,17 @@ public class Q0114二叉树展开为链表 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(1, 2, 5, 3, 4, null, 6)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                TreeNode.of(1, null, 2, null, 3, null, 4, null, 5, null, 6)
+        );
     }
 
     @Code(info = """
@@ -64,7 +71,20 @@ public class Q0114二叉树展开为链表 implements Question {
             链接：https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void flatten(TreeNode root) {
+    public TreeNode flatten(TreeNode root) {
+        if (root == null) return null;
 
+
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+
+        root.left = null;
+        root.right = flatten(left);
+        TreeNode t = root;
+        while (t.right != null) t = t.right;
+        t.right = flatten(right);
+
+        return root;
     }
+
 }

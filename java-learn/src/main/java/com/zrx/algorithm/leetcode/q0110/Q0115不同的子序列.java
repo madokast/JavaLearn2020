@@ -2,7 +2,9 @@ package com.zrx.algorithm.leetcode.q0110;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
 import com.zrx.algorithm.leetcode.object.TreeNode;
+import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,16 +24,22 @@ import java.util.List;
 
 @Component
 public class Q0115不同的子序列 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0115不同的子序列.class);
+    private final static Logger LOGGER = MyLoggerFactory.getLogger(Q0115不同的子序列.class);
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                2,
+                "rabbbit", "rabbit",
+                "babgbag", "bag"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                3, 5
+        );
     }
 
     @Code(info = """
@@ -83,6 +91,32 @@ public class Q0115不同的子序列 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int numDistinct(String s, String t) {
-        return -1;
+        int[][] dp = new int[t.length() + 1][s.length() + 1];
+
+        char tc0 = t.charAt(0);
+        for (int i = 0; i < s.length(); i++) {
+            char sc = s.charAt(i);
+            if (sc == tc0) {
+                dp[1][i + 1] = dp[1][i] + 1;
+            } else {
+                dp[1][i + 1] = dp[1][i];
+            }
+        }
+
+        for (int i = 1; i < t.length(); i++) {
+            char tc = t.charAt(i);
+            for (int j = 0; j < s.length(); j++) {
+                char sc = s.charAt(j);
+                if (tc == sc) {
+                    dp[i + 1][j + 1] = dp[i + 1][j] + dp[i][j];
+                } else {
+                    dp[i + 1][j + 1] = dp[i + 1][j];
+                }
+            }
+        }
+
+        LOGGER.info("dp = {}", ToString.arrayToFormatString(dp));
+
+        return dp[t.length()][s.length()];
     }
 }

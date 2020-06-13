@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,12 +29,22 @@ public class Q0118杨辉三角 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                4
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                List.of(
+                        List.of(1),
+                        List.of(1, 1),
+                        List.of(1, 2, 1),
+                        List.of(1, 3, 3, 1)
+                )
+        );
     }
 
     @Code(info = """
@@ -58,6 +71,25 @@ public class Q0118杨辉三角 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<List<Integer>> generate(int numRows) {
-        return null;
+        if(numRows<=0) return Collections.emptyList();
+
+        List<List<Integer>> ans = new ArrayList<>(numRows);
+        ans.add(List.of(1));
+
+        for (int i = 1; i < numRows; i++) {
+            List<Integer> pre = ans.get(i - 1);
+            List<Integer> cur = new ArrayList<>(i + 1);
+            cur.add(1);
+            for (int j = 1; j < pre.size(); j++) {
+                Integer c = pre.get(j);
+                Integer nc = pre.get(j - 1);
+                cur.add(c+nc);
+            }
+            cur.add(1);
+
+            ans.add(cur);
+        }
+
+        return ans;
     }
 }

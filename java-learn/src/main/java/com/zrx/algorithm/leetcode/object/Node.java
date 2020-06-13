@@ -3,6 +3,8 @@ package com.zrx.algorithm.leetcode.object;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 /**
  * Description
  * Node
@@ -33,5 +35,31 @@ public class Node {
         left = _left;
         right = _right;
         next = _next;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return val == node.val &&
+                Objects.equals(left, node.left) &&
+                Objects.equals(right, node.right) &&
+                Objects.equals(next, node.next);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, left, right, next);
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "val=" + val +
+                ", left=" + left +
+                ", right=" + right +
+                ", next=" + next +
+                '}';
     }
 };

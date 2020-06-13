@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,12 +26,17 @@ public class Q0119杨辉三角II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                3
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                List.of(1, 3, 3, 1)
+        );
     }
 
     @Code(info = """
@@ -53,6 +59,14 @@ public class Q0119杨辉三角II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<Integer> getRow(int rowIndex) {
-        return null;
+        List<Integer> ans = new ArrayList<>(rowIndex + 1);
+        ans.add(1);
+
+        for (int i = 1; i < rowIndex + 1; i++) {
+            Integer pre = ans.get(i - 1);
+            ans.add(pre * (rowIndex - i + 1) / i);
+        }
+
+        return ans;
     }
 }

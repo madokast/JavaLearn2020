@@ -24,14 +24,40 @@ import java.util.List;
 public class Q0117填充每个节点的下一个右侧节点指针II implements Question {
     private final static Logger LOGGER = LoggerFactory.getLogger(Q0117填充每个节点的下一个右侧节点指针II.class);
 
-    @Override
     public List<Input> getInputs() {
-        return null;
+        Node root = new Node();
+        Node left = new Node();
+        Node right = new Node();
+
+        root.val = 1;
+        root.left = left;
+        root.right = right;
+
+        left.val = 2;
+        right.val = 3;
+
+
+        return InputFactory.create(1, root);
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        Node root = new Node();
+        Node left = new Node();
+        Node right = new Node();
+
+        root.val = 1;
+        root.left = left;
+        root.right = right;
+
+        left.val = 2;
+        right.val = 3;
+
+        root.next = null;
+        left.next = right;
+        right.next = null;
+
+        return AnswerFactory.create(root);
     }
 
     @Code(info = """
@@ -74,6 +100,69 @@ public class Q0117填充每个节点的下一个右侧节点指针II implements 
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public Node connect(Node root) {
-        return null;
+        if (root == null) return null;
+        root.next = null;
+
+        Node leftMost = root;
+        while (leftMost != null) {
+            Node t = leftMost;
+
+            while (leftMost != null) {
+                wps(leftMost);
+                leftMost = leftMost.next;
+            }
+
+            while (t != null) {
+                Node left = t.left;
+                Node right = t.right;
+
+                if (left != null) {
+                    leftMost = left;
+                    break;
+                }
+
+                if (right != null) {
+                    leftMost = right;
+                    break;
+                }
+
+                t = t.next;
+            }
+        }
+
+        return root;
     }
+
+    private void wps(Node father) {
+        Node left = father.left;
+        Node right = father.right;
+        Node next = father.next;
+
+        Node rightNext = null;
+        while (next != null) {
+            Node nl = next.left;
+            Node nr = next.right;
+
+            if (nl != null) {
+                rightNext = nl;
+                break;
+            }
+
+            if (nr != null) {
+                rightNext = nr;
+                break;
+            }
+
+            next = next.next;
+        }
+
+        if (left != null) {
+            if (right != null) left.next = right;
+            else left.next = rightNext;
+        }
+
+        if (right != null) right.next = rightNext;
+    }
+
+
 }

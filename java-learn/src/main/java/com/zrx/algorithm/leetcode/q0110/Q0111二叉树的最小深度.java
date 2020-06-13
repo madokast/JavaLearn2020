@@ -26,12 +26,16 @@ public class Q0111二叉树的最小深度 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(3, 9, 20, null, null, 15, 7),
+                TreeNode.of(1, 2)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(2, 2);
     }
 
     @Code(info = """
@@ -57,6 +61,10 @@ public class Q0111二叉树的最小深度 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int minDepth(TreeNode root) {
-        return -1;
+        if (root == null) return 0;
+
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        return ((left == 0 || right == 0) ? Math.max(left, right) : Math.min(left, right)) + 1;
     }
 }
