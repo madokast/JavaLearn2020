@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.nio.channels.Pipe;
 import java.util.List;
 
 /**
@@ -25,12 +26,18 @@ public class Q0125验证回文串 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                "A man, a plan, a canal: Panama",
+                "race a car"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                true, false
+        );
     }
 
     @Code(info = """
@@ -49,6 +56,33 @@ public class Q0125验证回文串 implements Question {
             输出: false
             """)
     public boolean isPalindrome(String s) {
-        return false;
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        int i = 0;
+        int j = length - 1;
+
+        while (i <= j) {
+            while (i < length && !isAlphaAndNumber(chars[i])) i++;
+            while (j >= 0 && !isAlphaAndNumber(chars[j])) j--;
+
+            if (i < j) {
+                if (!isEqual(chars[i], chars[j])) return false;
+                i++;
+                j--;
+            } else break;
+        }
+
+        return true;
+    }
+
+    private boolean isAlphaAndNumber(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9');
+    }
+
+    private boolean isEqual(char c1, char c2) {
+        if (c1 == c2) return true;
+        if (c1 >= 'A' && c1 <= 'Z') c1 -= ('A' - 'a');
+        if (c2 >= 'A' && c2 <= 'Z') c2 -= ('A' - 'a');
+        return c1 == c2;
     }
 }

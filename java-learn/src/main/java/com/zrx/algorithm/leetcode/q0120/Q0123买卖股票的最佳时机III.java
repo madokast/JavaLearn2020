@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0120;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,19 @@ public class Q0123买卖股票的最佳时机III implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(3, 3, 5, 0, 0, 3, 1, 4),
+                ArrayFactory.create(1, 2, 3, 4, 5),
+                ArrayFactory.create(7, 6, 4, 3, 1)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                6, 4, 0
+        );
     }
 
     @Code(info = """
@@ -64,6 +72,28 @@ public class Q0123买卖股票的最佳时机III implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int maxProfit(int[] prices) {
-        return -1;
+        int length = prices.length;
+
+        int[] bug1 = new int[length + 1];
+        int[] bug2 = new int[length + 1];
+        int[] sell1 = new int[length + 1];
+        int[] sell2 = new int[length + 1];
+
+        bug1[0] = Integer.MIN_VALUE;
+        bug2[0] = Integer.MIN_VALUE;
+        sell1[0] = 0;
+        sell2[0] = 0;
+
+
+        for (int i = 0; i < prices.length; i++) {
+            int price = prices[i];
+            bug1[i + 1] = Math.max(bug1[i], -price);
+            sell1[i + 1] = Math.max(sell1[i], price + bug1[i]);
+
+            bug2[i + 1] = Math.max(bug2[i], sell1[i] - price);
+            sell2[i + 1] = Math.max(sell2[i], price + bug2[i]);
+        }
+
+        return Math.max(sell1[length], sell2[length]);
     }
 }

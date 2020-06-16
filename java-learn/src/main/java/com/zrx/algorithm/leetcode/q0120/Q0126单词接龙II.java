@@ -2,11 +2,13 @@ package com.zrx.algorithm.leetcode.q0120;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.RepeatableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -25,12 +27,27 @@ public class Q0126单词接龙II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+
+        //"qa"
+        //"sq"
+        //["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"]
+
+        return InputFactory.create(
+                3,
+                "hit", "cog", List.of("hot", "dot", "dog", "lot", "log", "cog"),
+                "hit", "cog", List.of("hot", "dot", "dog", "lot", "log")
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                RepeatableSet.of(
+                        List.of("hit", "hot", "dot", "dog", "cog"),
+                        List.of("hit", "hot", "lot", "log", "cog")
+                ),
+                List.of()
+        );
     }
 
     @Code(info = """
@@ -72,7 +89,59 @@ public class Q0126单词接龙II implements Question {
             链接：https://leetcode-cn.com/problems/word-ladder-ii
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        return null;
+    public List<List<String>> findLadders方法超时(String beginWord, String endWord, List<String> wordList) {
+        if (!wordList.contains(endWord)) return Collections.emptyList();
+
+        List<List<String>> ans = new ArrayList<>();
+        Deque<String> trace = new LinkedList<>();
+        trace.push(beginWord);
+
+        back(trace, endWord, wordList, ans);
+
+        return ans;
+    }
+
+    private void back(Deque<String> trace, String endWord, List<String> wordList, List<List<String>> ans) {
+        int size = wordList.size();
+        int min = ans.stream().mapToInt(List::size).min().orElse(Integer.MAX_VALUE);
+        int tSize = trace.size();
+        if (tSize > size || tSize > min || tSize > Math.pow(2, endWord.length())) return;
+        if (trace.peek().equals(endWord)) {
+            if (tSize <= min) {
+                if (tSize < min) ans.clear();
+                ArrayList<String> t = new ArrayList<>(trace);
+                Collections.reverse(t);
+                ans.add(t);
+            }
+        } else {
+            for (String s : wordList) {
+                if (!trace.contains(s) && canConvert(s, trace.peek())) {
+                    trace.push(s);
+                    back(trace, endWord, wordList, ans);
+                    trace.pop();
+                }
+            }
+        }
+    }
+
+    private boolean canConvert(String w1, String w2) {
+        int l1 = w1.length();
+        int l2 = w2.length();
+
+        if (l1 != l2) return false;
+
+        int diff = 0;
+
+        for (int i = 0; i < l1; i++) {
+            char c1 = w1.charAt(i);
+            char c2 = w2.charAt(i);
+
+            if (c1 != c2) {
+                diff++;
+                if (diff > 1) return false;
+            }
+        }
+
+        return diff == 1;
     }
 }

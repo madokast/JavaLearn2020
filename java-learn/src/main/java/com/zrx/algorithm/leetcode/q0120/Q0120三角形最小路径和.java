@@ -2,10 +2,12 @@ package com.zrx.algorithm.leetcode.q0120;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,12 +27,20 @@ public class Q0120三角形最小路径和 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                List.of(
+                        List.of(2),
+                        List.of(3, 4),
+                        List.of(6, 5, 7),
+                        List.of(4, 1, 8, 3)
+                )
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(11);
     }
 
     @Code(info = """
@@ -61,6 +71,31 @@ public class Q0120三角形最小路径和 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int minimumTotal(List<List<Integer>> triangle) {
-        return 0;
+        // 自底向上法
+        if (triangle == null) return 0;
+
+        int size = triangle.size();
+        if (size == 0) return 0;
+        if (size == 1) return triangle.get(0).get(0);
+
+        List<Integer> down = new ArrayList<>(triangle.get(size - 1));
+
+        for (int i = size - 2; i >= 0; i--) {
+            List<Integer> up = triangle.get(i);
+
+            List<Integer> newDown = new ArrayList<>();
+
+            for (int j = 0; j < up.size(); j++) {
+                Integer c = up.get(j);
+                Integer l = down.get(j);
+                Integer r = down.get(j + 1);
+                newDown.add(c + Math.min(l, r));
+            }
+
+            down = newDown;
+        }
+
+
+        return down.get(0);
     }
 }
