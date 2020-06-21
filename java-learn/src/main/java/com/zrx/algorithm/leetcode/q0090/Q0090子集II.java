@@ -87,7 +87,6 @@ public class Q0090子集II implements Question {
 
     private void back(Deque<Integer> stack, int[] nums, int start, List<List<Integer>> ans) {
         ans.add((new ArrayList<>(stack)));
-
         for (int i = start; i < nums.length; i++) {
             if (i > start && nums[i] == nums[i - 1]) continue;
 

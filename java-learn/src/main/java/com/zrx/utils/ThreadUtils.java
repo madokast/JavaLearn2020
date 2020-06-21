@@ -47,7 +47,7 @@ public class ThreadUtils {
                 e.printStackTrace();
             } finally {
                 if (t.isAlive()) {
-                    LOGGER.info("运行超时，强制解释线程{}", t.getName());
+                    LOGGER.info("运行超时，强制结束线程{}", t.getName());
                     for (StackTraceElement stackTraceElement : t.getStackTrace()) {
                         LOGGER.info("{}", stackTraceElement);
                     }

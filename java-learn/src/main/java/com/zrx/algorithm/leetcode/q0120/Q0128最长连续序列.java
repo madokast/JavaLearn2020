@@ -2,11 +2,16 @@ package com.zrx.algorithm.leetcode.q0120;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -25,12 +30,17 @@ public class Q0128最长连续序列 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                (Object) ArrayFactory.create(100, 4, 200, 1, 3, 2)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                4
+        );
     }
 
     @Code(info = """
@@ -49,6 +59,18 @@ public class Q0128最长连续序列 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int longestConsecutive(int[] nums) {
-        return -1;
+        if (nums == null || nums.length == 0) return 0;
+        Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+
+        int longestConsecutive = 0;
+        for (Integer e : set) {
+            if (!set.contains(e - 1)) {
+                int cur = 1;
+                while (set.contains(++e)) cur++;
+                longestConsecutive = Math.max(longestConsecutive, cur);
+            }
+        }
+
+        return longestConsecutive;
     }
 }

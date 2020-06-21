@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * Description
@@ -26,12 +27,18 @@ public class Q0129求根到叶子节点数字之和 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(1, 2, 3),
+                TreeNode.of(4, 9, 0, 5, 1)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                25, 1026
+        );
     }
 
     @Code(info = """
@@ -74,6 +81,30 @@ public class Q0129求根到叶子节点数字之和 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int sumNumbers(TreeNode root) {
-        return 0;
+        if(root==null) return 0;
+        int[] ans = {0};
+        dfs(root, 0, ans);
+        return ans[0];
+    }
+
+    private void dfs(TreeNode node, int cur, int[] ans) {
+        int val = node.val;
+        TreeNode left = node.left;
+        TreeNode right = node.right;
+
+        cur = cur * 10 + val;
+
+        if (left == null && right == null) ans[0] += cur;
+
+        if (left != null) dfs(left, cur, ans);
+        if (right != null) dfs(right, cur, ans);
+
+
+//        if (node == null) {
+//            ans[0] += cur;
+//        } else {
+//            dfs(node.left, cur * 10 + node.val, ans);
+//            dfs(node.right, cur * 10 + node.val, ans);
+//        }
     }
 }
