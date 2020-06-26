@@ -1,7 +1,8 @@
-package com.zrx.algorithm.leetcode.Q0130;
+package com.zrx.algorithm.leetcode.q0130;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,19 @@ public class q0136只出现一次的数字 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(2,2,1),
+                ArrayFactory.create(4,1,2,1,2)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                1,
+                4
+        );
     }
 
     @Code(info = """
@@ -54,7 +62,13 @@ public class q0136只出现一次的数字 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int singleNumber(int[] nums) {
-        return -1;
+        int ans = 0;
+        for (int num : nums) {
+            ans^=num;
+            LOGGER.info("num = {}", num);
+            LOGGER.info("ans = {}", ans);
+        }
+        return ans;
     }
 
 }

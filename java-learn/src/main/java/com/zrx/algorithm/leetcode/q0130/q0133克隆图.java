@@ -1,4 +1,4 @@
-package com.zrx.algorithm.leetcode.Q0130;
+package com.zrx.algorithm.leetcode.q0130;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -26,12 +26,50 @@ public class q0133克隆图 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        Node n1 = new Node();
+        n1.val = 1;
+        Node n2 = new Node();
+        n2.val = 1;
+        Node n3 = new Node();
+        n3.val = 1;
+        Node n4 = new Node();
+        n4.val = 1;
+
+        n1.neighbors = List.of(n2, n4);
+        n2.neighbors = List.of(n1, n3);
+        n3.neighbors = List.of(n2, n4);
+        n4.neighbors = List.of(n1, n3);
+
+        Node empty = new Node();
+        empty.val = 1;
+
+
+        return InputFactory.create(
+                1,
+                n1, empty
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        Node n1 = new Node();
+        n1.val = 1;
+        Node n2 = new Node();
+        n2.val = 1;
+        Node n3 = new Node();
+        n3.val = 1;
+        Node n4 = new Node();
+        n4.val = 1;
+
+        n1.neighbors = List.of(n2, n4);
+        n2.neighbors = List.of(n1, n3);
+        n3.neighbors = List.of(n2, n4);
+        n4.neighbors = List.of(n1, n3);
+
+        Node empty = new Node();
+        empty.val = 1;
+
+        return AnswerFactory.create(n1, empty);
     }
 
     @Code(info = """
@@ -93,6 +131,49 @@ public class q0133克隆图 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public Node cloneGraph(Node node) {
-        return null;
+        if (node == null) return null;
+
+        Map<Node, Node> visited = new HashMap<>();
+
+        Queue<Node> queue = new ArrayDeque<>(100);
+
+        queue.offer(node);
+
+        visited.put(node, new Node(node.val, new ArrayList<>(node.neighbors.size())));
+
+        while (!queue.isEmpty()) {
+            Node poll = queue.poll();
+
+            for (Node neighbor : poll.neighbors) {
+                if (!visited.containsKey(neighbor)) {
+                    visited.put(neighbor, new Node(neighbor.val, new ArrayList<>(neighbor.neighbors.size())));
+                    queue.add(neighbor);
+                }
+                visited.get(poll).neighbors.add(visited.get(neighbor));
+            }
+        }
+
+
+        return visited.get(node);
     }
+
+
+    public Node cloneGraph递归(Node node) {
+        if (node == null) return null;
+
+        if (map == null) map = new HashMap<>();
+
+        if (map.containsKey(node)) {
+            return map.get(node);
+        } else {
+            Node clone = new Node();
+            map.put(node, clone);
+            clone.val = node.val;
+            clone.neighbors = new ArrayList<>();
+            node.neighbors.forEach(n -> clone.neighbors.add(cloneGraph递归(n)));
+            return clone;
+        }
+    }
+
+    private Map<Node, Node> map = null;
 }

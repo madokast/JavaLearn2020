@@ -1,11 +1,13 @@
-package com.zrx.algorithm.leetcode.Q0130;
+package com.zrx.algorithm.leetcode.q0130;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,12 +27,20 @@ public class q0135分发糖果 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(1, 0, 2),
+                ArrayFactory.create(1, 3, 2),
+                ArrayFactory.create(1, 3, 4, 5, 2)
+
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                5, 4, 11
+        );
     }
 
     @Code(info = """
@@ -59,6 +69,27 @@ public class q0135分发糖果 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int candy(int[] ratings) {
-        return -1;
+        if (ratings == null || ratings.length == 0) return 0;
+
+        int[] candies = new int[ratings.length];
+        Arrays.fill(candies, 1);
+
+        for (int i = 0; i < ratings.length - 1; i++) {
+            int cur = ratings[i];
+            int next = ratings[i + 1];
+            if (next > cur) candies[i + 1] = candies[i] + 1;
+        }
+
+        LOGGER.info("candies = {}", candies);
+
+        for (int i = ratings.length - 1; i >= 1; i--) {
+            int cur = ratings[i];
+            int pre = ratings[i - 1];
+            if (pre > cur && candies[i - 1] <= candies[i]) candies[i - 1] = candies[i] + 1;
+        }
+
+        LOGGER.info("candies = {}", candies);
+
+        return Arrays.stream(candies).sum();
     }
 }
