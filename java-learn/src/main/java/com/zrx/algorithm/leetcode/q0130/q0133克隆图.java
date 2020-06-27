@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -130,7 +131,58 @@ public class q0133克隆图 implements Question {
             链接：https://leetcode-cn.com/problems/clone-graph
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public Node cloneGraph(Node node) {
+    public Node cloneGraph二刷广度优先搜索(Node node) {
+        if (node == null) return null;
+        Map<Node, Node> oldNewNodeMap = new HashMap<>();
+
+        Queue<Node> nodeQueue = new LinkedList<>();
+
+        Node enter = new Node(node.val);
+        enter.neighbors = new ArrayList<>(node.neighbors.size());
+        oldNewNodeMap.put(node, enter);
+        nodeQueue.offer(node);
+
+        while (!nodeQueue.isEmpty()) {
+            Node poll = nodeQueue.poll();
+
+            for (Node neighbor : poll.neighbors) {
+                if (!oldNewNodeMap.containsKey(neighbor)) {
+                    Node n = new Node(neighbor.val);
+                    n.neighbors = new ArrayList<>(neighbor.neighbors.size());
+                    oldNewNodeMap.put(neighbor, n);
+                    nodeQueue.offer(neighbor);
+                }
+
+                oldNewNodeMap.get(poll).neighbors.add(oldNewNodeMap.get(neighbor));
+            }
+        }
+
+        return oldNewNodeMap.get(node);
+    }
+
+
+    public Node cloneGraph二刷递归(Node node) {
+        if (node == null) return null;
+        Map<Node, Node> oldNewNodeMap = new HashMap<>();
+        cloneGraph二刷递归(node, oldNewNodeMap);
+        return oldNewNodeMap.get(node);
+    }
+
+    public void cloneGraph二刷递归(Node node, Map<Node, Node> oldNewNodeMap) {
+        Node curNode = new Node(node.val);
+        curNode.neighbors = new ArrayList<>(node.neighbors.size());
+        oldNewNodeMap.put(node, curNode);
+
+        for (Node neighbor : node.neighbors) {
+            if (!oldNewNodeMap.containsKey(neighbor)) {
+                cloneGraph二刷递归(neighbor, oldNewNodeMap);
+            }
+            curNode.neighbors.add(oldNewNodeMap.get(neighbor));
+        }
+    }
+
+
+    public Node cloneGraph一刷(Node node) {
         if (node == null) return null;
 
         Map<Node, Node> visited = new HashMap<>();

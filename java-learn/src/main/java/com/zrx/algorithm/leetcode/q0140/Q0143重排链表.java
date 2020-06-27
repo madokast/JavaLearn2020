@@ -26,12 +26,19 @@ public class Q0143重排链表 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ListNode.of("1->2->3->4"),
+                ListNode.of("1->2->3->4->5")
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ListNode.of("1->4->2->3"),
+                ListNode.of("1->5->2->4->3")
+        );
     }
 
     @Code(info = """
@@ -51,7 +58,17 @@ public class Q0143重排链表 implements Question {
             链接：https://leetcode-cn.com/problems/reorder-list
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void reorderList(ListNode head) {
+    public ListNode reorderList(ListNode head) {
+        return null;
+    }
 
+    /**
+     * 翻转链表
+     *
+     * @param head 头
+     * @return 翻转后链表
+     */
+    public ListNode reverse(ListNode head) {
+        return null;
     }
 }

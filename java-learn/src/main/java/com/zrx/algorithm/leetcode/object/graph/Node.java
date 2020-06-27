@@ -3,10 +3,7 @@ package com.zrx.algorithm.leetcode.object.graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -58,7 +55,7 @@ public class Node {
             for (Node neighbor : pop.neighbors) {
                 if (!ret.contains(neighbor)) {
                     ret.add(neighbor);
-                    System.out.println("neighbor = " + neighbor);
+                    //System.out.println("neighbor = " + neighbor);
                     stack.push(neighbor);
                 }
             }
@@ -91,6 +88,58 @@ public class Node {
             }
         }
 
+    }
+
+    // 克隆图 递归法 深度优先遍历
+    public static Node cloneDFS(Node node) {
+        if (node == null) return null;
+        Map<Node, Node> oldNewNodeMap = new HashMap<>();
+        cloneDFS0(node, oldNewNodeMap);
+        return oldNewNodeMap.get(node);
+    }
+
+    // 克隆图 递归法 深度优先遍历 helper
+    private static void cloneDFS0(Node node, Map<Node, Node> oldNewNodeMap) {
+        Node curNode = new Node(node.val);
+        curNode.neighbors = new ArrayList<>(node.neighbors.size());
+        oldNewNodeMap.put(node, curNode);
+
+        for (Node neighbor : node.neighbors) {
+            if (!oldNewNodeMap.containsKey(neighbor)) {
+                cloneDFS0(neighbor, oldNewNodeMap);
+            }
+            curNode.neighbors.add(oldNewNodeMap.get(neighbor));
+        }
+    }
+
+    // 克隆图 广度优先搜素
+    public static Node cloneBFS(Node node) {
+        if (node == null) return null;
+        Map<Node, Node> oldNewNodeMap = new HashMap<>();
+
+        Queue<Node> nodeQueue = new LinkedList<>();
+
+        Node enter = new Node(node.val);
+        enter.neighbors = new ArrayList<>(node.neighbors.size());
+        oldNewNodeMap.put(node, enter);
+        nodeQueue.offer(node);
+
+        while (!nodeQueue.isEmpty()) {
+            Node poll = nodeQueue.poll();
+
+            for (Node neighbor : poll.neighbors) {
+                if (!oldNewNodeMap.containsKey(neighbor)) {
+                    Node n = new Node(neighbor.val);
+                    n.neighbors = new ArrayList<>(neighbor.neighbors.size());
+                    oldNewNodeMap.put(neighbor, n);
+                    nodeQueue.offer(neighbor);
+                }
+
+                oldNewNodeMap.get(poll).neighbors.add(oldNewNodeMap.get(neighbor));
+            }
+        }
+
+        return oldNewNodeMap.get(node);
     }
 
     @Override

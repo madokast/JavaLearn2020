@@ -26,12 +26,23 @@ public class Q0141环形链表 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        ListNode l1 = ListNode.of(3, 2, 0, 4);
+        l1.get(3).next = l1.get(1);
+        ListNode l2 = ListNode.of(1, 2);
+        l2.get(1).next = l2;
+        return InputFactory.create(
+                1,
+                l1,
+                l2,
+                ListNode.of(1)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                true, true, false
+        );
     }
 
     @Code(info = """
@@ -73,6 +84,20 @@ public class Q0141环形链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean hasCycle(ListNode head) {
-        return false;
+        if (head == null) return false;
+
+        // 快慢指针法
+        ListNode slow = head;
+        ListNode fast = head;
+
+        for (; ; ) {
+            slow = slow.next;
+
+            ListNode temp = fast.next;
+            if (temp == null) return false;
+            fast = temp.next;
+            if (fast == null) return false;
+            if (slow == fast) return true;
+        }
     }
 }

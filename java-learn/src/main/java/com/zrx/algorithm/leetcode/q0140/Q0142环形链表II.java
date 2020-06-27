@@ -26,12 +26,31 @@ public class Q0142环形链表II implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        ListNode l1 = ListNode.of(3, 2, 0, 4);
+        l1.get(3).next = l1.get(1);
+        ListNode l2 = ListNode.of(1, 2);
+        l2.get(1).next = l2;
+        return InputFactory.create(
+                1,
+                l1,
+                l2,
+                ListNode.of(1)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+//        ListNode l1 = ListNode.of(3, 2, 0, 4);
+//        l1.get(3).next = l1.get(1);
+//        ListNode l2 = ListNode.of(1, 2);
+//        l2.get(1).next = l2;
+//        return AnswerFactory.create(
+//                l1.get(1), l2.get(0), null
+//        );
+
+        return AnswerFactory.create(
+                1, 0, -1
+        );
     }
 
     @Code(info = """
@@ -73,7 +92,49 @@ public class Q0142环形链表II implements Question {
             链接：https://leetcode-cn.com/problems/linked-list-cycle-ii
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public ListNode detectCycle(ListNode head) {
-        return null;
+    public Integer detectCycle(ListNode head) {
+        if (head == null) return -1;
+
+        // 快慢指针法
+        ListNode slow = head;
+        ListNode fast = head;
+
+        do {
+            slow = slow.next;
+
+            ListNode temp = fast.next;
+            if (temp == null) return -1;
+            fast = temp.next;
+            if (fast == null) return -1;
+        } while (slow != fast);
+
+        // slow == fast
+
+        slow = head;
+        int pos = 0;
+        while (slow != fast) {
+            pos++;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return pos;
     }
+
+
+    //        if (head == null) return false;
+    //
+    //        // 快慢指针法
+    //        ListNode slow = head;
+    //        ListNode fast = head;
+    //
+    //        for (; ; ) {
+    //            slow = slow.next;
+    //
+    //            ListNode temp = fast.next;
+    //            if (temp == null) return false;
+    //            fast = temp.next;
+    //            if (fast == null) return false;
+    //            if (slow == fast) return true;
+    //        }
 }

@@ -30,6 +30,12 @@ public class ListNode {
         val = x;
     }
 
+    /**
+     * 构造链表
+     *
+     * @param values 元素
+     * @return 表头
+     */
     public static ListNode of(int... values) {
         ListNode head = new ListNode(values[0]);
 
@@ -43,6 +49,12 @@ public class ListNode {
         return head;
     }
 
+    /**
+     * "1->2->3->4->5" 形式制作链表
+     *
+     * @param s "1->2->3->4->5" 形式
+     * @return 链表头
+     */
     public static ListNode of(String s) {
         return of(
                 Arrays.stream(s.split("->"))
@@ -101,5 +113,12 @@ public class ListNode {
     @Override
     public int hashCode() {
         return Arrays.hashCode(toArray());
+    }
+
+    public ListNode get(int index) {
+        ListNode node = this;
+        while (index-- > 0) node = node.next;
+
+        return node;
     }
 }
