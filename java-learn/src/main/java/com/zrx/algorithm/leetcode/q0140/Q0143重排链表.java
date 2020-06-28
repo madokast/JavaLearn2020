@@ -3,6 +3,7 @@ package com.zrx.algorithm.leetcode.q0140;
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.object.ListNode;
+import com.zrx.algorithm.leetcode.object.Node;
 import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author zrx
  * @version 1.0
  */
+
 
 @Component
 public class Q0143重排链表 implements Question {
@@ -59,7 +61,51 @@ public class Q0143重排链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode reorderList(ListNode head) {
-        return null;
+        if (head == null) return null;
+        if (head.next == null) return head;
+
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode slowPre = new ListNode(0);
+        slowPre.next = slow;
+
+        while (true) {
+            slow = slow.next;
+            slowPre = slowPre.next;
+
+            ListNode temp = fast.next;
+            if (temp == null) break;
+            fast = temp.next;
+            if (fast == null) break;
+        }
+        slowPre.next = null;
+
+        ListNode l1 = head;
+
+        ListNode l2 = reverse(slow);
+
+        boolean l1First = true;
+
+        LOGGER.info("l1 = {}", l1);
+        LOGGER.info("l2 = {}", l2);
+
+        while (true) {
+            if (l1First) {
+                ListNode temp = l1.next;
+                l1.next = l2;
+                l1 = temp;
+                if(temp==null) break;
+                l1First = false;
+            } else {
+                ListNode temp = l2.next;
+                l2.next = l1;
+                l2 = temp;
+                if(temp==null) break;
+                l1First = true;
+            }
+        }
+
+        return head;
     }
 
     /**
@@ -69,6 +115,24 @@ public class Q0143重排链表 implements Question {
      * @return 翻转后链表
      */
     public ListNode reverse(ListNode head) {
-        return null;
+        if (head == null) return null;
+        if (head.next == null) return head;
+
+        ListNode cur = head;
+        ListNode next = cur.next;
+        cur.next = null;
+
+        while (next != null) {
+            ListNode nn = next.next;
+
+            next.next = cur;
+
+
+            cur = next;
+            next = nn;
+        }
+
+
+        return cur;
     }
 }

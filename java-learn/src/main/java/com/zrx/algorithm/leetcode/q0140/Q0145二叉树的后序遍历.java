@@ -7,7 +7,7 @@ import com.zrx.utils.MyLoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -26,12 +26,17 @@ public class Q0145二叉树的后序遍历 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(1, null, 2, 3)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                List.of(3, 2, 1)
+        );
     }
 
     @Code(info = """
@@ -53,7 +58,47 @@ public class Q0145二叉树的后序遍历 implements Question {
             链接：https://leetcode-cn.com/problems/binary-tree-postorder-traversal
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
+
     public List<Integer> postorderTraversal(TreeNode root) {
-        return null;
+        if (root == null) return Collections.emptyList();
+
+        List<Integer> ans = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        Deque<Boolean> colorStack = new LinkedList<>();
+
+        stack.push(root);
+        colorStack.push(WHITE);
+
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            Boolean color = colorStack.pop();
+
+            if (color == WHITE) {
+                TreeNode left = pop.left;
+                TreeNode right = pop.right;
+
+                stack.push(pop);
+                colorStack.push(GREY);
+
+                if (right != null) {
+                    stack.push(right);
+                    colorStack.push(WHITE);
+                }
+
+                if (left != null) {
+                    stack.push(left);
+                    colorStack.push(WHITE);
+                }
+            }
+
+            if (color == GREY) {
+                ans.add(pop.val);
+            }
+        }
+
+        return ans;
     }
+
+    private static final Boolean GREY = false;
+    private static final Boolean WHITE = true;
 }
