@@ -26,12 +26,19 @@ public class Q0147对链表进行插入排序 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ListNode.of("4->2->1->3"),
+                ListNode.of("-1->5->3->4->0")
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                ListNode.of("1->2->3->4"),
+                ListNode.of("-1->0->3->4->5")
+        );
     }
 
     @Code(info = """
