@@ -71,6 +71,33 @@ public class Q0147对链表进行插入排序 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode insertionSortList(ListNode head) {
-        return null;
+        if (head == null) return null;
+
+        return insertionSortList(head, head);
+    }
+
+    private ListNode insertionSortList(ListNode head, ListNode pre) {
+        LOGGER.info("head = {}, pre = {}", head, pre);
+        if (pre.next == null) return head;
+
+        ListNode node = pre.next;
+        if (pre.val <= node.val) { // order
+            return insertionSortList(head, node);
+        } else {
+            pre.next = node.next;
+
+            if (node.val <= head.val) {
+                node.next = head;
+                return insertionSortList(node, pre);
+            } else {
+                for (ListNode n = head; ; n = n.next) {
+                    if (node.val <= n.next.val) {
+                        node.next = n.next;
+                        n.next = node;
+                        return insertionSortList(head, pre);
+                    }
+                }
+            }
+        }
     }
 }
