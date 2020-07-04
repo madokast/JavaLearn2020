@@ -2,15 +2,18 @@ package com.zrx.algorithm.leetcode.q0150;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Description
- *  逆波兰表达式求值
+ * 逆波兰表达式求值
  * <p>
  * Data
  * 2020/7/2-21:59
@@ -25,12 +28,26 @@ public class Q0150逆波兰表达式求值 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(
+                        "2", "1", "+", "3", "*"
+                ),
+                ArrayFactory.create(
+                        "4", "13", "5", "/", "+"
+                ), ArrayFactory.create(
+                        "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"
+                )
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                9
+                , 6
+                , 22
+        );
     }
 
     @Code(info = """
@@ -87,6 +104,39 @@ public class Q0150逆波兰表达式求值 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int evalRPN(String[] tokens) {
-        return -1;
+        Deque<Integer> stack = new LinkedList<>();
+
+        Integer pop1 = null;
+        Integer pop2 = null;
+
+
+        for (String token : tokens) {
+            switch (token) {
+                case "+":
+                    pop1 = stack.pop();
+                    pop2 = stack.pop();
+                    stack.push(pop2 + pop1);
+                    break;
+                case "-":
+                    pop1 = stack.pop();
+                    pop2 = stack.pop();
+                    stack.push(pop2 - pop1);
+                    break;
+                case "*":
+                    pop1 = stack.pop();
+                    pop2 = stack.pop();
+                    stack.push(pop2 * pop1);
+                    break;
+                case "/":
+                    pop1 = stack.pop();
+                    pop2 = stack.pop();
+                    stack.push(pop2 / pop1);
+                    break;
+                default:
+                    stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.pop();
     }
 }

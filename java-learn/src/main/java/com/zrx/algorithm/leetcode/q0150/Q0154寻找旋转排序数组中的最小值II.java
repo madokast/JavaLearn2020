@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0150;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,20 @@ public class Q0154寻找旋转排序数组中的最小值II implements Question 
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(1, 3, 5),
+                ArrayFactory.create(2, 2, 2, 0, 1),
+                ArrayFactory.create(10, 1, 10, 10, 10),
+                AnswerFactory.create(1, 3, 3, 3)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                1, 0, 1, 1
+        );
     }
 
     @Code(info = """
@@ -60,6 +69,36 @@ public class Q0154寻找旋转排序数组中的最小值II implements Question 
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int findMin(int[] nums) {
-        return -1;
+        return findMin(nums, 0, nums.length - 1);
+    }
+
+    private int findMin(int[] nums, int startIn, int endIn) {
+        if (startIn == endIn) return nums[startIn];
+
+        int mid = (startIn + endIn) / 2;
+
+        int s = nums[startIn];
+        int m = nums[mid];
+        int m1 = nums[mid + 1];
+        int e = nums[endIn];
+
+        if (startIn == mid || m > s) {
+            // part1 ordered
+            if (endIn == mid + 1 || e > m1) {
+                // part2 ordered
+                return Math.min(s, m1);
+            } else {
+                // part2 unordered
+                return Math.min(s, findMin(nums, mid + 1, endIn));
+            }
+        } else {
+            if (endIn == mid + 1 || e > m1) {
+                // part2 ordered
+                return Math.min(m1, findMin(nums, startIn, mid));
+            } else {
+                // part2 unordered
+                return Math.min(findMin(nums, mid + 1, endIn), findMin(nums, startIn, mid));
+            }
+        }
     }
 }

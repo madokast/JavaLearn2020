@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0150;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,23 @@ public class Q0159至多包含两个不同字符的最长子串 implements Quest
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                "eceba",
+                "ccaabbb",
+                "a",
+                "aac",
+                "abaccc",
+                "eceba",
+                "abcabcabc"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                3, 5, 1, 3, 4, 3, 2
+        );
     }
 
     @Code(info = """
@@ -52,6 +64,51 @@ public class Q0159至多包含两个不同字符的最长子串 implements Quest
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int lengthOfLongestSubstringTwoDistinct(String s) {
-        return -1;
+        char c1 = '\0';
+        int c1Pos = 0;
+        int c1PosMax = 0;
+        char c2 = '\0';
+        int c2Pos = 0;
+        int c2PosMax = 0;
+
+        int max = 0;
+
+        char[] ss = s.toCharArray();
+        int length = ss.length;
+        for (int i = 0; i < length; i++) {
+            char c = ss[i];
+
+            if (c1 == '\0') {
+                c1 = c;
+                c1Pos = i;
+            } else {
+                if (c1 != c && c2 == '\0') {
+                    c2 = c;
+                    c2Pos = i;
+                } else {
+                    if (!(c1 == c || c2 == c)) {
+                        // full
+                        char pre = ss[i - 1];
+                        if (pre == c1) {
+                            c2 = c;
+                            c2Pos = i;
+                            c1Pos = c2PosMax + 1;
+                        } else {
+                            c1 = c;
+                            c1Pos = i;
+                            c2Pos = c1PosMax + 1;
+                        }
+                    }
+                }
+            }
+            if (c1 == c) c1PosMax = i;
+            if (c2 == c) c2PosMax = i;
+
+            LOGGER.info("o = {}", ToString.arrayToFormatString(new Object[]{c, c1, c2, c1Pos, c2Pos, i}));
+            max = Math.max(max, i - Math.min(c1Pos, c2Pos) + 1);
+        }
+
+
+        return max;
     }
 }

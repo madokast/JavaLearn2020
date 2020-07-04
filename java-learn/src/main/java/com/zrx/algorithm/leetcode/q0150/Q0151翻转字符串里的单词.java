@@ -2,11 +2,14 @@ package com.zrx.algorithm.leetcode.q0150;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Description
@@ -25,12 +28,21 @@ public class Q0151翻转字符串里的单词 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                "the sky is blue",
+                "  hello world!  ",
+                "a good  example"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                "blue is sky the",
+                "world! hello",
+                "example good a"
+        );
     }
 
     @Code(info = """
@@ -70,6 +82,19 @@ public class Q0151翻转字符串里的单词 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String reverseWords(String s) {
-        return null;
+        String[] split = s.trim().split("\\s+");
+
+        LOGGER.info("split = {}", ToString.arrayToFormatString(split));
+        StringBuilder sb = new StringBuilder();
+
+
+        for (int i = split.length - 1; i >= 0; i--) {
+            String ss = split[i];
+            sb.append(ss);
+            sb.append(" ");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+
+        return sb.toString();
     }
 }

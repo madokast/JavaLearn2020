@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,12 +26,26 @@ public class Q0157用Read4读取N个字符 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                true
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        boolean b = true;
+
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            b = false;
+        }
+
+        return AnswerFactory.create(
+                b
+        );
     }
 
     @Code(info = """
@@ -103,31 +118,37 @@ public class Q0157用Read4读取N个字符 implements Question {
             链接：https://leetcode-cn.com/problems/read-n-characters-given-read4
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public boolean fun(boolean b){
+    public boolean fun(boolean b) {
         return b;
     }
 
 
-
-
     /**
      * The read4 API is defined in the parent class Reader4.
-     *     int read4(char[] buf);
+     * int read4(char[] buf);
      */
 
     public class Solution extends Reader4 {
         /**
          * @param buf Destination buffer
          * @param n   Number of characters to read
-         * @return    The number of actual characters read
+         * @return The number of actual characters read
          */
         public int read(char[] buf, int n) {
-            return -1;
+            int pos = 0;
+            char[] read4Buf = new char[4];
+            do {
+                int r4 = read4(read4Buf);
+                if (r4 == 0) break;
+                System.arraycopy(read4Buf, 0, buf, pos, Math.min(r4, n - pos));
+                pos += Math.min(r4, n - pos);
+            } while (pos < n);
+            return pos;
         }
     }
 
-    public class Reader4{
-        public int read4(char[] buf){
+    public class Reader4 {
+        public int read4(char[] buf) {
             return -1;
         }
     }

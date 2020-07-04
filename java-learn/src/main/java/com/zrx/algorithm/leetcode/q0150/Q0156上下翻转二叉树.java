@@ -26,12 +26,17 @@ public class Q0156上下翻转二叉树 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return null;
+        return InputFactory.create(
+                1,
+                TreeNode.of(1, 2, 3, 4, 5)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return null;
+        return AnswerFactory.create(
+                TreeNode.of(4, 5, 2, null, null, 3, 1)
+        );
     }
 
     @Code(info = """
@@ -76,6 +81,36 @@ public class Q0156上下翻转二叉树 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public TreeNode upsideDownBinaryTree(TreeNode root) {
-        return null;
+        if(root==null) return null;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        if (left == null) return root;
+        root.left = null;
+        root.right = null;
+
+        TreeNode ll = left.left;
+        TreeNode lr = left.right;
+
+        TreeNode newRoot = left;
+        newRoot.left = right;
+        newRoot.right = root;
+
+        while (ll != null) {
+            TreeNode oldRoot = newRoot;
+
+            left = ll.left;
+            right = ll.right;
+
+            newRoot = ll;
+            newRoot.right = oldRoot;
+            newRoot.left = lr;
+//            lr.left = null;
+//            lr.right = null;
+
+            ll = left;
+            lr = right;
+        }
+
+        return newRoot;
     }
 }
