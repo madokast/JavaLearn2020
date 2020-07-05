@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0160;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,16 @@ public class Q0162寻找峰值 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(1, 2, 3, 1),
+                ArrayFactory.create(1, 2, 1, 3, 5, 6, 4)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(2, 5);
     }
 
     @Code(info = """
@@ -62,6 +67,37 @@ public class Q0162寻找峰值 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int findPeakElement(int[] nums) {
-        return 1;
+        int left = 0; // up
+        int right = nums.length - 1; // down
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            int midNumber = nums[mid];
+            Integer midLeft = mid > 0 ? nums[mid - 1] : null;
+            Integer midRight = mid < nums.length - 1 ? nums[mid + 1] : null;
+
+            if (midLeft == null || midNumber > midLeft) {
+                if (midRight == null || midNumber > midRight) {
+                    return mid;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                if (midRight == null || midNumber > midRight) {
+                    right = mid - 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+
+//            if (midLeft == null || midNumber > midLeft) {
+//                if (midRight == null || midNumber > midRight) return mid;
+//                left = mid;
+//            } else {
+//                right = mid - 1;
+//            }
+        }
+
+        return -1;
     }
 }

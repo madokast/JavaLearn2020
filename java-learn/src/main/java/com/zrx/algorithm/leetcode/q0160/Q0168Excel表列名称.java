@@ -6,11 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Description
  * Excel表列名称
+ * 难题：看了答案的，背下来
  * <p>
  * Data
  * 2020/7/4-22:30
@@ -25,12 +28,17 @@ public class Q0168Excel表列名称 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                1, 28, 701
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                "A", "AB", "ZY"
+        );
     }
 
     @Code(info = """
@@ -64,6 +72,38 @@ public class Q0168Excel表列名称 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String convertToTitle(int n) {
-        return null;
+
+        StringBuilder sb = new StringBuilder();
+        LinkedList<Integer> resList = new LinkedList<>();
+
+        int offset = 'A';
+
+        while (n > 0) {
+            n--;
+            int res = n % 26;
+            n = n / 26;
+            sb.append((char) (res + offset));
+        }
+
+
+        return sb.reverse().toString();
+    }
+
+    private String repeat(String a, int size) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            sb.append(a);
+        }
+
+        return sb.toString();
+    }
+
+    private boolean all25(LinkedList<Integer> resList) {
+        for (Integer integer : resList) {
+            if (integer != 25)
+                return false;
+        }
+
+        return true;
     }
 }

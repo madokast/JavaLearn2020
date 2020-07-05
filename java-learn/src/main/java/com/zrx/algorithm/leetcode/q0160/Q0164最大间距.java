@@ -2,10 +2,13 @@ package com.zrx.algorithm.leetcode.q0160;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 /**
@@ -25,12 +28,17 @@ public class Q0164最大间距 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(3, 6, 9, 1),
+                ArrayFactory.create(10),
+                ArrayFactory.create(1, 10000000)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(3, 0, 10000000 - 1);
     }
 
     @Code(info = """
@@ -59,6 +67,50 @@ public class Q0164最大间距 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int maximumGap(int[] nums) {
-return -1;
+        int length = nums.length;
+        if (length < 2) return 0;
+
+
+        double max = Arrays.stream(nums).max().getAsInt();
+        double min = Arrays.stream(nums).min().getAsInt();
+
+        int size = (int) Math.ceil((max - min) / (length - 1));
+
+        int num = (int) Math.ceil((max - min) / size);
+
+        int[] maxBox = new int[num + 1];
+        Arrays.fill(maxBox, Integer.MIN_VALUE);
+        int[] minBox = new int[num + 1];
+        Arrays.fill(minBox, Integer.MAX_VALUE);
+
+        for (int n : nums) {
+            int index = (int) Math.ceil((n - min) / size);
+            maxBox[index] = Math.max(maxBox[index], n);
+            minBox[index] = Math.min(minBox[index], n);
+        }
+
+        LOGGER.info("minBox = {}", minBox);
+        LOGGER.info("maxBox = {}", maxBox);
+
+        int ans = 0;
+        for (int i = 0; i < num ; i++) {
+            int preMax = maxBox[i];
+            while (preMax == Integer.MIN_VALUE) {
+                i++;
+                preMax = maxBox[i];
+            }
+            int next = 1;
+            if(i+next>num) break;
+            int curMin = minBox[i + next];
+            while (curMin == Integer.MAX_VALUE) {
+                next++;
+                if(i+next>num) break;
+                curMin = minBox[i + next];
+            }
+
+            ans = Math.max(ans, curMin - preMax);
+        }
+
+        return ans;
     }
 }

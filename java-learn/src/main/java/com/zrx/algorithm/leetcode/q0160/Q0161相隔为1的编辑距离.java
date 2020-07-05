@@ -25,12 +25,17 @@ public class Q0161相隔为1的编辑距离 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                2,
+                "ab", "acb",
+                "cab", "ad",
+                "1203", "1213"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(true, false, true);
     }
 
     @Code(info = """
@@ -64,6 +69,37 @@ public class Q0161相隔为1的编辑距离 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isOneEditDistance(String s, String t) {
-        return false;
+        int sLen = s.length();
+        int tLen = t.length();
+
+        int i = 0;
+
+        if (sLen == tLen) {
+            while (i < sLen && s.charAt(i) == t.charAt(i)) i++;
+            if (i == sLen) return false;
+            i++;
+            while (i < sLen && s.charAt(i) == t.charAt(i)) i++;
+            return i == sLen;
+        } else if (sLen > tLen) {
+            while (i < sLen && s.charAt(i) == t.charAt(i)) i++;
+            int si = i + 1;
+            int ti = i;
+            while (si < sLen && ti < tLen && s.charAt(si) == t.charAt(ti)) {
+                si++;
+                ti++;
+            }
+            return si == sLen && ti == tLen;
+        } else {
+            while (i < sLen && s.charAt(i) == t.charAt(i)) i++;
+            int si = i;
+            int ti = i + 1;
+            while (si < sLen && ti < tLen && s.charAt(si) == t.charAt(ti)) {
+                si++;
+                ti++;
+            }
+            return si == sLen && ti == tLen;
+        }
+
+
     }
 }

@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import javax.validation.constraints.DecimalMax;
+import java.util.*;
 
 /**
  * Description
@@ -25,12 +26,29 @@ public class Q0166分数到小数 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                2,
+                1, 2,
+                2, 1,
+                2, 3,
+                1, 7,
+                1, 6,
+                16, 99,
+                -1, -2147483648
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                "0.5",
+                "2",
+                "0.(6)",
+                "0.(142857)",
+                "0.1(6)",
+                "0.(16)",
+                "0.0000000004656612873077392578125"
+        );
     }
 
     @Code(info = """
@@ -56,6 +74,66 @@ public class Q0166分数到小数 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String fractionToDecimal(int numerator, int denominator) {
-        return null;
+        if (numerator == 0) return "0";
+
+        boolean sign = true; // true -> +
+        if (numerator > 0) {
+            numerator = -numerator;
+            sign = false;
+        }
+
+        if (denominator > 0) {
+            denominator = -denominator;
+            sign = !sign;
+        }
+
+
+        long integerPart = (long) numerator / denominator;
+        StringBuilder decimalPart = new StringBuilder(32);
+        String decimalPart1 = "";
+        String decimalPart2 = "";
+
+        long res = numerator % denominator;
+
+        boolean hasRes = true;
+        boolean clear = false;
+
+        if (res == 0) hasRes = false;
+        else {
+            Map<Long, Integer> resMap = new HashMap<>();
+
+
+            int index = 0;
+            while (!resMap.containsKey(res)) {
+                resMap.put(res, index);
+                index++;
+                res *= 10;
+                decimalPart.append(res / denominator);
+                LOGGER.info("{}/{} = {}", res, denominator, res / denominator);
+                LOGGER.info("{}%{} = {}", res, denominator, res % denominator);
+                res = res % denominator;
+                if (res == 0) {
+                    clear = true;
+                    break;
+                }
+            }
+
+            if (res != 0) {
+                Integer firstAppear = resMap.get(res);
+                LOGGER.info("firstAppear = {}", firstAppear);
+
+                decimalPart1 = decimalPart.substring(0, firstAppear);
+                decimalPart2 = decimalPart.substring(firstAppear, decimalPart.length());
+
+                LOGGER.info("res = {}", res);
+
+                LOGGER.info("integerPart = {}", integerPart);
+                LOGGER.info("decimalPart = {}", decimalPart);
+            }
+
+
+        }
+
+        return (sign ? "" : "-") + integerPart + (hasRes ? ("." + (clear ? decimalPart : (decimalPart1 + ("(" + decimalPart2 + ")")))) : "");
     }
 }

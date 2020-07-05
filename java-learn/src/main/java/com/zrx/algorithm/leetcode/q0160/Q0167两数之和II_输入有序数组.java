@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0160;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,17 @@ public class Q0167两数之和II_输入有序数组 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                2,
+                (Object) ArrayFactory.create(2, 7, 11, 15), 9
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                (Object) ArrayFactory.create(1, 2)
+        );
     }
 
     @Code(info = """
@@ -53,6 +59,23 @@ public class Q0167两数之和II_输入有序数组 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int[] twoSum(int[] numbers, int target) {
-        return null;
+        int left = 0;
+        int length = numbers.length;
+        int right = length - 1;
+
+        for (; ; ) {
+            int l = numbers[left];
+            int r = numbers[right];
+
+            int sum = l + r;
+            if (sum > target) {
+                right--;
+            } else if (sum < target) {
+                left++;
+            } else {
+                return new int[]{left + 1, 1 + right};
+            }
+
+        }
     }
 }

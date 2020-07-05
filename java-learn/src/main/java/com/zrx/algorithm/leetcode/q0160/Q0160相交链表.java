@@ -26,12 +26,47 @@ public class Q0160相交链表 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        ListNode l1 = ListNode.of(4, 1);
+        ListNode l2 = ListNode.of(5, 0, 1);
+
+        ListNode l3 = ListNode.of(8, 4, 5);
+        l1.get(1).next = l3;
+        l2.get(2).next = l3;
+
+        ListNode l4 = ListNode.of(0, 9, 1);
+        ListNode l5 = ListNode.of(3);
+        ListNode l6 = ListNode.of(2, 4);
+
+        l4.get(2).next = l6;
+        l5.get(0).next = l6;
+
+        return InputFactory.create(
+                2,
+                l1, l2,
+                l4, l5,
+                ListNode.of(1, 2), ListNode.of(1, 2, 3)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+//        ListNode l1 = ListNode.of(4, 1);
+//        ListNode l2 = ListNode.of(5, 0, 1);
+
+        ListNode l3 = ListNode.of(8, 4, 5);
+//        l1.get(1).next = l3;
+//        l2.get(2).next = l3;
+
+//        ListNode l4 = ListNode.of(0, 9, 1);
+//        ListNode l5 = ListNode.of(3);
+        ListNode l6 = ListNode.of(2, 4);
+
+//        l4.get(2).next = l6;
+//        l5.get(0).next = l6;
+
+        return AnswerFactory.create(
+                l3, l6, null
+        );
     }
 
     @Code(info = """
@@ -85,6 +120,50 @@ public class Q0160相交链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int s1AddS = 0;
+        int s2AddS = 0;
+
+        ListNode aNode = headA;
+        ListNode bNode = headB;
+
+        while (aNode != null) {
+            aNode = aNode.next;
+            s1AddS++;
+        }
+
+        while (bNode != null) {
+            bNode = bNode.next;
+            s2AddS++;
+        }
+
+        int diff;
+        ListNode longList;
+        ListNode shortList;
+
+        if (s1AddS > s2AddS) {
+            diff = s1AddS - s2AddS;
+            longList = headA;
+            shortList = headB;
+        } else {
+            diff = s2AddS - s1AddS;
+            longList = headB;
+            shortList = headA;
+        }
+
+        while (diff > 0) {
+            longList = longList.next;
+            diff--;
+        }
+
+        while (longList != null && shortList != null) {
+            if (longList == shortList)
+                return longList;
+            else {
+                longList = longList.next;
+                shortList = shortList.next;
+            }
+        }
+
         return null;
     }
 }
