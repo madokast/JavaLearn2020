@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0160;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -112,12 +113,16 @@ public class Q0169多数元素 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(3, 2, 3),
+                ArrayFactory.create(2, 2, 1, 1, 1, 2, 2)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(3, 2);
     }
 
     @Code(info = """
@@ -141,6 +146,21 @@ public class Q0169多数元素 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int majorityElement(int[] nums) {
-        return -1;
+
+        int candidateNumber = nums[0]+1;
+        int votes = 1;
+
+        for (int num : nums) {
+            if(candidateNumber==num) votes++;
+            else {
+                votes--;
+                if(votes==0){
+                    candidateNumber=num;
+                    votes=1;
+                }
+            }
+        }
+
+        return candidateNumber;
     }
 }
