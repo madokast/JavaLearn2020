@@ -6,7 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description
@@ -25,12 +28,12 @@ public class Q0170两数之和III_数据结构设计 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(1,true);
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(true);
     }
 
     @Code(info = """
@@ -54,24 +57,43 @@ public class Q0170两数之和III_数据结构设计 implements Question {
             链接：https://leetcode-cn.com/problems/two-sum-iii-data-structure-design
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public boolean fun(boolean b){
+    public boolean fun(boolean b) {
         return b;
     }
 
     static class TwoSum {
 
-        /** Initialize your data structure here. */
+        private Map<Integer, Integer> map;
+
+        /**
+         * Initialize your data structure here.
+         */
         public TwoSum() {
-
+            map = new HashMap<>();
         }
 
-        /** Add the number to an internal data structure.. */
+        /**
+         * Add the number to an internal data structure..
+         */
         public void add(int number) {
-
+            map.put(number, map.getOrDefault(number, 0) + 1);
         }
 
-        /** Find if there exists any pair of numbers which sum is equal to the value. */
+        /**
+         * Find if there exists any pair of numbers which sum is equal to the value.
+         */
         public boolean find(int value) {
+            for (Integer key : map.keySet()) {
+                int s = value - key;
+                if (map.containsKey(s)) {
+                    if (s != key) {
+                        return true;
+                    } else if(map.get(key) > 1){
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
     }

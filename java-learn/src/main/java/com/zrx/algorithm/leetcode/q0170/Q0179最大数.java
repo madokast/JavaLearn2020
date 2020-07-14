@@ -2,11 +2,16 @@ package com.zrx.algorithm.leetcode.q0170;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Description
@@ -25,12 +30,33 @@ public class Q0179最大数 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                ArrayFactory.create(10, 2),
+                ArrayFactory.create(3, 30, 34, 5, 9),
+                ArrayFactory.create(824, 938, 1399, 5607, 6973, 5703, 9609, 4398, 8247),
+                ArrayFactory.create(12, 121),
+                ArrayFactory.create(3, 30, 34, 5, 9)
+        );
     }
+
+    //  9609  938  824  8247  69735703560743981399  answer
+    //  9609  938  8247  824  69735703560743981399  ret
+
+    //  12  121  answer
+    //  121 12   ret
+
+    //  95  34  3  30  ans
+    //  95  3  34  30  ret
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                "210", "9534330",
+                "9609938824824769735703560743981399",
+                "12121",
+                "9534330"
+        );
     }
 
     @Code(info = """
@@ -51,6 +77,29 @@ public class Q0179最大数 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String largestNumber(int[] nums) {
-        return null;
+        List<String> list = Arrays.stream(nums).mapToObj(String::valueOf).collect(Collectors.toList());
+        Collections.sort(
+                list,
+                (s1, s2) -> {
+//                    int i = 0;
+//                    int j = 0;
+//                    while (i < s1.length() && j < s2.length()) {
+//                        char ci = s1.charAt(i);
+//                        char cj = s2.charAt(j);
+//                        if (ci > cj) return -1;
+//                        if (ci < cj) return 1;
+//
+//                        i++;
+//                        j++;
+//                    }
+
+                    return (s2 + s1).compareTo(s1 + s2);
+                }
+        );
+
+
+        String ans = String.join("", list);
+
+        return ans.charAt(0) == '0' ? "0" : ans;
     }
 }

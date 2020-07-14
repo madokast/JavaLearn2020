@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,12 +28,12 @@ public class Q0173二叉搜索树迭代器 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(1, true);
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(true);
     }
 
     @Code(info = """
@@ -81,22 +83,40 @@ public class Q0173二叉搜索树迭代器 implements Question {
      */
     static class BSTIterator {
 
-        public BSTIterator(TreeNode root) {
+        Deque<TreeNode> stack;
 
+        public BSTIterator(TreeNode root) {
+            stack = new LinkedList<>();
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
         }
 
         /**
          * @return the next smallest number
          */
         public int next() {
-            return -1;
+            TreeNode pop = stack.pop();
+
+            TreeNode temp = pop.right;
+
+            if (temp != null) {
+                stack.push(temp);
+
+                while (temp.left != null) {
+                    stack.push(temp.left);
+                    temp = temp.left;
+                }
+            }
+            return pop.val;
         }
 
         /**
          * @return whether we have a next smallest number
          */
         public boolean hasNext() {
-            return false;
+            return !stack.isEmpty();
         }
     }
 

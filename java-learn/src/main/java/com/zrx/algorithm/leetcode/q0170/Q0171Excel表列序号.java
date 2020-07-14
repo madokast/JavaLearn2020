@@ -25,12 +25,21 @@ public class Q0171Excel表列序号 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                "A",
+                "AB",
+                "ZY"
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                1,
+                28
+                , 701
+        );
     }
 
     @Code(info = """
@@ -66,6 +75,13 @@ public class Q0171Excel表列序号 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int titleToNumber(String s) {
-return -1;
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            ans = ans * 26 + (c - 'A') + 1;
+        }
+
+
+        return ans;
     }
 }

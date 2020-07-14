@@ -136,6 +136,6 @@ public class A01走入并行世界 {
 
     @Invoking(createdTime = "2020-05-10 20:44",info = "死循环")
     public void 死循环(){
-        for(;;){}
+//        for(;;){}
     }
 }

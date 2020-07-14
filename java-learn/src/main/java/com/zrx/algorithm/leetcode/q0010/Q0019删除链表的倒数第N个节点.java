@@ -28,16 +28,16 @@ public class Q0019删除链表的倒数第N个节点 implements Question {
     public List<Input> getInputs() {
         return InputFactory.create(
                 2,
-                ListNode.of(1, 2, 3, 4, 5), 2,
-                ListNode.of(1), 1
+                ListNode.of(1, 2, 3, 4, 5), 2
+//                ListNode.of(1), 1
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-                ListNode.of(1, 2, 3, 5),
-                ListNode.of()
+                ListNode.of(1, 2, 3, 5)
+//                ListNode.of()
         );
     }
 

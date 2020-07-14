@@ -1,11 +1,16 @@
 package com.zrx;
 
+import com.zrx.algorithm.Question;
 import com.zrx.algorithm.leetcode.q0000.Q0001两数之和;
 import com.zrx.algorithm.leetcode.q0860.Q0876链表的中间结点;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Description
@@ -18,9 +23,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @version 1.0
  */
 
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = DemoApplication.class)
 public class LeetCodeTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Autowired
+    private ApplicationContext ioc;
 
     @Test
     public void test() {
@@ -28,6 +37,13 @@ public class LeetCodeTest {
         q0001两数之和.run();
 
         new Q0876链表的中间结点().run();
+    }
+
+    @Test
+    public void allQuestion() {
+        ioc.getBeansOfType(Question.class, false, true)
+                .values()
+                .forEach(Question::run);
     }
 
 }

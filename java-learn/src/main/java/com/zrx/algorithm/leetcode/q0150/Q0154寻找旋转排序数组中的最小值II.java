@@ -31,7 +31,7 @@ public class Q0154寻找旋转排序数组中的最小值II implements Question 
                 ArrayFactory.create(1, 3, 5),
                 ArrayFactory.create(2, 2, 2, 0, 1),
                 ArrayFactory.create(10, 1, 10, 10, 10),
-                AnswerFactory.create(1, 3, 3, 3)
+                ArrayFactory.create(1, 3, 3, 3)
         );
     }
 

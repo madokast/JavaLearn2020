@@ -25,12 +25,18 @@ public class Q0172阶乘后的零 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1);
+        return InputFactory.create(
+                1,
+                3,
+                5
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
-        return AnswerFactory.create();
+        return AnswerFactory.create(
+                0, 1
+        );
     }
 
     @Code(info = """
@@ -53,6 +59,13 @@ public class Q0172阶乘后的零 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int trailingZeroes(int n) {
-return -1;
+        int ans = 0;
+
+        while (n >= 5) {
+            n = n / 5;
+            ans += n;
+        }
+
+        return ans;
     }
 }

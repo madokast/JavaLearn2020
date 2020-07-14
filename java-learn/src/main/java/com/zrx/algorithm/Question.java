@@ -26,7 +26,7 @@ public interface Question {
     default void run() {
         List<Input> inputs = getInputs();
         List<Answer> answers = getAnswers();
-        Assert.isTrue(inputs.size() == answers.size(), "输入和答案数目不匹配!");
+        Assert.isTrue(inputs.size() == answers.size(), getThisClass().getName() + "::输入和答案数目不匹配!");
 
         Object solutionInstance = getSolutionInstance();
         Method leetCodeMethod = getLeetCodeMethod();
