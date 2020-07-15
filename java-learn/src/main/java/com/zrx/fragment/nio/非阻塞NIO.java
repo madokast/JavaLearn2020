@@ -3,6 +3,9 @@ package com.zrx.fragment.nio;
 import com.zrx.Invoking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.core.AliasRegistry;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -120,5 +123,5 @@ public class 非阻塞NIO {
         }
     }
 
-
+    DefaultListableBeanFactory defaultListableBeanFactory;
 }

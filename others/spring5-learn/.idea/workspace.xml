@@ -2,41 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc0a6ee5-4b65-48e5-bdf8-c9ec574d1c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0182查找重复的电子邮箱.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0183从不订购的客户.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0184部门工资最高的员工.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0185部门工资前三高的所有员工.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0186翻转字符串里的单词II.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0187重复的DNA序列.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0188买卖股票的最佳时机IV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0189旋转数组.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0190/Q019.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/Others/方法重写.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/Java高并发程序设计葛一鸣/A02LockSupport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/Java高并发程序设计葛一鸣/A03线程池吃掉异常.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/Java高并发程序设计葛一鸣/A04并发容器.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/nio/BufferLearn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/nio/ChannelLearn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/nio/阻塞式NIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/nio/非阻塞NIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/spring5/bean/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bean1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/atguigu/spring5/testdemo/TestSpring5.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0019删除链表的倒数第N个节点.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0010/Q0019删除链表的倒数第N个节点.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0150/Q0154寻找旋转排序数组中的最小值II.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0150/Q0154寻找旋转排序数组中的最小值II.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0170两数之和III_数据结构设计.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0170两数之和III_数据结构设计.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0171Excel表列序号.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0171Excel表列序号.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0172阶乘后的零.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0172阶乘后的零.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0173二叉搜索树迭代器.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0173二叉搜索树迭代器.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0174地下城游戏.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0174地下城游戏.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0179最大数.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0170/Q0179最大数.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q018.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0180/Q0182超过经理收入的员工.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/Java高并发程序设计葛一鸣/A01走入并行世界.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/Java高并发程序设计葛一鸣/A01走入并行世界.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java-learn/src/test/java/com/zrx/LeetCodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/test/java/com/zrx/LeetCodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -45,11 +27,19 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="$PROJECT_DIR$/../../../../apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="C:\Users\javalearn\Documents\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1egAqBosUefOQIkMw2W2d078iy5" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -65,6 +55,29 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
+  <component name="RunManager">
+    <configuration name="TestSpring5.testUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring5-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.spring5.testdemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.atguigu.spring5.testdemo" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.spring5.testdemo.TestSpring5" />
+      <option name="METHOD_NAME" value="testUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestSpring5.testUser" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -75,7 +88,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594733050373</updated>
-      <workItem from="1594733053634" duration="474000" />
+      <workItem from="1594733053634" duration="2545000" />
     </task>
     <servers />
   </component>
@@ -87,5 +100,29 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="552" y="201" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1594733695794" />
+    <state x="740" y="298" key="FileChooserDialogImpl" timestamp="1594734850665">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="298" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1594734850665" />
+    <state width="1877" height="727" key="GridCell.Tab.0.bottom" timestamp="1594737988628">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="727" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1594737988628" />
+    <state width="1877" height="727" key="GridCell.Tab.0.center" timestamp="1594737988628">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="727" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1594737988628" />
+    <state width="1877" height="727" key="GridCell.Tab.0.left" timestamp="1594737988628">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="727" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1594737988628" />
+    <state width="1877" height="727" key="GridCell.Tab.0.right" timestamp="1594737988628">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="727" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1594737988628" />
+    <state x="463" y="185" key="SettingsEditor" timestamp="1594734852332">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="463" y="185" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1594734852332" />
   </component>
 </project>
