@@ -20,8 +20,8 @@ import java.util.List;
  */
 
 @Component
-public class Q0182超过经理收入的员工 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0182超过经理收入的员工.class);
+public class Q0181超过经理收入的员工 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q0181超过经理收入的员工.class);
 
     @Override
     public List<Input> getInputs() {
@@ -31,7 +31,7 @@ public class Q0182超过经理收入的员工 implements Question {
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-                fun(true)
+                this.fun(true)
         );
     }
 
@@ -56,6 +56,11 @@ public class Q0182超过经理收入的员工 implements Question {
             +----------+
             """)
     public String fun(boolean b) {
-        return null;
+
+        return """
+                select e.`Name` as Employee from Employee e where e.ManagerId is not null and exists (
+                    select 1 from Employee t where e.ManagerId = t.Id and e.Salary > t.Salary
+                )
+                """;
     }
 }

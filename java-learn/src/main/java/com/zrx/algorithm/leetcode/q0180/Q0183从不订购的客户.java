@@ -67,6 +67,8 @@ public class Q0183从不订购的客户 implements Question {
             +-----------+
             """)
     public String fun(boolean b) {
-        return null;
+        return "select `Name` as `Customers` from Customers left join Orders \n" +
+                "on Customers.Id = Orders.CustomerId\n" +
+                "where CustomerId is null;";
     }
 }

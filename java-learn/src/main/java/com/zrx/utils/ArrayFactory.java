@@ -100,4 +100,20 @@ public class ArrayFactory {
                 .collect(Collectors.toList())
                 .toArray(char[][]::new);
     }
+
+    /**
+     * 建立 char 数组
+     * 传入String[]，取每个 s.charAt(0) 作为 char
+     *
+     * @param chars 传入String[]
+     * @return char 数组
+     */
+    public static char[] createChars(String... chars) {
+        char[] ret = new char[chars.length];
+        for (int i = 0; i < chars.length; i++) {
+            ret[i] = chars[i].charAt(0);
+        }
+
+        return ret;
+    }
 }

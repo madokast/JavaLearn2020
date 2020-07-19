@@ -65,6 +65,9 @@ public class Q0184部门工资最高的员工 implements Question {
             +------------+----------+--------+
             """)
     public String fun(boolean b) {
-        return null;
+        return "select d.`Name` as Department, e.`Name` as Employee, e.Salary from Employee e,Department d\n" +
+                "where e.Salary = (\n" +
+                "    select max(e2.Salary) from Employee e2 where e.DepartmentId = e2.DepartmentId\n" +
+                ") and e.DepartmentId = d.Id;";
     }
 }

@@ -58,6 +58,6 @@ public class Q0182查找重复的电子邮箱 implements Question {
             说明：所有电子邮箱都是小写字母。
             """)
     public String fun(boolean b) {
-        return null;
+        return "select distinct a.Email from Person a, Person b where a.Id<>b.Id and a.Email = b.Email;";
     }
 }

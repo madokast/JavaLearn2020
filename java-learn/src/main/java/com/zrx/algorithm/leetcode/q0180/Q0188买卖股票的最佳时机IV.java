@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0180;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,17 @@ public class Q0188买卖股票的最佳时机IV implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1, true);
+        return InputFactory.create(
+                2,
+                2, ArrayFactory.create(2, 4, 1),
+                2, ArrayFactory.create(3, 2, 6, 5, 0, 3)
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                2, 7
         );
     }
 
@@ -59,6 +64,17 @@ public class Q0188买卖股票的最佳时机IV implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int maxProfit(int k, int[] prices) {
-return -1;
+        int[] sell = new int[k+1];
+        int[] bug = new int[k+1];
+
+        bug[0] = 0;
+        sell[0] = 0;
+
+        for (int price : prices) {
+            bug[1] =
+        }
+
+
+        return sell[k];
     }
 }

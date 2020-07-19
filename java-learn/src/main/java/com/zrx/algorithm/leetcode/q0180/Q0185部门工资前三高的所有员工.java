@@ -75,6 +75,15 @@ public class Q0185部门工资前三高的所有员工 implements Question {
             IT 部门中，Max 获得了最高的工资，Randy 和 Joe 都拿到了第二高的工资，Will 的工资排第三。销售部门（Sales）只有两名员工，Henry 的工资最高，Sam 的工资排第二。
             """)
     public String fun(boolean b) {
-        return null;
+        return "select d.`Name` as Department, e.`Name` as Employee, e.Salary\n" +
+                "from Employee e join Department d on e.DepartmentId = d.Id \n" +
+                "where e.Salary >= (\n" +
+                "    select min(s) from (\n" +
+                "        select distinct e2.Salary as s from Employee e2 \n" +
+                "        where e2.DepartmentId = e.DepartmentId\n" +
+                "        order by e2.Salary desc\n" +
+                "        limit 3\n" +
+                "    )as m\n" +
+                ");";
     }
 }
