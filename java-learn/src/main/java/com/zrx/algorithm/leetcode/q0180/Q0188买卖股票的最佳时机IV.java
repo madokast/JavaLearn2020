@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -64,14 +65,27 @@ public class Q0188买卖股票的最佳时机IV implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int maxProfit(int k, int[] prices) {
-        int[] sell = new int[k+1];
-        int[] bug = new int[k+1];
+        if(k<1) return 0;
+        int len = prices.length;
+        if(len<2) return 0;
 
-        bug[0] = 0;
-        sell[0] = 0;
+        k = Math.min(k,len);
 
-        for (int price : prices) {
-            bug[1] =
+        int[] sell = new int[k + 1];
+        int[] buy = new int[k + 1];
+
+        Arrays.fill(buy, -prices[0]);
+
+        for (int i = 1; i < len; i++) {
+            int p = prices[i];
+
+            buy[1] = Math.max(-p, buy[1]);
+            sell[1] = Math.max(sell[1], buy[1] + p);
+
+            for (int j = 2; j <= k; j++) {
+                buy[j] = Math.max(sell[j - 1] - p, buy[j]);
+                sell[j] = Math.max(sell[j], buy[j] + p);
+            }
         }
 
 

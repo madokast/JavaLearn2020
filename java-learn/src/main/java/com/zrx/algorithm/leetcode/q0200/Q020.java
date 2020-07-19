@@ -1,4 +1,4 @@
-package com.zrx.algorithm.leetcode.q0190;
+package com.zrx.algorithm.leetcode.q0200;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Description
@@ -21,13 +19,15 @@ import java.util.concurrent.Executors;
  * @version 1.0
  */
 
-//@Component
-public class Q019 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q019.class);
+@Component
+public class Q020 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q020.class);
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1, true);
+        return InputFactory.create(
+                1
+        );
     }
 
     @Override

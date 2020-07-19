@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0180;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,18 @@ public class Q0189旋转数组 implements Question {
 
     @Override
     public List<Input> getInputs() {
-        return InputFactory.create(1, true);
+        return InputFactory.create(
+                2,
+                ArrayFactory.create(1, 2, 3, 4, 5, 6, 7),3,
+                ArrayFactory.create(-1, -100, 3, 99),2
+        );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                ArrayFactory.create(5, 6, 7, 1, 2, 3, 4),
+                ArrayFactory.create(3, 99, -1, -100)
         );
     }
 
@@ -58,7 +64,25 @@ public class Q0189旋转数组 implements Question {
             链接：https://leetcode-cn.com/problems/rotate-array
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void rotate(int[] nums, int k) {
+    public int[] rotate(int[] nums, int k) {
+        int len = nums.length;
+        k = k % len;
 
+        reverse(nums, 0, len - k - 1);
+        reverse(nums, len - k, len - 1);
+        reverse(nums, 0, len - 1);
+
+        return nums;
+    }
+
+    private void reverse(int[] s, int startIn, int endIn) {
+        while (startIn < endIn) {
+            s[startIn] = (s[startIn] ^ s[endIn]);
+            s[endIn] = (s[startIn] ^ s[endIn]);
+            s[startIn] = (s[startIn] ^ s[endIn]);
+
+            startIn++;
+            endIn--;
+        }
     }
 }
