@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0190;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,17 @@ public class Q0198打家劫舍 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                ArrayFactory.create(1, 2, 3, 1),
+                ArrayFactory.create(2, 7, 9, 3, 1),
+                ArrayFactory.create(2, 1, 1, 2)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                4, 12, 4
         );
     }
 
@@ -68,6 +72,16 @@ public class Q0198打家劫舍 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int rob(int[] nums) {
-return -1;
+        int cur = 0;
+        int not = 0;
+
+        for (int num : nums) {
+            int oldMax = Math.max(not, cur);
+            cur = not + num;
+            not = oldMax;
+        }
+
+
+        return Math.max(cur, not);
     }
 }

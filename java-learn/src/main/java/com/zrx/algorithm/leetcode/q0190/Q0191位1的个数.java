@@ -26,14 +26,17 @@ public class Q0191位1的个数 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                0b00000000000000000000000000001011,
+                0b00000000000000000000000010000000,
+                0b11111111111111111111111111111101
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                3, 1, 31
         );
     }
 
@@ -74,6 +77,25 @@ public class Q0191位1的个数 implements Question {
             """)
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
-        return -1;
+        // 01 + 10
+        n = (n & 0x55555555) + ((n & (~0x55555555)) >>> 1);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        // 0011 + 1100
+        n = (n & 0x33333333) + ((n & (~0x33333333)) >>> 2);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        // 00001111 + 11110000
+        n = (n & 0x0f0f0f0f) + ((n & (~0x0f0f0f0f)) >>> 4);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        // 00000000 11111111 + 1111111100000000
+        n = (n & 0x00ff00ff) + ((n & (~0x00ff00ff)) >>> 8);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        n = (n & 0xffff) + ((n & (~0xffff)) >>> 16);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        return n;
     }
 }

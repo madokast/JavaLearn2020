@@ -26,14 +26,15 @@ public class Q0190颠倒二进制位 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                0b0000_0010_1001_0100_0001_1110_1001_1100
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                0b00111001011110000010100101000000
         );
     }
 
@@ -71,6 +72,31 @@ public class Q0190颠倒二进制位 implements Question {
             """)
     // you need treat n as an unsigned value
     public int reverseBits(int n) {
-        return -1;
+
+        n = (n >>> 16) | (n << 16);
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+        //0001_1110_1001_1100  0000_0010_1001_0100
+
+        n = ((n >>> 8) & 0x00ff00ff) | ((n << 8) & (~0x00ff00ff));
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+        // 1001_1100  0001_1110  --   1001_0100  0000_0010
+
+        // 1001 1100  0001 1110       1001 0100  0000 0010
+
+        n = ((n >>> 4) & 0x0f0f0f0f) | ((n << 4) & (~0x0f0f0f0f));
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+        // 1100 1001  1110 0001   --  0100 1001   0010 0000
+
+        // 1100 1001  1110 0001       0100 1001   0010 0000
+
+        n = ((n >>> 2) & 0x33333333) | ((n << 2) & (~0x33333333));
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+        // 0011 0110  1011 0100   --  0001 0110   1000 0000
+        // 1000 1100  000101101001000000010010
+
+        n = ((n >>> 1) & 0x55555555) | ((n << 1) & (~0x55555555));
+        LOGGER.info("n = {}", Integer.toBinaryString(n));
+
+        return n;
     }
 }

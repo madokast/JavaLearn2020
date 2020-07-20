@@ -26,14 +26,14 @@ public class Q0196删除重复的电子邮箱 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                this.fun(true)
         );
     }
 
@@ -68,6 +68,6 @@ public class Q0196删除重复的电子邮箱 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String fun(boolean b) {
-        return null;
+        return "delete p1 from Person p1, Person p2 where p1.Email=p2.Email and p1.Id>p2.Id;";
     }
 }

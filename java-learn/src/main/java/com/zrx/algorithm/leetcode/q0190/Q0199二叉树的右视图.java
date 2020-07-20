@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -27,14 +27,15 @@ public class Q0199二叉树的右视图 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                TreeNode.of(1, 2, 3, null, 5, null, 4)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                List.of(1, 3, 4)
         );
     }
 
@@ -58,6 +59,27 @@ public class Q0199二叉树的右视图 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<Integer> rightSideView(TreeNode root) {
-return null;
+        if(root==null) return Collections.emptyList();
+        List<Integer> ans = new ArrayList<>();
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+
+        while (!queue.isEmpty()) {
+            Queue<TreeNode> queue2 = new LinkedList<>();
+
+            while (!queue.isEmpty()) {
+                TreeNode poll = queue.poll();
+                if (queue.isEmpty()) ans.add(poll.val);
+
+                if (poll.left != null) queue2.offer(poll.left);
+                if (poll.right != null) queue2.offer(poll.right);
+            }
+
+            queue = queue2;
+        }
+
+        return ans;
     }
 }

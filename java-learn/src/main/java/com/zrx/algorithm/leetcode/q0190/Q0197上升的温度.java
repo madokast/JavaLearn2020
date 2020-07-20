@@ -26,14 +26,14 @@ public class Q0197上升的温度 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                this.fun(true)
         );
     }
 
@@ -62,6 +62,6 @@ public class Q0197上升的温度 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String fun(boolean b) {
-        return null;
+        return "select w1.Id from Weather w1, Weather w2 where w1.RecordDate=date_add(w2.RecordDate,interval 1 day) and w1.Temperature>w2.Temperature;";
     }
 }

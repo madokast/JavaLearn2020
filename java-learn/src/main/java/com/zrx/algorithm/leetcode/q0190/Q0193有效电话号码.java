@@ -26,14 +26,14 @@ public class Q0193有效电话号码 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                this.fun(true)
         );
     }
 
@@ -61,6 +61,6 @@ public class Q0193有效电话号码 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public String fun(boolean b) {
-        return null;
+        return "cat file.txt|awk '/^([0-9]{3}-|\\([0-9]{3}\\) )[0-9]{3}-[0-9]{4}$/{print}'";
     }
 }
