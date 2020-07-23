@@ -27,14 +27,14 @@ public class Q0206反转链表 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, ListNode.of("1->2->3->4->5")
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                ListNode.of("5->4->3->2->1")
         );
     }
 
@@ -53,7 +53,27 @@ public class Q0206反转链表 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public ListNode reverseList(ListNode head) {
-        return null;
+        if (head == null) return null;
 
+        ListNode pre = head;
+
+        ListNode cur = pre.next;
+        if (cur == null) return pre;
+
+        pre.next = null;
+
+        ListNode next = cur.next;
+        while (next != null) {
+
+            cur.next = pre;
+
+            pre = cur;
+            cur = next;
+            next = next.next;
+        }
+
+        cur.next = pre;
+
+        return cur;
     }
 }

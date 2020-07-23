@@ -26,14 +26,16 @@ public class Q0201数字范围按位与 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                5, 7,
+                0, 1
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                4, 0
         );
     }
 
@@ -54,6 +56,33 @@ public class Q0201数字范围按位与 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int rangeBitwiseAnd(int m, int n) {
-        return -1;
+        if (n == 0 || m == 0) return 0;
+        if (m == n) return m;
+
+        int oldN = n;
+
+        // 找前缀1
+        int prefix = 0;
+        while (true) {
+            int mi = (m & 0x80000000);
+            m <<= 1;
+            int ni = (n & 0x80000000);
+            n <<= 1;
+
+            if (mi == ni) {
+                prefix++;
+            } else {
+                break;
+            }
+
+            if (n == 0 || m == 0) break;
+        }
+
+        prefix = 32 - prefix;
+
+        oldN >>>= prefix;
+        oldN <<= prefix;
+
+        return oldN;
     }
 }

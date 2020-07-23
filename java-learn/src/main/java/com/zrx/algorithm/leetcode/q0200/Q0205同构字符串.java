@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description
@@ -26,14 +28,16 @@ public class Q0205同构字符串 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2, "egg", "add",
+                "foo", "bar",
+                "paper", "title"
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, false, true
         );
     }
 
@@ -64,6 +68,32 @@ public class Q0205同构字符串 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isIsomorphic(String s, String t) {
-        return false;
+        int sLen = s.length();
+        int tLen = t.length();
+        if (sLen != tLen) return false;
+
+        Map<Character, Character> map = new HashMap<>();
+        Map<Character, Character> mapReverse = new HashMap<>();
+
+        for (int i = 0; i < sLen; i++) {
+            char sc = s.charAt(i);
+            char tc = t.charAt(i);
+
+            if (map.containsKey(sc)) {
+                Character scMapping = map.get(sc);
+                if(scMapping!=tc) return false;
+            } else {
+                map.put(sc, tc);
+            }
+
+            if(mapReverse.containsKey(tc)){
+                Character tcMapping = mapReverse.get(tc);
+                if(tcMapping!=sc) return false;
+            }else {
+                mapReverse.put(tc,sc);
+            }
+        }
+
+        return true;
     }
 }

@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Description
@@ -26,14 +28,14 @@ public class Q0202快乐数 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 19
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true
         );
     }
 
@@ -61,6 +63,28 @@ public class Q0202快乐数 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>();
+
+        while (!set.contains(n)) {
+            if (n == 1) return true;
+            set.add(n);
+            n = map(n);
+
+            LOGGER.info("set = {}", set);
+        }
+
+
         return false;
+    }
+
+    private int map(int n) {
+        int ans = 0;
+        while (n > 0) {
+            int ni = n % 10;
+            n /= 10;
+            ans += ni * ni;
+        }
+
+        return ans;
     }
 }

@@ -27,14 +27,14 @@ public class Q0203移除链表元素 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2, ListNode.of("1->2->6->3->4->5->6"), 6
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                ListNode.of("1->2->3->4->5")
         );
     }
 
@@ -47,6 +47,23 @@ public class Q0203移除链表元素 implements Question {
             输出: 1->2->3->4->5
             """)
     public ListNode removeElements(ListNode head, int val) {
-        return null;
+        ListNode preHead = new ListNode(val - 1);
+        preHead.next = head;
+
+        ListNode p = preHead;
+        ListNode pp = preHead.next;
+
+        while (pp != null) {
+            while (pp != null && pp.val == val) {
+                pp = pp.next;
+            }
+            p.next = pp;
+            p = pp;
+            if (p == null) break;
+            pp = pp.next;
+        }
+
+
+        return preHead.next;
     }
 }

@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0200;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,17 @@ public class Q0207课程表 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                2, ArrayFactory.createTwoDimensionsIntArray(1, 0),
+                2, ArrayFactory.createTwoDimensionsIntArray(1, 0, null, 0, 1)
+
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, false
         );
     }
 
