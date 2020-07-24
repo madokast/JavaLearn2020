@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wangyuan.mapper.FaAdminMapper">
+    
+    <resultMap type="FaAdmin" id="FaAdminResult">
+        <result property="id"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="password"    column="password"    />
+        <result property="salt"    column="salt"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="email"    column="email"    />
+        <result property="loginfailure"    column="loginfailure"    />
+        <result property="logintime"    column="logintime"    />
+        <result property="createtime"    column="createtime"    />
+        <result property="updatetime"    column="updatetime"    />
+        <result property="token"    column="token"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectFaAdminVo">
+        select id, username, nickname, password, salt, avatar, email, loginfailure, logintime, createtime, updatetime, token, status from fa_admin
+    </sql>
+
+    <select id="selectFaAdminList" parameterType="FaAdmin" resultMap="FaAdminResult">
+        <include refid="selectFaAdminVo"/>
+        <where>  
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="salt != null  and salt != ''"> and salt = #{salt}</if>
+            <if test="avatar != null  and avatar != ''"> and avatar = #{avatar}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="loginfailure != null "> and loginfailure = #{loginfailure}</if>
+            <if test="logintime != null "> and logintime = #{logintime}</if>
+            <if test="createtime != null "> and createtime = #{createtime}</if>
+            <if test="updatetime != null "> and updatetime = #{updatetime}</if>
+            <if test="token != null  and token != ''"> and token = #{token}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectFaAdminById" parameterType="Integer" resultMap="FaAdminResult">
+        <include refid="selectFaAdminVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertFaAdmin" parameterType="FaAdmin" useGeneratedKeys="true" keyProperty="id">
+        insert into fa_admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">username,</if>
+            <if test="nickname != null and nickname != ''">nickname,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="salt != null and salt != ''">salt,</if>
+            <if test="avatar != null and avatar != ''">avatar,</if>
+            <if test="email != null and email != ''">email,</if>
+            <if test="loginfailure != null">loginfailure,</if>
+            <if test="logintime != null">logintime,</if>
+            <if test="createtime != null">createtime,</if>
+            <if test="updatetime != null">updatetime,</if>
+            <if test="token != null and token != ''">token,</if>
+            <if test="status != null and status != ''">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">#{username},</if>
+            <if test="nickname != null and nickname != ''">#{nickname},</if>
+            <if test="password != null and password != ''">#{password},</if>
+            <if test="salt != null and salt != ''">#{salt},</if>
+            <if test="avatar != null and avatar != ''">#{avatar},</if>
+            <if test="email != null and email != ''">#{email},</if>
+            <if test="loginfailure != null">#{loginfailure},</if>
+            <if test="logintime != null">#{logintime},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="updatetime != null">#{updatetime},</if>
+            <if test="token != null and token != ''">#{token},</if>
+            <if test="status != null and status != ''">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateFaAdmin" parameterType="FaAdmin">
+        update fa_admin
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null and username != ''">username = #{username},</if>
+            <if test="nickname != null and nickname != ''">nickname = #{nickname},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="salt != null and salt != ''">salt = #{salt},</if>
+            <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
+            <if test="email != null and email != ''">email = #{email},</if>
+            <if test="loginfailure != null">loginfailure = #{loginfailure},</if>
+            <if test="logintime != null">logintime = #{logintime},</if>
+            <if test="createtime != null">createtime = #{createtime},</if>
+            <if test="updatetime != null">updatetime = #{updatetime},</if>
+            <if test="token != null and token != ''">token = #{token},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteFaAdminById" parameterType="Integer">
+        delete from fa_admin where id = #{id}
+    </delete>
+
+    <delete id="deleteFaAdminByIds" parameterType="String">
+        delete from fa_admin where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
