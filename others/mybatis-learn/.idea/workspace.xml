@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="659c27a9-96d1-448f-9382-4807074d05cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/others/MyConcurrentHashMap17.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../apache-maven-3.5.2" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fZGKIY8q44jiUrXbjegWUGnHlq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="O:/Documents/git/javaLearn" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="659c27a9-96d1-448f-9382-4807074d05cf" name="Default Changelist" comment="" />
+      <created>1596418135595</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596418135595</updated>
+      <workItem from="1596418138766" duration="3000" />
+    </task>
+    <servers />
+  </component>
+</project>
