@@ -2,13 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="659c27a9-96d1-448f-9382-4807074d05cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/fragment/concurrent/others/MyConcurrentHashMap17.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/entity/Class.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/entity/Student2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/mapper/ClassMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback-test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/class-mapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pwd.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/zrx/HelloTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/zrx/SimpleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0206反转链表.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0206反转链表.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="XSLT Stylesheet" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -17,17 +53,155 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="$PROJECT_DIR$/../../../../apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="C:\Users\javalearn\Documents\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1fZGKIY8q44jiUrXbjegWUGnHlq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="O:/Documents/git/javaLearn" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zrx.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\javalearn\Documents\github\JavaLearn2020\others\mybatis-learn\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.HelloTest.hello">
+    <configuration name="HelloTest.hello" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zrx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zrx" />
+      <option name="MAIN_CLASS_NAME" value="com.zrx.HelloTest" />
+      <option name="METHOD_NAME" value="hello" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleTest.del" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zrx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zrx" />
+      <option name="MAIN_CLASS_NAME" value="com.zrx.SimpleTest" />
+      <option name="METHOD_NAME" value="del" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleTest.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zrx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zrx" />
+      <option name="MAIN_CLASS_NAME" value="com.zrx.SimpleTest" />
+      <option name="METHOD_NAME" value="insert" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleTest.like" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zrx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zrx" />
+      <option name="MAIN_CLASS_NAME" value="com.zrx.SimpleTest" />
+      <option name="METHOD_NAME" value="like" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleTest.select" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zrx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zrx" />
+      <option name="MAIN_CLASS_NAME" value="com.zrx.SimpleTest" />
+      <option name="METHOD_NAME" value="select" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.HelloTest.hello" />
+        <item itemvalue="JUnit.SimpleTest.select" />
+        <item itemvalue="JUnit.SimpleTest.like" />
+        <item itemvalue="JUnit.SimpleTest.insert" />
+        <item itemvalue="JUnit.SimpleTest.del" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="MySQL - mybatis_learn@192.168.2.3: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="MySQL - mybatis_learn@192.168.2.3: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@6c7b3004" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -39,8 +213,54 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596418135595</updated>
-      <workItem from="1596418138766" duration="3000" />
+      <workItem from="1596418138766" duration="7215000" />
+      <workItem from="1596435611192" duration="16581000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="186" key="#Project_Structure" timestamp="1596431043049">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="186" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1596431043049" />
+    <state x="552" y="186" key="#SQL_Dialects" timestamp="1596435436062">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="186" key="#SQL_Dialects/0.0.1920.1050@0.0.1920.1050" timestamp="1596435436062" />
+    <state x="552" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596432254973">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1596432254973" />
+    <state x="717" y="215" key="FileChooserDialogImpl" timestamp="1596434842776">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="717" y="215" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1596434842776" />
+    <state width="1877" height="315" key="GridCell.Tab.0.bottom" timestamp="1596628098945">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="315" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1596628098945" />
+    <state width="1877" height="315" key="GridCell.Tab.0.center" timestamp="1596628098944">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="315" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1596628098944" />
+    <state width="1877" height="315" key="GridCell.Tab.0.left" timestamp="1596628098943">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="315" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1596628098943" />
+    <state width="1877" height="315" key="GridCell.Tab.0.right" timestamp="1596628098944">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="315" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1596628098944" />
+    <state x="440" y="102" key="SettingsEditor" timestamp="1596435590766">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="440" y="102" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1596435590766" />
+    <state x="326" y="233" key="search.everywhere.popup" timestamp="1596629898910">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="326" y="233" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1596629898910" />
   </component>
 </project>

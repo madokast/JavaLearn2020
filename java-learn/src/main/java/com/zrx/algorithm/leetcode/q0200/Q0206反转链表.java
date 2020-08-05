@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * Description
@@ -73,6 +74,7 @@ public class Q0206反转链表 implements Question {
         }
 
         cur.next = pre;
+
 
         return cur;
     }

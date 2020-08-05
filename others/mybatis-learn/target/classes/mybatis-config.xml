@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    可以引入外部properties文件-->
+<!--    resource 类路径-->
+    <properties resource="pwd.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.zrx.entity.Class" alias="cla"/>
+    </typeAliases>
+
+    <environments default="test">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://192.168.2.3:13306/mybatis_learn?serverTimezone=Hongkong" />
+                <property name="username" value="root" />
+                <property name="password" value="${db.password}" />
+            </dataSource>
+        </environment>
+        <environment id="test">
+            <transactionManager type="JDBC" />
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://192.168.2.3:13306/mybatis_learn?serverTimezone=Hongkong" />
+                <property name="username" value="root" />
+                <property name="password" value="${db.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/class-mapper.xml"/>
+    </mappers>
+
+</configuration>

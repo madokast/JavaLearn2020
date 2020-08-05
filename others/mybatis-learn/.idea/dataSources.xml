@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL - mybatis_learn@192.168.2.3" uuid="7d99bc35-b3b8-4d09-8e1b-dd1615735297">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.2.3:13306/mybatis_learn</jdbc-url>
+    </data-source>
+  </component>
+</project>
