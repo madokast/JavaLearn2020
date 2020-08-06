@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationHandler;
 
 /**
  * Description
@@ -33,22 +34,17 @@ public class HelloTest {
     @Test
     public void hello() throws IOException {
 
-
         InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
 
-
         SqlSession sqlSession = sqlSessionFactory.openSession();
-
 
         // mapperProxy
         ClassMapper mapper = sqlSession.getMapper(ClassMapper.class);
 
 
         Class classById = mapper.getClassById(1);
-
 
         LOGGER.debug(classById.toString());
     }

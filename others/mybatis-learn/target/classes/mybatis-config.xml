@@ -13,6 +13,14 @@
     <typeAliases>
         <typeAlias type="com.zrx.entity.Class" alias="cla"/>
     </typeAliases>
+    
+    
+    <plugins>
+        <plugin interceptor="com.zrx.plugins.MyFirstInterceptor">
+            <property name="username" value="123456"/>
+        </plugin>
+    </plugins>
+    
 
     <environments default="test">
         <environment id="development">
