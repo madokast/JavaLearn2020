@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
@@ -72,7 +72,117 @@ public class Q0207课程表 implements Question {
             链接：https://leetcode-cn.com/problems/course-schedule
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        return false;
+    public boolean canFinish(int numCourses, int[][] prerequisites){
+        if (prerequisites == null || prerequisites.length == 0) return true;
+
+        int len = prerequisites.length;
+
+        Map<Integer, List<Integer>> map = new HashMap<>(len);
+
+        int[] pointEnterNum = new int[numCourses];
+
+        List<Integer> zeroEnterNumIndices = new LinkedList<>();
+
+        for (int[] prerequisite : prerequisites) {
+            int s = prerequisite[0];
+            int e = prerequisite[1];
+            List<Integer> list = map.getOrDefault(s, new ArrayList<>());
+            list.add(e);
+            map.put(s, list);
+
+            pointEnterNum[e]++;
+        }
+
+        for (int i = 0; i < pointEnterNum.length; i++) {
+            int s = pointEnterNum[i];
+            if(s==0){
+                zeroEnterNumIndices.add(i); // index
+            }
+        }
+
+        while (!zeroEnterNumIndices.isEmpty()){
+            Integer sIndex = zeroEnterNumIndices.remove(0);
+
+            List<Integer> kList = map.get(sIndex);
+            if (kList != null) {
+                for (Integer ks : kList) {
+                    pointEnterNum[ks]--;
+                    if(pointEnterNum[ks]==0){
+                        zeroEnterNumIndices.add(ks);
+                    }
+                }
+
+                map.remove(sIndex);
+            }
+        }
+
+        return map.isEmpty();
     }
+
+
+
+    public boolean canFinish垃圾(int numCourses, int[][] prerequisites) {
+        // 0 1 2 3 ... numCourses
+        // [[1,0],[0,1]]
+        // 1-0
+        // 0-1
+
+        if (prerequisites == null || prerequisites.length == 0) return true;
+
+        int len = prerequisites.length;
+
+        Map<Integer, List<Integer>> map = new HashMap<>(len);
+
+        int[] pointEnterNum = new int[numCourses];
+
+        for (int[] prerequisite : prerequisites) {
+            int s = prerequisite[0];
+            int e = prerequisite[1];
+            List<Integer> list = map.getOrDefault(s, new ArrayList<>());
+            list.add(e);
+            map.put(s, list);
+
+            pointEnterNum[e]++;
+        }
+
+        for (; ; ) {
+            /*
+             * 三种情况
+             * map empty 直接返回 true
+             *
+             * pointEnterNum 全 -1 返回 true
+             *
+             * pointEnterNum 没有 0 了
+             *      返回 mao 是不是空
+             *
+             * pointEnterNum 还有 0 ，则取出，调整 map
+             */
+
+            int k = -1;
+            for (int i = 0; i < pointEnterNum.length; i++) {
+                if (pointEnterNum[i] == 0) {
+                    k = i;
+                    break;
+                }
+            }
+
+            LOGGER.info("k = {}", k);
+            LOGGER.info("map = {}", map);
+
+            if (k == -1) return map.isEmpty();
+
+            pointEnterNum[k] = -1;
+
+            List<Integer> kList = map.get(k);
+            if (kList != null) {
+                for (Integer ks : kList) {
+                    pointEnterNum[ks]--;
+                }
+
+                map.remove(k);
+            }
+        }
+    }
+
+
 }

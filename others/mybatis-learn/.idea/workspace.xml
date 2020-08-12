@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="659c27a9-96d1-448f-9382-4807074d05cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zrx/plugins/MyFirstInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/zrx/PluginTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0211添加与搜索单词_数据结构设计.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0212单词搜索II.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0213打家劫舍II.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0214最短回文串.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0215数组中的第K个最大元素.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0216组合总和III.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0217存在重复元素.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0218天际线问题.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0219存在重复元素II.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0220/Q022.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" beforeDir="false" afterPath="$PROJECT_DIR$/../../ichiwan-vue/ichiwan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/zrx/HelloTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/zrx/HelloTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0207课程表.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0207课程表.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0208实现Trie前缀树.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0208实现Trie前缀树.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0209长度最小的子数组.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0200/Q0209长度最小的子数组.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q021.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-learn/src/main/java/com/zrx/algorithm/leetcode/q0210/Q0210课程表II.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +217,8 @@
       <option name="presentableId" value="Default" />
       <updated>1596418135595</updated>
       <workItem from="1596418138766" duration="7215000" />
-      <workItem from="1596435611192" duration="28948000" />
+      <workItem from="1596435611192" duration="33219000" />
+      <workItem from="1596876749650" duration="692000" />
     </task>
     <servers />
   </component>
@@ -259,9 +270,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="102" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1596435590766" />
-    <state x="326" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1596725326574">
+    <state x="326" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1596770578981">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="326" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1596725326574" />
+    <state x="326" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1596770578981" />
   </component>
 </project>

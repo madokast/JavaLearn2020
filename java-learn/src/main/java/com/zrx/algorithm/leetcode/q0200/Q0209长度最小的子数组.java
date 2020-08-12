@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0200;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,19 @@ public class Q0209长度最小的子数组 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                7, ArrayFactory.create(2, 3, 1, 2, 4, 3),
+                7, ArrayFactory.create(4, 3),
+                7, ArrayFactory.create(1, 4, 3),
+                15, ArrayFactory.create(5, 1, 3, 5, 10, 7, 4, 9, 2, 8),
+                15, ArrayFactory.create(5, 1, 3, 5, 10, 7)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                2, 2, 2, 2, 2
         );
     }
 
@@ -58,6 +64,34 @@ public class Q0209长度最小的子数组 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int minSubArrayLen(int s, int[] nums) {
-        return -1;
+        if (nums == null || nums.length == 0) return 0;
+
+        int left = 0;
+        int right = 1;
+
+        int sum = nums[0];
+
+        int min = Integer.MAX_VALUE;
+
+        int len = nums.length;
+
+        for (; ; ) {
+
+            while (sum < s && right < len) {
+                sum += nums[right];
+                right++;
+            }
+
+            while (sum >= s && left < right) {
+                min = Math.min(min, right - left);
+                sum -= nums[left];
+                left++;
+            }
+
+            if (right == len) break;
+        }
+
+
+        return min == Integer.MAX_VALUE ? 0 : min;
     }
 }

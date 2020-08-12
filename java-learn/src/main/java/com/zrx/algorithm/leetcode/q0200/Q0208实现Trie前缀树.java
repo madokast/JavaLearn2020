@@ -25,15 +25,25 @@ public class Q0208实现Trie前缀树 implements Question {
 
     @Override
     public List<Input> getInputs() {
+        Trie trie = new Trie();
+
+        trie.insert("apple");
+        boolean a1 = trie.search("apple");   // 返回 true
+        boolean a2 = trie.search("app");     // 返回 false
+        boolean a3 = trie.startsWith("app"); // 返回 true
+        trie.insert("app");
+        boolean a4 = trie.search("app");     // 返回 true
+
+
         return InputFactory.create(
-                1
+                1, a1 && (!a2) && a3 && a4
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true
         );
     }
 
@@ -48,7 +58,7 @@ public class Q0208实现Trie前缀树 implements Question {
             trie.search("apple");   // 返回 true
             trie.search("app");     // 返回 false
             trie.startsWith("app"); // 返回 true
-            trie.insert("app");\040\040\040
+            trie.insert("app");
             trie.search("app");     // 返回 true
             说明:
 
@@ -59,8 +69,8 @@ public class Q0208实现Trie前缀树 implements Question {
             链接：https://leetcode-cn.com/problems/implement-trie-prefix-tree
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public String fun(boolean b) {
-        return null;
+    public boolean fun(boolean b) {
+        return b;
     }
 
 
@@ -73,32 +83,78 @@ public class Q0208实现Trie前缀树 implements Question {
     // */
     class Trie {
 
+        Node root;
+
         /**
          * Initialize your data structure here.
          */
         public Trie() {
-
+            root = new Node();
         }
 
         /**
          * Inserts a word into the trie.
          */
         public void insert(String word) {
+            Node cur = root;
+            int index;
+            for (char c : word.toCharArray()) {
+                index = c - 'a';
+                if (cur.next[index] == null) {
+                    cur.next[index] = new Node();
+                }
 
+                cur = cur.next[index];
+            }
+
+            cur.end = true;
         }
 
         /**
          * Returns if the word is in the trie.
          */
         public boolean search(String word) {
-            return false;
+            Node cur = root;
+
+            int index;
+            for (char c : word.toCharArray()) {
+                index = c - 'a';
+
+                if (cur.next[index] == null) {
+                    return false;
+                }
+
+                cur = cur.next[index];
+            }
+
+            return cur.end;
         }
 
         /**
          * Returns if there is any word in the trie that starts with the given prefix.
          */
         public boolean startsWith(String prefix) {
-            return false;
+            Node cur = root;
+
+            int index;
+            for (char c : prefix.toCharArray()) {
+                index = c - 'a';
+
+                if (cur.next[index] == null) {
+                    return false;
+                }
+
+                cur = cur.next[index];
+            }
+
+
+            return true;
+        }
+
+
+        class Node {
+            boolean end = false;
+            Node[] next = new Node[26];
         }
     }
 }
