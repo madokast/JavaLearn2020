@@ -2,15 +2,24 @@ package com.zrx.algorithm.leetcode.q0220;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Description
  * 存在重复元素 III
+ * 即我们需要一个集合，能够增删元素
+ * 同时，对于任意元素 e
+ * 可以方便的找到，大于等于它的、最接近它的、属于集合的元素
+ * 可以方便的找到，小于等于它的、最接近它的、属于集合的元素
+ *
+ * 若元素不重复，我们使用 treeSet
+ * 若元素重复，我们使用 TreeMap
+ *
  * <p>
  * Data
  * 2020/7/6-11:05
@@ -26,14 +35,17 @@ public class Q0220存在重复元素III implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                3,
+                ArrayFactory.create(1, 2, 3, 1), 3, 0,
+                ArrayFactory.create(1, 0, 1, 1), 1, 2,
+                ArrayFactory.create(1, 5, 9, 1, 5, 9), 2, 3
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, true, false
         );
     }
 
@@ -62,6 +74,25 @@ public class Q0220存在重复元素III implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
-return false;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+
+            Integer ceilingKey = map.ceilingKey(num);
+            Integer floorKey = map.floorKey(num);
+            if (ceilingKey != null && Math.abs((long)ceilingKey - num) <= (long)t) return true;
+            if (floorKey != null && Math.abs((long)floorKey - num) <= (long)t) return true;
+
+            map.put(num, map.getOrDefault(num, 0) + 1);
+
+            if (map.size() > k) {
+                int r = nums[i - k];
+                Integer time = map.get(r);
+                if (time == 1) map.remove(r);
+                else map.put(r, time - 1);
+            }
+        }
+        return false;
     }
 }

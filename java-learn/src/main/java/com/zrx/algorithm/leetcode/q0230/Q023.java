@@ -19,7 +19,7 @@ import java.util.List;
  * @version 1.0
  */
 
-@Component
+//@Component
 public class Q023 implements Question {
     private final static Logger LOGGER = LoggerFactory.getLogger(Q023.class);
 

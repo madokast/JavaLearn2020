@@ -3,6 +3,7 @@ package com.zrx.algorithm.leetcode.q0210;
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import com.zrx.utils.ArrayFactory;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.info.InfoProperties;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Description
  * 天际线问题
+ *
  * <p>
  * Data
  * 2020/7/6-11:05
@@ -63,6 +65,11 @@ public class Q0218天际线问题 implements Question {
                         2, 4, 5, null,
                         2, 4, 7, null,
                         2, 4, 6
+                ), ArrayFactory.createTwoDimensionsIntArray(
+                        0, 3, 3, null,
+                        1, 5, 3, null,
+                        2, 4, 3, null,
+                        3, 7, 3
                 )
         );
     }
@@ -111,6 +118,9 @@ public class Q0218天际线问题 implements Question {
                 ), List.of(
                         List.of(2, 7),
                         List.of(4, 0)
+                ), List.of(
+                        List.of(0, 3),
+                        List.of(7, 0)
                 )
         );
     }
@@ -140,6 +150,130 @@ public class Q0218天际线问题 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<List<Integer>> getSkyline(int[][] buildings) {
+        class Point implements Comparable<Point> {
+            int location;
+            boolean left;
+            int height;
+
+            public Point(int location, boolean left, int height) {
+                this.location = location;
+                this.left = left;
+                this.height = height;
+            }
+
+            @Override
+            public int compareTo(@NotNull Point o) {
+                int c = Integer.compare(this.location, o.location);
+                if (c != 0) return c;
+                else return Integer.compare(this.height, o.height);
+            }
+
+            @Override
+            public String toString() {
+                return String.format("L%dH%d%s", location, height, left ? "左" : "右");
+            }
+        }
+
+        PriorityQueue<Point> priorityQueue = new PriorityQueue<>();
+
+        Map<Point, Point> map = new HashMap<>();
+
+        for (int[] building : buildings) {
+            int left = building[0];
+            int right = building[1];
+            int height = building[2];
+
+            Point leftPoint = new Point(left, true, height);
+            Point rightPoint = new Point(right, false, height);
+            priorityQueue.add(leftPoint);
+            priorityQueue.add(rightPoint);
+            map.put(rightPoint, leftPoint);
+        }
+
+        LOGGER.info("priorityQueue = {}", priorityQueue);
+
+        int lastHeight = -1;
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        TreeMap<Point, Integer> scan = new TreeMap<>((p1, p2) -> Integer.compare(p2.height, p1.height));
+
+        while (!priorityQueue.isEmpty()) {
+            Point poll = priorityQueue.poll();
+
+            if (poll.left) {
+                scan.put(poll, scan.getOrDefault(poll, 0) + 1);
+            } else {
+                Point m = map.get(poll);
+                Integer t = scan.get(m);
+                if (t == 1) scan.remove(m);
+                else scan.put(poll, t - 1);
+            }
+
+            while (!priorityQueue.isEmpty() && priorityQueue.peek().location == poll.location) {
+                poll = priorityQueue.poll();
+
+                if (poll.left) {
+                    scan.put(poll, scan.getOrDefault(poll, 0) + 1);
+                } else {
+                    Point m = map.get(poll);
+                    Integer t = scan.get(m);
+                    if (t == 1) scan.remove(m);
+                    else scan.put(poll, t - 1);
+                }
+            }
+
+            LOGGER.info("scan = {}", scan);
+
+            if (scan.isEmpty()) {
+                ans.add(List.of(poll.location, 0));
+                lastHeight = 0;
+            } else {
+                int height = scan.firstKey().height;
+                if (lastHeight != height) {
+                    ans.add(List.of(poll.location, height));
+                }
+
+                lastHeight = height;
+            }
+        }
+
+        return ans;
+    }
+
+    public List<List<Integer>> getSkyline大神的用于学习(int[][] buildings) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+        for (int[] building : buildings) {
+            pq.offer(new int[]{building[0], -building[2]});
+            pq.offer(new int[]{building[1], building[2]});
+        }
+
+        List<List<Integer>> res = new ArrayList<>();
+
+        TreeMap<Integer, Integer> heights = new TreeMap<>((a, b) -> b - a);
+        heights.put(0, 1);
+        int left = 0, height = 0;
+        while (!pq.isEmpty()) {
+            int[] arr = pq.poll();
+            if (arr[1] < 0) {
+                heights.put(-arr[1], heights.getOrDefault(-arr[1], 0) + 1);
+            } else {
+                heights.put(arr[1], heights.get(arr[1]) - 1);
+                if (heights.get(arr[1]) == 0) heights.remove(arr[1]); // 终于看懂了一点点
+            }
+            int maxHeight = heights.keySet().iterator().next();
+            if (maxHeight != height) {
+                left = arr[0];
+                height = maxHeight;
+                res.add(Arrays.asList(left, height));
+            }
+        }
+
+        return res;
+    }
+
+
+    public List<List<Integer>> getSkyline自己写的(int[][] buildings) {
         if (buildings.length == 0) return Collections.emptyList();
 
 
@@ -177,8 +311,8 @@ public class Q0218天际线问题 implements Question {
 //        Deque<Map.Entry<Integer, Integer>> rightEntryStack = rightHeightMap.entrySet()
 //                .stream().sorted(Comparator.comparingInt(Map.Entry::getKey)).collect(Collectors.toCollection(LinkedList::new));
 
-       // LOGGER.info("leftEntryStack = {}", leftStack);
-       //LOGGER.info("rightEntryStack = {}", rightStack);
+        // LOGGER.info("leftEntryStack = {}", leftStack);
+        //LOGGER.info("rightEntryStack = {}", rightStack);
 
         List<List<Integer>> ans = new ArrayList<>();
 

@@ -6,7 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Description
@@ -26,14 +29,17 @@ public class Q0227基本计算器II implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                "3+2*2",
+                "3/2",
+                " 3+5 / 2 "
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                7,1,5
         );
     }
 
@@ -64,6 +70,50 @@ public class Q0227基本计算器II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int calculate(String s) {
-return -1;
+        return (int) calculate((Deque<Character>) s.chars().mapToObj(i -> (char) i).collect(Collectors.toCollection(LinkedList::new)));
+    }
+
+    public long calculate(Deque<Character> exp) {
+        long num = 0L;
+        char preSign = '+';
+        Deque<Long> stack = new LinkedList<>();
+        boolean eof = false;
+
+
+
+        while (!exp.isEmpty()) {
+            char c = exp.pollFirst();
+
+            if(exp.isEmpty()) eof = true;
+
+            switch (c){
+                case '(' : num = calculate(exp); break;
+                case ')' : break;
+                case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
+                    num+=num*10+c-'0'; if(!eof) break;
+                case ' ': if(!eof) break;
+                case '+' : case '-' : case '*' : case '/':
+                    switch (preSign){
+                        case '+': stack.push(num); break;
+                        case '-': stack.push(-num);break;
+                        case '*': stack.push(stack.pop()*num);break;
+                        case '/': stack.push(stack.pop()/num);break;
+                    }
+                    preSign = c; num = 0;
+            }
+
+        }
+
+//        switch (preSign){
+//            case '+': stack.push(num); break;
+//            case '-': stack.push(-num);break;
+//            case '*': stack.push(stack.pop()*num);break;
+//            case '/': stack.push(stack.pop()/num);break;
+//        }
+
+
+        long sum = stack.stream().mapToLong(Long::longValue).sum();
+        LOGGER.info("sum = {}", sum);
+        return sum;
     }
 }

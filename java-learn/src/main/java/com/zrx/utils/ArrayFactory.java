@@ -116,4 +116,28 @@ public class ArrayFactory {
 
         return ret;
     }
+
+    /**
+     * 创建二维数组 char[][]
+     * 例如输入 "a c b d", "c d"
+     * 返回 [
+     * ['a', 'c', 'b', 'd'],
+     * ['c', 'd']
+     * ]
+     * @param strings 见示例
+     * @return char[][]
+     */
+    public static char[][] createTwoDimensionsCharArray(String... strings) {
+        List<char[]> ans = new ArrayList<>();
+        for (String string : strings) {
+            String[] s = string.split(" ");
+            char[] chars = new char[s.length];
+            for (int i = 0; i < s.length; i++) {
+                chars[i] = s[i].charAt(0);
+            }
+            ans.add(chars);
+        }
+
+        return ans.toArray(char[][]::new);
+    }
 }
