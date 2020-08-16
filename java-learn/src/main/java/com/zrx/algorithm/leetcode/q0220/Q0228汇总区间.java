@@ -2,15 +2,19 @@ package com.zrx.algorithm.leetcode.q0220;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Description
  * 汇总区间
+ * 遍历即可
  * <p>
  * Data
  * 2020/7/6-11:05
@@ -26,14 +30,17 @@ public class Q0228汇总区间 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                ArrayFactory.create(0, 1, 2, 4, 5, 7),
+                ArrayFactory.create(0, 2, 3, 4, 6, 8, 9)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                List.of("0->2", "4->5", "7"),
+                List.of("0", "2->4", "6", "8->9")
         );
     }
 
@@ -56,6 +63,31 @@ public class Q0228汇总区间 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<String> summaryRanges(int[] nums) {
-return null;
+        List<StringBuilder> ans = new ArrayList<>(nums.length);
+
+        for (int num : nums) {
+            if (ans.isEmpty()) ans.add(new StringBuilder(String.valueOf(num)));
+            else {
+                StringBuilder last = ans.get(ans.size() - 1);
+
+                int arr = last.indexOf(">");
+
+                int lastNumber;
+                if (arr == -1) lastNumber = Integer.parseInt(last.toString());
+                else lastNumber = Integer.parseInt(last.substring(arr + 1, last.length()));
+
+
+                if (num - lastNumber == 1) combine(last, num);
+                else ans.add(new StringBuilder(String.valueOf(num)));
+            }
+        }
+
+        return ans.stream().map(StringBuilder::toString).collect(Collectors.toList());
+    }
+
+    private void combine(StringBuilder last, int num) {
+        int arr = last.indexOf(">");
+        if (arr == -1) last.append("->").append(num);
+        else last.replace(arr + 1, last.length(), String.valueOf(num));
     }
 }

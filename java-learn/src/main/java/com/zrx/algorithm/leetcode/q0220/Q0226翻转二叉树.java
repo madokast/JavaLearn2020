@@ -27,14 +27,15 @@ public class Q0226翻转二叉树 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                TreeNode.of(4, 2, 7, 1, 3, 6, 9)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                TreeNode.of(4, 7, 2, 9, 6, 3, 1)
         );
     }
 
@@ -67,6 +68,12 @@ public class Q0226翻转二叉树 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public TreeNode invertTree(TreeNode root) {
-return null;
+        if (root != null) {
+            TreeNode reLeft = invertTree(root.right);
+            root.right = invertTree(root.left);
+            root.left = reLeft;
+        }
+
+        return root;
     }
 }

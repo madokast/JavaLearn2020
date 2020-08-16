@@ -6,11 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Description
  * 用队列实现栈
+ * 我以为有神技可以做到 O1 O1
+ * 匆忙跑到评论区
+ * 大失所望
  * <p>
  * Data
  * 2020/7/6-11:05
@@ -26,14 +31,14 @@ public class Q0225用队列实现栈 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true
         );
     }
 
@@ -58,19 +63,37 @@ public class Q0225用队列实现栈 implements Question {
         return b;
     }
 
+    /**
+     * 利用单队列实现栈，则
+     * push On
+     * pop O1
+     * <p>
+     * 利用双队列实现栈，则
+     * push O1
+     * pop On
+     */
     class MyStack {
+
+        Deque<Integer> queue;
 
         /**
          * Initialize your data structure here.
          */
         public MyStack() {
-
+            queue = new LinkedList<>();
         }
 
         /**
          * Push element x onto stack.
          */
         public void push(int x) {
+            int size = queue.size();
+            queue.addLast(x);
+
+            for (int i = 0; i < size; i++) {
+                Integer removeFirst = queue.removeFirst();
+                queue.addLast(removeFirst);
+            }
 
         }
 
@@ -78,21 +101,21 @@ public class Q0225用队列实现栈 implements Question {
          * Removes the element on top of the stack and returns that element.
          */
         public int pop() {
-            return -1;
+            return queue.removeFirst();
         }
 
         /**
          * Get the top element.
          */
         public int top() {
-            return -1;
+            return queue.getFirst();
         }
 
         /**
          * Returns whether the stack is empty.
          */
         public boolean empty() {
-            return false;
+            return queue.isEmpty();
         }
     }
 

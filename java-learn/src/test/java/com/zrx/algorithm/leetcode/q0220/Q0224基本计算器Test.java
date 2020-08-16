@@ -10,6 +10,6 @@ class Q0224基本计算器Test {
     void testCalculate() {
         Q0224基本计算器 q0224基本计算器 = new Q0224基本计算器();
 
-        q0224基本计算器.calculate("(1+1)");
+        q0224基本计算器.calculate("(1+10)-100");
     }
 }

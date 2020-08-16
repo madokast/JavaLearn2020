@@ -33,14 +33,15 @@ public class Q0224基本计算器 implements Question {
                 "1 + 1",
                 " 2-1 + 2 ",
                 "(1+(4+5+2)-3)+(6+8)",
-                "(1+1)"
+                "(1+1)",
+                "(1+10)-100"
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-                2,3,23,2
+                2, 3, 23, 2,-89
         );
     }
 
@@ -71,8 +72,60 @@ public class Q0224基本计算器 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int calculate(String s) {
-        return (int) calculate((Deque<Character>) s.chars().mapToObj(i -> (char) i).collect(Collectors.toCollection(LinkedList::new)));
+//        return (int) calculate((Deque<Character>) s.chars().mapToObj(i -> (char) i).collect(Collectors.toCollection(LinkedList::new)));
+
+        return (int) calculate(s,0)[0];
     }
+
+    public long[] calculate(String s, int index) {
+        char preSignal = '+';
+        long num = 0;
+        Deque<Long> stack = new LinkedList<>();
+        int len = s.length();
+        int i;
+        for (i = index; i < len; i++) {
+            char ch = s.charAt(i);
+            if (isDigit(ch)) num = num * 10 + (ch - '0');
+            else if (ch == '(') {
+                long[] calculated = calculate(s, i + 1);
+                num = calculated[0];
+                i = (int) calculated[1];
+            }
+            else if (ch == ')') break;
+            else if (isSignal(ch)){
+                switch (preSignal){
+                    case '+' :stack.push(num);break;
+                    case '-' :stack.push(-num);break;
+                    case '*' :stack.push(stack.pop()*num);break;
+                    case '/' :stack.push(stack.pop()/num);break;
+                }
+                preSignal = ch;
+                num=0;
+            }
+        }
+
+        switch (preSignal){
+            case '+' :stack.push(num);break;
+            case '-' :stack.push(-num);break;
+            case '*' :stack.push(stack.pop()*num);break;
+            case '/' :stack.push(stack.pop()/num);break;
+        }
+
+        return new long[]{sum(stack),i};
+    }
+
+    private long sum(Deque<Long> stack) {
+        return stack.stream().mapToLong(Long::longValue).sum();
+    }
+
+    boolean isDigit(char ch) {
+        return ch >= '0' && ch <= '9';
+    }
+
+    boolean isSignal(char ch) {
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+    }
+
 
     public long calculate(Deque<Character> exp) {
         long num = 0L;
@@ -80,32 +133,64 @@ public class Q0224基本计算器 implements Question {
         Deque<Long> stack = new LinkedList<>();
 
 
-
         while (!exp.isEmpty()) {
             char c = exp.pollFirst();
 
-            switch (c){
-                case '(' : num = calculate(exp); break;
-                case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
-                    num+=num*10+c-'0'; break;
-                case ')' : break;
-                case '+' : case '-' : case '*' : case '/':
-                    switch (preSign){
-                        case '+': stack.push(num); break;
-                        case '-': stack.push(-num);break;
-                        case '*': stack.push(stack.pop()*num);break;
-                        case '/': stack.push(stack.pop()/num);break;
+            switch (c) {
+                case '(':
+                    num = calculate(exp);
+                    break;
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    num += num * 10 + c - '0';
+                    break;
+                case ')':
+                    break;
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                    switch (preSign) {
+                        case '+':
+                            stack.push(num);
+                            break;
+                        case '-':
+                            stack.push(-num);
+                            break;
+                        case '*':
+                            stack.push(stack.pop() * num);
+                            break;
+                        case '/':
+                            stack.push(stack.pop() / num);
+                            break;
                     }
-                    preSign = c; num = 0;
+                    preSign = c;
+                    num = 0;
             }
 
         }
 
-        switch (preSign){
-            case '+': stack.push(num); break;
-            case '-': stack.push(-num);break;
-            case '*': stack.push(stack.pop()*num);break;
-            case '/': stack.push(stack.pop()/num);break;
+        switch (preSign) {
+            case '+':
+                stack.push(num);
+                break;
+            case '-':
+                stack.push(-num);
+                break;
+            case '*':
+                stack.push(stack.pop() * num);
+                break;
+            case '/':
+                stack.push(stack.pop() / num);
+                break;
         }
 
 
