@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 各位相加
@@ -25,14 +27,14 @@ public class Q0258各位相加 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 38
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                2
         );
     }
 
@@ -52,6 +54,19 @@ public class Q0258各位相加 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int addDigits(int num) {
-return -1;
+        // 找规律
+        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+        // 1 2 3 4 5 6 7 8 9 1   2  3  4  5  6  7  8  9  1  2  3  4 5  6   7  8 9   1  2  3
+
+        // num%9
+        // 1 2 3 4 5 6 7 8 0 1   2
+
+        if (num == 0) return 0;
+        else {
+            int ans = num % 9;
+            if (ans == 0) return 9;
+            else return ans;
+        }
+
     }
 }

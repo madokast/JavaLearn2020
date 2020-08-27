@@ -1,5 +1,6 @@
 package com.zrx.algorithm;
 
+import com.zrx.algorithm.leetcode.object.OptionalSet;
 import com.zrx.algorithm.leetcode.object.RepeatableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,13 @@ public class Equality {
         // int[]
         if (a instanceof int[] && b instanceof int[])
             return Arrays.equals((int[]) a, (int[]) b);
+
+        // OptionalSet
+        if (a instanceof OptionalSet)
+            return a.equals(b);
+
+        if (b instanceof OptionalSet)
+            return b.equals(a);
 
         // 只要有一个是 RepeatableSet
         if (a instanceof RepeatableSet || b instanceof RepeatableSet)

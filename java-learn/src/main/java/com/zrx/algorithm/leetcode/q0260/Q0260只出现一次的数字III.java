@@ -2,9 +2,13 @@ package com.zrx.algorithm.leetcode.q0260;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.OptionalSet;
+import com.zrx.algorithm.leetcode.object.RepeatableSet;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
@@ -25,14 +29,30 @@ public class Q0260只出现一次的数字III implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                (Object) ArrayFactory.create(1, 2, 1, 3, 2, 5),
+                (Object) ArrayFactory.create(1, 2, 1, 3, 2, 5),
+                (Object) ArrayFactory.create(1, 2, 1, 3, 2, 5),
+                (Object) ArrayFactory.create(1, 2, 1, 3, 2, 5)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                OptionalSet.of(
+                        new int[]{3, 5},
+                        new int[]{5, 3}
+                ), OptionalSet.of(
+                        new int[]{3, 5},
+                        new int[]{5, 3}
+                ), OptionalSet.of(
+                        new int[]{5, 3},
+                        new int[]{3, 5}
+                ), OptionalSet.of(
+                        new int[]{5, 3},
+                        new int[]{3, 5}
+                )
         );
     }
 
@@ -53,6 +73,25 @@ public class Q0260只出现一次的数字III implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int[] singleNumber(int[] nums) {
-return nums;
+        int s = 0;
+        for (int num : nums) {
+            s = s ^ num;
+        }
+
+        int leadingZeros = Integer.numberOfLeadingZeros(s);
+        int selector = 1 << (32 - 1 - leadingZeros);
+        int a = 0;
+        int b = 0;
+
+        for (int num : nums) {
+            if ((num & selector) == 0) {
+                a = a ^ num;
+            } else {
+                b = b ^ num;
+            }
+        }
+
+
+        return new int[]{a, b};
     }
 }

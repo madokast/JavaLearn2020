@@ -2,11 +2,14 @@ package com.zrx.algorithm.leetcode.q0240;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 搜索二维矩阵 II
@@ -25,14 +28,28 @@ public class Q0240搜索二维矩阵II implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                ArrayFactory.createTwoDimensionsIntArray(
+                        1, 4, 7, 11, 15, null,
+                        2, 5, 8, 12, 19, null,
+                        3, 6, 9, 16, 22, null,
+                        10, 13, 14, 17, 24, null,
+                        18, 21, 23, 26, 30
+                ), 5,
+                ArrayFactory.createTwoDimensionsIntArray(
+                        1, 4, 7, 11, 15, null,
+                        2, 5, 8, 12, 19, null,
+                        3, 6, 9, 16, 22, null,
+                        10, 13, 14, 17, 24, null,
+                        18, 21, 23, 26, 30
+                ), 20
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, false
         );
     }
 
@@ -61,6 +78,26 @@ public class Q0240搜索二维矩阵II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean searchMatrix(int[][] matrix, int target) {
-return false;
+        int rows = matrix.length;
+        if (rows == 0) return false;
+
+        int cols = matrix[0].length;
+        if (cols == 0) return false;
+
+        int i = rows - 1;
+        int j = 0;
+
+        while (i >= 0 && j < cols) {
+            int val = matrix[i][j];
+            if (val > target) {
+                i--;
+            } else if (val < target) {
+                j++;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

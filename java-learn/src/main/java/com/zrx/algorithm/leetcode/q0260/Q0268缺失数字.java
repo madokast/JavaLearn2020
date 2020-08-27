@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class Q0248缺失数字 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q0248缺失数字.class);
+public class Q0268缺失数字 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q0268缺失数字.class);
 
     @Override
     public List<Input> getInputs() {

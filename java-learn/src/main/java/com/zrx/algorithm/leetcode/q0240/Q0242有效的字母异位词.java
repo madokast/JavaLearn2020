@@ -5,8 +5,12 @@ import com.zrx.algorithm.Question;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 有效的字母异位词
@@ -25,14 +29,16 @@ public class Q0242有效的字母异位词 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                "anagram", "nagaram",
+                "rat", "cat"
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, false
         );
     }
 
@@ -58,6 +64,19 @@ public class Q0242有效的字母异位词 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean isAnagram(String s, String t) {
-return false;
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : t.toCharArray()) {
+            Integer time = map.get(c);
+            if (time == null || time == 0) return false;
+            else if (time == 1) map.remove(c);
+            else map.put(c, time - 1);
+        }
+
+        return map.isEmpty();
     }
 }
