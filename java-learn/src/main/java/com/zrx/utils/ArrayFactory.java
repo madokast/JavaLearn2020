@@ -7,7 +7,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Description
@@ -124,6 +126,7 @@ public class ArrayFactory {
      * ['a', 'c', 'b', 'd'],
      * ['c', 'd']
      * ]
+     *
      * @param strings 见示例
      * @return char[][]
      */
@@ -139,5 +142,12 @@ public class ArrayFactory {
         }
 
         return ans.toArray(char[][]::new);
+    }
+
+
+    public static int[] randomInts(int bound, int length) {
+        Random random = new Random();
+
+        return Stream.generate(() -> random.nextInt(bound)).limit(length).mapToInt(Integer::intValue).toArray();
     }
 }
