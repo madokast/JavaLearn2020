@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0270;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,15 @@ public class Q0275H指数II implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                (Object) ArrayFactory.create(0, 1, 3, 5, 6)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                3
         );
     }
 
@@ -68,6 +70,29 @@ public class Q0275H指数II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int hIndex(int[] citations) {
-return -1;
+
+        int length = citations.length;
+        if (length == 0) return 0;
+
+        if (citations[length - 1] == 0) return 0;
+
+        int left = 1;
+        int right = length;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            int midBig = citations[length - mid];
+            int othersBig = length - mid == 0 ? -1 : citations[length - mid - 1];
+            if (midBig >= mid && othersBig <= mid) {
+                return mid;
+            } else if (midBig < mid) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
     }
 }

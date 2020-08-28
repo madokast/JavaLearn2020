@@ -99,7 +99,7 @@ public class 中缀表达式求值 {
         return tokenList;
     }
 
-    private static class Token {
+    static class Token {
         Object val;
         TokenType tokenType;
 

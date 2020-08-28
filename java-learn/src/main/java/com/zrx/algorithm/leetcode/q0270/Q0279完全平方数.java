@@ -6,7 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Description
@@ -26,14 +29,14 @@ public class Q0279完全平方数 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 12, 13
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                3, 2
         );
     }
 
@@ -56,6 +59,84 @@ public class Q0279完全平方数 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int numSquares(int n) {
-return -1;
+        int sqrt = (int) Math.sqrt(n);
+        int[] ss = new int[sqrt];
+        for (int i = 0; i < ss.length; i++) {
+            ss[i] = (i + 1) * (i + 1);
+        }
+
+        Set<Integer> layer = new HashSet<>();
+        layer.add(n);
+        int depth = 1;
+
+        while (true) {
+            if(depth==4) return 4;
+
+            Set<Integer> nextLayer = new HashSet<>();
+
+            for (Integer num : layer) {
+                for (int s : ss) {
+                    int diff = num - s;
+                    if (diff > 0) nextLayer.add(diff);
+                    else if (diff < 0) break;
+                    else return depth;
+                }
+            }
+
+            layer = nextLayer;
+            depth++;
+        }
     }
+
+
+    public int numSquares垃圾(int n) {
+        if (n == 0) return 0;
+
+        int num = Integer.MAX_VALUE;
+
+        int sqrt = (int) Math.sqrt(n);
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1);
+
+        for (int i = sqrt; i > 0; i--) {
+            int t = i * i;
+            if (n / t > num) break;
+            if (dp[n - t] == -1) {
+                dp[n - t] = numSquares(n - t);
+            }
+
+
+            num = Math.min(num, dp[n - t]);
+        }
+
+        return num + 1;
+    }
+
+//    private int numSquares(int n) {
+//        if (n == 0) return 0;
+//
+//        int num = Integer.MAX_VALUE;
+//
+//        for (int i = (int) Math.sqrt(n)); i > 0; i--) {
+//            int t = i * i;
+//            if (n / t > num) break;
+//            num = Math.min(num, numSquares(n - t, i));
+//        }
+//
+//        return num + 1;
+//    }
+
+//    private int numSquares(int n, int k) {
+//        if (n == 0) return 0;
+//
+//        int num = Integer.MAX_VALUE;
+//
+//        for (int i = Math.min(k, (int) Math.sqrt(n)); i > 0; i--) {
+//            int t = i * i;
+//            if (n / t > num) break;
+//            num = Math.min(num, numSquares(n - t, i));
+//        }
+//
+//        return num + 1;
+//    }
 }
