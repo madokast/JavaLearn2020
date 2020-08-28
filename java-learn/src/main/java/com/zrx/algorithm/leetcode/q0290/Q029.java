@@ -1,9 +1,10 @@
-package com.zrx.algorithm.leetcode.q0270;
+package com.zrx.algorithm.leetcode.q0290;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,8 +20,8 @@ import java.util.List;
  */
 
 //@Component
-public class Q027 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q027.class);
+public class Q029 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q029.class);
 
     @Override
     public List<Input> getInputs() {

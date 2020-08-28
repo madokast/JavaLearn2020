@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,14 +27,14 @@ public class Q0264丑数II implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 10
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                12
         );
     }
 
@@ -58,6 +59,29 @@ public class Q0264丑数II implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int nthUglyNumber(int n) {
-return -1;
+        List<Integer> list = new ArrayList<>(n);
+        list.add(1);
+        int i2 = 0, i3 = 0, i5 = 0;
+        for (int i = 1; i < n; i++) {
+            int n2 = list.get(i2) * 2;
+            int n3 = list.get(i3) * 3;
+            int n5 = list.get(i5) * 5;
+
+            int min = Math.min(
+                    n2,
+                    Math.min(
+                            n3,
+                            n5
+                    )
+            );
+
+            list.add(min);
+
+            if(min==n2) i2++;
+            if(min==n3) i3++;
+            if(min==n5) i5++;
+        }
+
+        return list.get(n - 1);
     }
 }

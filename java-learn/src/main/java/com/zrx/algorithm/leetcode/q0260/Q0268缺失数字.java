@@ -2,11 +2,14 @@ package com.zrx.algorithm.leetcode.q0260;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 缺失数字
@@ -25,14 +28,16 @@ public class Q0268缺失数字 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                ArrayFactory.create(3, 0, 1),
+                ArrayFactory.create(9, 6, 4, 2, 3, 5, 7, 0, 1)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                2, 8
         );
     }
 
@@ -59,6 +64,29 @@ public class Q0268缺失数字 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public int missingNumber(int[] nums) {
-        return -1;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            while (nums[i] != n && nums[i] != i) {
+                swap(nums, i, nums[i]);
+            }
+        }
+
+        LOGGER.info("nums = {}", nums);
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i) return i;
+        }
+
+        return n;
+    }
+
+    void swap(int[] arr, int i, int j) {
+        int ai = arr[i];
+        int aj = arr[j];
+        if (ai != aj) {
+            arr[i] = aj;
+            arr[j] = ai;
+        }
     }
 }

@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 行程和用户
@@ -25,14 +27,14 @@ public class Q0262行程和用户 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                fun(true)
         );
     }
 
@@ -85,7 +87,16 @@ public class Q0262行程和用户 implements Question {
             链接：https://leetcode-cn.com/problems/trips-and-users
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public boolean fun(boolean b) {
-        return b;
+    public String fun(boolean b) {
+        return """
+                SELECT Request_at AS `Day`, ROUND(AVG(IF(Status='completed',0,1)),2) AS `Cancellation Rate`
+                FROM Trips
+                WHERE Client_Id NOT IN\040
+                (SELECT Users_Id FROM Users WHERE Banned = 'Yes')
+                AND Driver_Id NOT IN\040
+                (SELECT Users_Id FROM Users WHERE Banned = 'Yes')
+                AND Request_at BETWEEN '2013-10-01' AND '2013-10-03'
+                GROUP BY Request_at;
+                """;
     }
 }

@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 /**
  * Description
  * 丑数
@@ -25,14 +27,14 @@ public class Q0263丑数 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 6, 8, 14
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, true, false
         );
     }
 
@@ -63,6 +65,12 @@ public class Q0263丑数 implements Question {
             输入不会超过 32 位有符号整数的范围: [−231,  231 − 1]。
             """)
     public boolean isUgly(int num) {
-return false;
+        if (num <= 0) return false;
+        while (num % 2 == 0) num /= 2;
+        while (num % 3 == 0) num /= 3;
+        while (num % 5 == 0) num /= 5;
+
+
+        return num == 1;
     }
 }
