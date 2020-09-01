@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0280;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,30 @@ public class Q0289生命游戏 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                (Object) ArrayFactory.createTwoDimensionsIntArray("""
+                        [
+                          [0,1,0],
+                          [0,0,1],
+                          [1,1,1],
+                          [0,0,0]
+                        ]""")
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                (Object) ArrayFactory.createTwoDimensionsIntArray(
+                        """
+                                                                [
+                                  [0,0,0],
+                                  [1,0,1],
+                                  [0,1,1],
+                                  [0,1,0]
+                                ]
+                                """
+                )
         );
     }
 
@@ -81,7 +98,68 @@ public class Q0289生命游戏 implements Question {
             链接：https://leetcode-cn.com/problems/game-of-life
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void gameOfLife(int[][] board) {
 
+
+    public int[][] gameOfLife(int[][] board) {
+        rows = board.length;
+        cols = board[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                next(board, i, j);
+            }
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                board[i][j] = board[i][j] >>> 1;
+            }
+        }
+
+        return board;
+    }
+
+    int rows;
+    int cols;
+
+    private void next(int[][] board, int i, int j) {
+        int numberOfAliveCell = numberOfAliveCell(board, i, j);
+        if ((board[i][j] & 1) == 1) {
+            // alive
+            if (numberOfAliveCell == 2 || numberOfAliveCell == 3) {
+                board[i][j] = board[i][j] + 0b10;
+            } else {
+                // dead
+            }
+        } else {
+            // dead
+            if (numberOfAliveCell == 3) {
+                board[i][j] = board[i][j] + 0b10;
+            }
+        }
+    }
+
+    private int numberOfAliveCell(int[][] board, int i, int j) {
+
+        int num = 0;
+
+        if (i < rows - 1 && (board[i + 1][j] & 1) == 1) num++;
+
+        if (i > 0 && (board[i - 1][j] & 1) == 1) num++;
+
+        if (j < cols - 1 && (board[i][j + 1] & 1) == 1) num++;
+
+        if (j > 0 && (board[i][j - 1] & 1) == 1) num++;
+
+
+        if (i < rows - 1 && j < cols - 1 && (board[i + 1][j + 1] & 1) == 1) num++;
+
+        if (i < rows - 1 && j > 0 && (board[i + 1][j - 1] & 1) == 1) num++;
+
+        if (i > 0 && j < cols - 1 && (board[i - 1][j + 1] & 1) == 1) num++;
+
+        if (i > 0 && j > 0 && (board[i - 1][j - 1] & 1) == 1) num++;
+
+        return num;
     }
 }

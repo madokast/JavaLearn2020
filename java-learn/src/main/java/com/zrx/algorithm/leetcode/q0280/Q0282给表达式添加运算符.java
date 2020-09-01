@@ -2,10 +2,12 @@ package com.zrx.algorithm.leetcode.q0280;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.algorithm.leetcode.object.RepeatableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,14 +28,31 @@ public class Q0282给表达式添加运算符 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                "123", 6,
+                "232", 8,
+                "105", 5,
+                "00", 0,
+                "3456237490", 9191,
+                "000", 0
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                RepeatableSet.of(
+                        "1+2+3", "1*2*3"
+                ), RepeatableSet.of(
+                        "2*3+2", "2+3*2"
+                ), RepeatableSet.of(
+                        "1*0+5", "10-5"
+                ), RepeatableSet.of(
+                        "0+0", "0-0", "0*0"
+                ), RepeatableSet.of(),
+                RepeatableSet.of(
+                        "0*0*0", "0*0+0", "0*0-0", "0+0*0", "0+0+0", "0+0-0", "0-0*0", "0-0+0", "0-0-0"
+                )
         );
     }
 
@@ -66,6 +85,85 @@ public class Q0282给表达式添加运算符 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public List<String> addOperators(String num, int target) {
-        return null;
+        int length = num.length();
+
+        List<String> ans = new ArrayList<>();
+
+        StringBuilder exp = new StringBuilder(length * 2);
+
+        long number = 0;
+        for (int i = 0; i < length; i++) {
+            number = number * 10 - '0' + num.charAt(i);
+
+            exp.append(number);
+            dps(num, i + 1, target, exp, number, number, ans);
+            exp.setLength(0);
+
+            if (number == 0) break;
+        }
+
+        return ans;
+    }
+
+    private void dps(String num, int startIn, int target, StringBuilder exp, long val, long lastAdder, List<String> ans) {
+        int length = num.length();
+        if (startIn == length) {
+            if (val == target) {
+                ans.add(exp.toString());
+            }
+        } else {
+            if (num.charAt(startIn) == '0') {
+
+                {// +0
+                    int oldLength = exp.length();
+                    exp.append("+").append(0);
+                    dps(num, startIn + 1, target, exp, val, 0, ans);
+                    exp.setLength(oldLength);
+                }
+
+                {// -0
+                    int oldLength = exp.length();
+                    exp.append("-").append(0);
+                    dps(num, startIn + 1, target, exp, val, 0, ans);
+                    exp.setLength(oldLength);
+                }
+
+                {// *0
+                    int oldLength = exp.length();
+                    exp.append("*").append(0);
+                    dps(num, startIn + 1, target, exp, val - lastAdder, 0, ans);
+                    exp.setLength(oldLength);
+                }
+
+            } else {
+                long number = 0;
+                for (int i = startIn; i < length; i++) {
+                    number = number * 10 - '0' + num.charAt(i);
+
+
+                    {// +number
+                        int oldLength = exp.length();
+                        exp.append("+").append(number);
+                        dps(num, i + 1, target, exp, val + number, number, ans);
+                        exp.setLength(oldLength);
+                    }
+
+                    {// -number
+                        int oldLength = exp.length();
+                        exp.append("-").append(number);
+                        dps(num, i + 1, target, exp, val - number, -number, ans);
+                        exp.setLength(oldLength);
+                    }
+
+                    {// *number
+                        int oldLength = exp.length();
+                        exp.append("*").append(number);
+                        dps(num, i + 1, target, exp, val - lastAdder + lastAdder * number, lastAdder * number, ans);
+                        exp.setLength(oldLength);
+                    }
+                }
+
+            }
+        }
     }
 }

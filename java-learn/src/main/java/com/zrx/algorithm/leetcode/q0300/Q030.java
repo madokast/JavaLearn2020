@@ -1,4 +1,4 @@
-package com.zrx.algorithm.leetcode.q0290;
+package com.zrx.algorithm.leetcode.q0300;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
@@ -19,9 +19,9 @@ import java.util.List;
  * @version 1.0
  */
 
-//@Component
-public class Q029 implements Question {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Q029.class);
+@Component
+public class Q030 implements Question {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Q030.class);
 
     @Override
     public List<Input> getInputs() {

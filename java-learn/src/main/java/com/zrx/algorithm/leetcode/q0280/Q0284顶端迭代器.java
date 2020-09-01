@@ -27,19 +27,20 @@ public class Q0284顶端迭代器 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, true
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true
         );
     }
 
     @Code(info = """
-            给定一个迭代器类的接口，接口包含两个方法： next() 和 hasNext()。设计并实现一个支持 peek() 操作的顶端迭代器 -- 其本质就是把原本应由 next() 方法返回的元素 peek() 出来。
+            给定一个迭代器类的接口，接口包含两个方法： next() 和 hasNext()。
+            设计并实现一个支持 peek() 操作的顶端迭代器 -- 其本质就是把原本应由 next() 方法返回的元素 peek() 出来。
 
             示例:
 
@@ -59,26 +60,43 @@ public class Q0284顶端迭代器 implements Question {
     }
 
     class PeekingIterator implements Iterator<Integer> {
+        boolean peeked = false;
+        Integer peek = null;
+
+        Iterator<Integer> agent;
+
         public PeekingIterator(Iterator<Integer> iterator) {
             // initialize any member here.
-
+            agent = iterator;
         }
 
         // Returns the next element in the iteration without advancing the iterator.
         public Integer peek() {
-            return null;
+            if (!peeked) {
+                peek = agent.next();
+                peeked = true;
+            }
+
+            return peek;
         }
 
         // hasNext() and next() should behave the same as in the Iterator interface.
         // Override them if needed.
         @Override
         public Integer next() {
-            return null;
+            if (peeked) {
+                peeked = false;
+                return peek;
+            } else {
+                return agent.next();
+            }
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            if (peeked) return true;
+            else return agent.hasNext();
+
         }
     }
 }

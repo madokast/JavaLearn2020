@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0280;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Description
  * 寻找重复数
+ * 超级难的题目
  * <p>
  * Data
  * 2020/7/6-11:05
@@ -26,14 +28,16 @@ public class Q0287寻找重复数 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                (Object) ArrayFactory.create(1, 3, 4, 2, 2),
+                ArrayFactory.create(3, 1, 3, 4, 2)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                2, 3
         );
     }
 
@@ -60,7 +64,20 @@ public class Q0287寻找重复数 implements Question {
             链接：https://leetcode-cn.com/problems/find-the-duplicate-number
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public boolean fun(boolean b) {
-        return b;
+    public int findDuplicate(int[] nums) {
+        int slow = 0, fast = 0;
+
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (nums[slow] != nums[fast]);
+
+        fast = 0;
+        while (nums[slow] != nums[fast]) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return nums[slow];
     }
 }

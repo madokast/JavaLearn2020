@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -101,6 +98,87 @@ public class ArrayFactory {
                 })
                 .collect(Collectors.toList())
                 .toArray(char[][]::new);
+    }
+
+    /**
+     * 构建二维int数组
+     * 输入：
+     * [
+     *   [0,1,0],
+     *   [0,0,1],
+     *   [1,1,1],
+     *   [0,0,0]
+     * ]
+     *
+     * @param data data
+     * @return int[][]
+     */
+    public static int[][] createTwoDimensionsIntArray(String data) {
+        data = removeBlack(data);
+        if (data.charAt(0) != '[' || data.charAt(data.length() - 1) != ']') {
+            throw new IllegalArgumentException("无法由" + data + "构建int二维数组");
+        }
+
+        List<int[]> ans = new ArrayList<>();
+
+        boolean inLeft = false;
+        int leftIndex = -1;
+        for (int i = 1; i < data.length() - 1; i++) {
+            char c = data.charAt(i);
+            if (c == '[') {
+                if (inLeft) {
+                    throw new IllegalArgumentException("无法由" + data + "构建int二维数组");
+                }
+
+                inLeft = true;
+                leftIndex = i;
+            } else if (c == ']') {
+                if (!inLeft) {
+                    throw new IllegalArgumentException("无法由" + data + "构建int二维数组");
+                }
+
+                ans.add(createIntArray(data.substring(leftIndex, i + 1)));
+                inLeft = false;
+            }
+        }
+
+        return ans.toArray(int[][]::new);
+    }
+
+    /**
+     * 构建一维数组
+     * 输入[0,1,0]
+     *
+     * @param data data
+     * @return int[]
+     */
+    public static int[] createIntArray(String data) {
+        //[0,0,0]
+        data = removeBlack(data);
+        if (data.charAt(0) != '[' || data.charAt(data.length() - 1) != ']') {
+            throw new IllegalArgumentException("无法由" + data + "构建int数组");
+        }
+
+        String[] split = data.substring(1, data.length() - 1).split(",");
+
+        try {
+            return Arrays.stream(split).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("无法由" + data + "构建int数组");
+        }
+    }
+
+    private static String removeBlack(String src) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < src.length(); i++) {
+            char c = src.charAt(i);
+
+            if (c != ' ' && c != '\n') {
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
     }
 
     /**

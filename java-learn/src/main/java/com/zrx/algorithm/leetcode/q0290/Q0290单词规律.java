@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description
@@ -26,14 +28,18 @@ public class Q0290单词规律 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                2,
+                "abba", "dog cat cat dog",
+                "abba", "dog cat cat fish",
+                "aaaa", "dog cat cat dog",
+                "abba", "dog dog dog dog"
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                true, false, false, false
         );
     }
 
@@ -66,6 +72,37 @@ public class Q0290单词规律 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean wordPattern(String pattern, String str) {
-        return false;
+        char[] p = pattern.toCharArray();
+        int pLen = p.length;
+
+        String[] ss = str.split(" ");
+        int sLen = ss.length;
+
+        if (pLen != sLen) return false;
+        if (pLen == 1) return true;
+
+        Map<Character, String> map = new HashMap<>();
+        Map<String, Character> mmap = new HashMap<>();
+        for (int i = 0; i < pLen; i++) {
+            char c = p[i];
+            String s = ss[i];
+
+            if (map.containsKey(c)) {
+                String sp = map.get(c);
+                if (!sp.equals(s)) return false;
+            } else {
+                map.put(c, s);
+            }
+
+            if (mmap.containsKey(s)) {
+                Character cp = mmap.get(s);
+                if (!cp.equals(c)) return false;
+            } else {
+                mmap.put(s, c);
+            }
+        }
+
+
+        return true;
     }
 }

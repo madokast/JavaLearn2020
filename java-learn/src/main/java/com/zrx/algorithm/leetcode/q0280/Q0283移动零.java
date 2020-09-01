@@ -2,6 +2,7 @@ package com.zrx.algorithm.leetcode.q0280;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;
+import com.zrx.utils.ArrayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,14 +27,19 @@ public class Q0283移动零 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1,
+                (Object) ArrayFactory.create(0, 1, 0, 3, 12),
+                (Object) ArrayFactory.create(1, 2),
+                (Object) ArrayFactory.create(2, 1)
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                (Object) ArrayFactory.create(1, 3, 12, 0, 0),
+                (Object) ArrayFactory.create(1, 2),
+                (Object) ArrayFactory.create(2, 1)
         );
     }
 
@@ -53,7 +59,26 @@ public class Q0283移动零 implements Question {
             链接：https://leetcode-cn.com/problems/move-zeroes
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
-    public void moveZeroes(int[] nums) {
+    public int[] moveZeroes(int[] nums) {
+        int length = nums.length;
 
+        int i = 0;
+        while (i < length && nums[i] != 0) i++;
+        for (int j = 0; j < length; j++) {
+            if (nums[j] != 0 && i < j) {
+                swap(nums, i, j);
+                i++;
+            }
+        }
+
+        return nums;
     }
+
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+
+
 }
