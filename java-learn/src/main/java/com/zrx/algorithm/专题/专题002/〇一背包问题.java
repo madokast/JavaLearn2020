@@ -1,4 +1,4 @@
-package com.zrx.algorithm.专题.动态规划;
+package com.zrx.algorithm.专题.专题002;
 
 import com.zrx.Invoking;
 import com.zrx.algorithm.Code;

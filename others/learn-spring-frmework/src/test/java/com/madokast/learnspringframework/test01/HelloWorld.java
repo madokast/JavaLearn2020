@@ -1,5 +1,7 @@
 package com.madokast.learnspringframework.test01;
 
+import com.madokast.learnspringframework.bean.A;
+import com.madokast.learnspringframework.bean.B;
 import com.madokast.learnspringframework.bean.Hello;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,11 +27,19 @@ public class HelloWorld {
 
         ApplicationContext ioc = new ClassPathXmlApplicationContext("hello.xml");
 
-        Hello hello = (Hello) ioc.getBean("hello");
+//        Hello hello = (Hello) ioc.getBean("hello");
+//
+//        Assert.assertEquals(hello.getAge(), Integer.valueOf(10));
+//
+//        Assert.assertEquals(hello.getName(), "zrx");
 
-        Assert.assertEquals(hello.getAge(), Integer.valueOf(10));
 
-        Assert.assertEquals(hello.getName(), "zrx");
+        A a = ioc.getBean("a", A.class);
+
+        B b = ioc.getBean("b", B.class);
+
+        Assert.assertTrue(a==b.getA());
+
 
     }
 }

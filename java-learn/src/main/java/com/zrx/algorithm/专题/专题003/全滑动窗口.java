@@ -1,4 +1,4 @@
-package com.zrx.algorithm.专题;
+package com.zrx.algorithm.专题.专题003;
 
 import com.zrx.algorithm.Code;
 import com.zrx.algorithm.Question;

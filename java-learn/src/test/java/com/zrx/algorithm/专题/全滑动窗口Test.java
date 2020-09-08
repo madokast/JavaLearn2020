@@ -1,10 +1,9 @@
 package com.zrx.algorithm.专题;
 
+import com.zrx.algorithm.专题.专题003.全滑动窗口;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class 全滑动窗口Test {
 

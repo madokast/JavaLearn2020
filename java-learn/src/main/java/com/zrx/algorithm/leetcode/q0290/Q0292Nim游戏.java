@@ -26,14 +26,14 @@ public class Q0292Nim游戏 implements Question {
     @Override
     public List<Input> getInputs() {
         return InputFactory.create(
-                1
+                1, 4
         );
     }
 
     @Override
     public List<Answer> getAnswers() {
         return AnswerFactory.create(
-
+                false
         );
     }
 
@@ -54,6 +54,21 @@ public class Q0292Nim游戏 implements Question {
             著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
             """)
     public boolean canWinNim(int n) {
-        return false;
+        return n % 4 != 0;
+    }
+
+    public boolean canWinNim动态规划(int n) {
+        if (n <= 3) return true;
+
+        boolean[] dp = new boolean[n + 1];
+        dp[1] = true;
+        dp[2] = true;
+        dp[3] = true;
+
+        for (int i = 4; i <= n; i++) {
+            dp[i] = !(dp[i - 1] && dp[i - 2] && dp[i - 3]);
+        }
+
+        return dp[n];
     }
 }

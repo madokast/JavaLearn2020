@@ -1,4 +1,4 @@
-package com.zrx.algorithm.专题.贪心算法;
+package com.zrx.algorithm.专题.专题001;
 
 import com.zrx.Invoking;
 import com.zrx.algorithm.Code;

@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Description
@@ -73,6 +75,9 @@ public class Q0295数据流的中位数 implements Question {
 
     class MedianFinder {
 
+        PriorityQueue<Integer> left = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Integer> right = new PriorityQueue<>();
+
         /**
          * initialize your data structure here.
          */
@@ -81,11 +86,41 @@ public class Q0295数据流的中位数 implements Question {
         }
 
         public void addNum(int num) {
+            Integer bigInLeft = left.peek();
+            if (bigInLeft == null || num <= bigInLeft) {
+                left.add(num);
+            } else {
+                right.add(num);
+            }
 
+            balance();
+        }
+
+        private void balance() {
+            int ls = left.size();
+            int rs = right.size();
+
+            if (ls - rs > 1) {
+                Integer poll = left.poll();
+                right.add(poll);
+            } else if (rs > ls) {
+                Integer poll = right.poll();
+                left.add(poll);
+            }
         }
 
         public double findMedian() {
-            return 0.;
+            int ls = left.size();
+            int rs = right.size();
+
+            if (ls == rs) {
+                Integer l = left.peek();
+                Integer r = right.peek();
+
+                return (l + r) / 2.;
+            } else {
+                return left.peek();
+            }
         }
     }
 
